@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}</ProjectGuid>
+    <RootNamespace>RWracesDB</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <ProjectName>RWracesDB</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>RWracesDB</TargetName>
+    <IntDir>$(SolutionDir)..\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>RWracesDB</TargetName>
+    <IntDir>$(SolutionDir)..\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\$(Configuration)\</OutDir>
+    <LibraryPath>$(LibraryPath)\</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\SrcFiles\;$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>Version.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\AboutFiles\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\SrcFiles\;$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Version.lib</AdditionalDependencies>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\AboutFiles\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\SrcFiles\RWracesDB.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="RWracesDB.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ClInclude Include="..\..\Library\AboutFiles\About.h" />
+    <ClInclude Include="..\SrcFiles\AddressMap.h" />
+    <ClInclude Include="..\SrcFiles\AddressTbl.h" />
+    <ClInclude Include="..\SrcFiles\AssgnPrefMap.h" />
+    <ClInclude Include="..\SrcFiles\AssgnPrefTbl.h" />
+    <ClInclude Include="..\SrcFiles\CityStateMap.h" />
+    <ClInclude Include="..\SrcFiles\CityStateTbl.h" />
+    <ClInclude Include="..\SrcFiles\EntityMap.h" />
+    <ClInclude Include="..\SrcFiles\EntityTbl.h" />
+    <ClInclude Include="..\SrcFiles\LocationPrefMap.h" />
+    <ClInclude Include="..\SrcFiles\LocationPrefTbl.h" />
+    <ClInclude Include="..\SrcFiles\MainFrm.h" />
+    <ClInclude Include="..\SrcFiles\MapData.h" />
+    <ClInclude Include="..\SrcFiles\Maps.h" />
+    <ClInclude Include="..\SrcFiles\MemberList.h" />
+    <ClInclude Include="..\SrcFiles\MemberMap.h" />
+    <ClInclude Include="..\SrcFiles\MemberTbl.h" />
+    <ClInclude Include="..\SrcFiles\NewCsvData.h" />
+    <ClInclude Include="..\SrcFiles\Records.h" />
+    <ClInclude Include="..\SrcFiles\resource.h" />
+    <ClInclude Include="..\SrcFiles\RWracesDB.h" />
+    <ClInclude Include="..\SrcFiles\RWracesDBDoc.h" />
+    <ClInclude Include="..\SrcFiles\RWracesDBView.h" />
+    <ClInclude Include="..\SrcFiles\StatusCsvData.h" />
+    <ClInclude Include="..\SrcFiles\StatusMap.h" />
+    <ClInclude Include="..\SrcFiles\StatusTbl.h" />
+    <ClInclude Include="..\SrcFiles\stdafx.h" />
+    <ClInclude Include="..\SrcFiles\Survey.h" />
+    <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h" />
+    <ClInclude Include="..\SrcFiles\targetver.h" />
+    <ClInclude Include="..\SrcFiles\Utilities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Library\AboutFiles\About.cpp" />
+    <ClCompile Include="..\SrcFiles\AddressMap.cpp" />
+    <ClCompile Include="..\SrcFiles\AddressTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\AssgnPrefMap.cpp" />
+    <ClCompile Include="..\SrcFiles\AssgnPrefTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\CityStateMap.cpp" />
+    <ClCompile Include="..\SrcFiles\CityStateTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\DspOneRecord.cpp" />
+    <ClCompile Include="..\SrcFiles\EntityMap.cpp" />
+    <ClCompile Include="..\SrcFiles\EntityTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\Everbridge.cpp" />
+    <ClCompile Include="..\SrcFiles\FixPrimaryeMail.cpp" />
+    <ClCompile Include="..\SrcFiles\GoogleEarth.cpp" />
+    <ClCompile Include="..\SrcFiles\LocationPrefMap.cpp" />
+    <ClCompile Include="..\SrcFiles\LocationPrefTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\MainFrm.cpp" />
+    <ClCompile Include="..\SrcFiles\MapData.cpp" />
+    <ClCompile Include="..\SrcFiles\Maps.cpp" />
+    <ClCompile Include="..\SrcFiles\MemberList.cpp" />
+    <ClCompile Include="..\SrcFiles\MemberMap.cpp" />
+    <ClCompile Include="..\SrcFiles\MemberTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\NewCsvData.cpp" />
+    <ClCompile Include="..\SrcFiles\OnUpdateDB.cpp" />
+    <ClCompile Include="..\SrcFiles\RestoreBackup.cpp" />
+    <ClCompile Include="..\SrcFiles\RWracesDB.cpp" />
+    <ClCompile Include="..\SrcFiles\RWracesDBDoc.cpp" />
+    <ClCompile Include="..\SrcFiles\RWracesDBView.cpp" />
+    <ClCompile Include="..\SrcFiles\StatusCsvData.cpp" />
+    <ClCompile Include="..\SrcFiles\StatusMap.cpp" />
+    <ClCompile Include="..\SrcFiles\StatusTbl.cpp" />
+    <ClCompile Include="..\SrcFiles\stdafx.cpp" />
+    <ClCompile Include="..\SrcFiles\Survey.cpp" />
+    <ClCompile Include="..\SrcFiles\UpdateRequest.cpp" />
+    <ClCompile Include="..\SrcFiles\Utilities.cpp" />
+    <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Library\AboutFiles\About.rc2" />
+  <None Include="..\README.md" />
+    <None Include="..\SrcFiles\res\RWracesDB.rc2" />
+  <None Include="..\Data\pushTabBefore.txt" />
+  <None Include="..\Data\pushTabAfter.txt" />
+  <None Include="..\Data\pushTabAfter2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\SrcFiles\res\RWracesDB.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\LibUni7\LibUni7.vcxproj">
+      <Project>{cf57f3ec-d3db-4469-8519-3f9d73785d9b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

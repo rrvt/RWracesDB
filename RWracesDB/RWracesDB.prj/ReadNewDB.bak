@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}</ProjectGuid>
+    <RootNamespace>ReadNewDB</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Library\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Library\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="csv.h" />
+    <ClInclude Include="DSWData.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OrigCsvData.h" />
+    <ClInclude Include="ReadNewDB.h" />
+    <ClInclude Include="ReadNewDBDoc.h" />
+    <ClInclude Include="ReadNewDBView.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StatusCsvData.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SurveyData.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="EntryRpt.h" />
+    <ClInclude Include="Records.h" />
+    <ClInclude Include="AddressMap.h" />
+    <ClInclude Include="AssgnPrefMap.h" />
+    <ClInclude Include="CityStateMap.h" />
+    <ClInclude Include="LocationPrefMap.h" />
+    <ClInclude Include="Maps.h" />
+    <ClInclude Include="MemberMap.h" />
+    <ClInclude Include="PhoneMap.h" />
+    <ClInclude Include="QNode.h" />
+    <ClInclude Include="StatusMap.h" />
+    <ClInclude Include="TableOp.h" />
+    <ClInclude Include="EntityMap.h" />
+  <ClInclude Include="MapsFiles.h" />
+  <ClInclude Include="MapsTables.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DSWData.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OrigCsvData.cpp" />
+    <ClCompile Include="ReadNewDB.cpp" />
+    <ClCompile Include="ReadNewDBDoc.cpp" />
+    <ClCompile Include="ReadNewDBView.cpp" />
+    <ClCompile Include="StatusCsvData.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="EntryRpt.cpp" />
+    <ClCompile Include="SurveyData.cpp" />
+    <ClCompile Include="AddressMap.cpp" />
+    <ClCompile Include="AssgnPrefMap.cpp" />
+    <ClCompile Include="CityStateMap.cpp" />
+    <ClCompile Include="LocationPrefMap.cpp" />
+    <ClCompile Include="Maps.cpp" />
+    <ClCompile Include="MemberMap.cpp" />
+    <ClCompile Include="PhoneMap.cpp" />
+    <ClCompile Include="QNode.cpp" />
+    <ClCompile Include="StatusMap.cpp" />
+    <ClCompile Include="TableOp.cpp" />
+    <ClCompile Include="EntityMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ReadNewDB.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ReadNewDB.ico" />
+    <Image Include="res\ReadNewDBDoc.ico" />
+    <Image Include="res\Toolbar9.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ReadNewDB.rc2" />
+    <None Include="Debug\acedao.tlh" />
+    <None Include="Debug\acedao.tli" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\Library.vcxproj">
+      <Project>{7ecc6225-6235-451b-a770-afaed3981e0a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ReadNewDB.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
