@@ -53,6 +53,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 9/27/20
+Added a feature to display and save the non-former members for which badges may be created.  The list
+may be sorted by expiration date of the badge or by the member's call sign.
+
 ### Update 9/10/20
 Library improvement project.  Changed the Expandable Array classes, added templates for a pointer only
 class in the ExpandableP class definition.  It turned out I was defining this RcdPtr class many times

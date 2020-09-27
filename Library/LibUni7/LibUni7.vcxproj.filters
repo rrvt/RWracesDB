@@ -225,6 +225,15 @@
     <ClInclude Include="..\LibFiles\ExpandableP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\LibFiles\TBComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\TBButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\TBEditBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\LibFiles\AceDao.cpp">
@@ -390,6 +399,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\LibFiles\CSVRcdB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\TBComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\TBButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\TBEditBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -130,7 +130,7 @@ Note& note = n.getNote();
 NotePad& NotePad::doTab(NotePad& n) {
 Note& note = n.getNote();
 
-  if (!note.line.empty() || note.tab || note.beginLine || note.right) n.note = 0;
+  if (!note.line.empty() || note.tab || note.beginLine || note.right || note.editBoxX >= 0) n.note = 0;
 
   n.getNote().tab = true; return n;
   }

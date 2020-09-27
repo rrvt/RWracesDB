@@ -258,6 +258,9 @@
     <ClInclude Include="..\LibFiles\Resources.h" />
     <ClInclude Include="..\LibFiles\SrchFile.h" />
     <ClInclude Include="..\LibFiles\std.h" />
+    <ClInclude Include="..\LibFiles\TBComboBox.h" />
+    <ClInclude Include="..\LibFiles\TBButton.h" />
+    <ClInclude Include="..\LibFiles\TBEditBox.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\LibFiles\StringInput.h" />
     <ClInclude Include="..\LibFiles\Strings.h" />
@@ -326,6 +329,9 @@
     <ClCompile Include="..\LibFiles\stdafx.cpp" />
     <ClCompile Include="..\LibFiles\Strings.cpp" />
     <ClCompile Include="..\LibFiles\TabStops.cpp" />
+    <ClCompile Include="..\LibFiles\TBComboBox.cpp" />
+    <ClCompile Include="..\LibFiles\TBButton.cpp" />
+    <ClCompile Include="..\LibFiles\TBEditBox.cpp" />
     <ClCompile Include="..\LibFiles\TextPosition.cpp" />
     <ClCompile Include="..\LibFiles\ToolBar.cpp" />
     <ClCompile Include="..\LibFiles\ToString.cpp" />

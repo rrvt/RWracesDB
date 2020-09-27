@@ -7,22 +7,22 @@ NoIcons=2
 [Icon00]
 IconID=RWracesDBUI
 WixID=RWracesDBUIIcon.ico
-IconPath=D:\Sources\RWracesDB\SrcFiles\res\RWracesDBUI.ico
+IconPath=D:\Sources\RWracesDB\RWracesDB.prj\res\RWracesDBUI.ico
 [Icon01]
 IconID=RWracesDB
 WixID=RWracesDBIcon.ico
-IconPath=D:\Sources\RWracesDB\SrcFiles\res\RWracesDB.ico
+IconPath=D:\Sources\RWracesDB\RWracesDB.prj\res\RWracesDB.ico
 [DefaultPath]
 NPaths=2
 DefKey0=RacesDB.ftr
 RacesDB.ftr.Path=D:\Sources\RWracesDB\RWracesDB\
 DefKey1=Icon
-Icon.Path=D:\Sources\RWracesDB\SrcFiles\res\
+Icon.Path=D:\Sources\RWracesDB\RWracesDB.prj\res\
 [Product]
 ProductName=RacesDB
 Company=Bob -- K6RWY
 WixName=RacesDB
-WixVersion=1.7.6.0
+WixVersion=1.8.0.0
 UpgradeGUID=41421C9F-E233-480D-893E-63A792A63FFE
 SaveVerAllowed=0
 LicenseRequired=0

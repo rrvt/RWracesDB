@@ -3,58 +3,80 @@
 
 #include "stdafx.h"
 #include "RWracesDBDoc.h"
+#include "BackupRcds.h"
+#include "GetPathDlg.h"
+#include "RWracesDB.h"
 #include "Utilities.h"
 
 
 
+
+void RWracesDBDoc::loadBackupData(Archive& ar) {backupRcds.load(ar);}
+
+
+void RWracesDBDoc::OnBackup() {
+MmbrIter      iter(memberTable);
+MemberRecord* rcd;
+
+  setFileSaveAttr(_T("Backup"), _T("csv"));
+
+  dspRecordHeader();
+
+  for (rcd = iter(); rcd; rcd = iter++) dspOneRecord(*rcd, BkupDspType);
+
+  invalidate();
+  }
+
+
+void RWracesDBDoc::OnRestoreNew() {
+String path;
+
+  if (getPathDlg(_T("Restore Database from csv File"), 0, _T("csv"), _T("*.csv"), path))
+                       {setDocType(RestoreDocType);   if (OnOpenDocument(path)) restoreBackupCSV();}
+  theApp.announceFinish();
+  }
+
+
 void RWracesDBDoc::restoreBackupCSV() {
-AddressTable&      addressTable      = maps.data.addressTable;
-AssgnPrefTable&    assgnPrefTable    = maps.data.assgnPrefTable;
-CityStateTable&    cityStTable       = maps.data.cityStateTable;
-EntityTable&       entityTable       = maps.data.entityTable;
-LocationPrefTable& locationPrefTable = maps.data.locationPrefTable;
-MemberTable&       memberTable       = maps.data.memberTable;
-StatusTable&       statusTable       = maps.data.statusTable;
+BkpIter    iter(backupRcds);
+BackupRcd* csv;
+int        i;
 
-NewCsvData*        csv;
-int                i;
+  dspType = BkupDspType;
 
-  initDefaultBadgeNo();  initStatusTable();   initLocPrefTable();   initAsnPrefTable();
+  initDefaultBadgeNo();
+  statusTable.FixedInit();   locationPrefTable.FixedInit();   assgnPrefTable.FixedInit();
 
-  for (i = 0, csv = newCSV.startLoop(); csv; i++, csv = newCSV.nextCSV()) {
+  csv = iter();   if (csv && csv->CallSign == _T("CallSign")) csv = iter++;
+
+  for (i = 0; csv; i++, csv = iter++) {
     if (!restoreOneBackupRcd(*csv)) {
-      notePad << "Unable to upload: " << csv->mbrFirstName << " " << csv->mbrLastName << " ";
+      notePad << _T("Unable to upload: ") << csv->mbrFirstName << _T(" ") << csv->mbrLastName << _T(" ");
       notePad << csv->CallSign << nCrlf;
       }
     }
 
-  memberTable.updateDatabase();
+  memberTable.toDatabase();   entityTable.toDatabase();    invalidate();
   }
 
 
-bool RWracesDBDoc::restoreOneBackupRcd(NewCsvData& csv) {
-MemberTable&     memberTable  = maps.data.memberTable;
-EntityTable&     entityTable  = maps.data.entityTable;
-AddressTable&    addressTable = maps.data.addressTable;
-CityStateTable&  cityTable    = maps.data.cityStateTable;
-
-MemberRecord*    mbr;
-EntityRecord*    mbrEnt;
-AddressRecord*   mbrAdr;
-CityStateRecord* mbrCty;
-EntityRecord*    emplEnt;
-AddressRecord*   emplAdr;
-CityStateRecord* emplCty;
-EntityRecord*    iceEnt;
-AddressRecord*   iceAdr;
-CityStateRecord* iceCty;
+bool RWracesDBDoc::restoreOneBackupRcd(BackupRcd& csv) {
+MemberRecord*    mbr     = 0;
+EntityRecord*    mbrEnt  = 0;
+AddressRecord*   mbrAdr  = 0;
+CityStateRecord* mbrCty  = 0;
+EntityRecord*    emplEnt = 0;
+AddressRecord*   emplAdr = 0;
+CityStateRecord* emplCty = 0;
+EntityRecord*    iceEnt  = 0;
+AddressRecord*   iceAdr  = 0;
+CityStateRecord* iceCty  = 0;
 
   if (isEmpty(&csv.mbrLastName, &csv.mbrFirstName, &csv.CallSign, 0)) return false;
 
-  mbr = getMbrRcd(csv.CallSign);
+  mbr = memberTable.get(csv.CallSign);
 
   mbr->BadgeNumber         = sanitizeBadgeNo(csv.BadgeNumber);
-  mbr->CallSign            = csv.CallSign;
   mbr->FCCExpiration       = sanitizeDate(csv.FCCExpiration);
   mbr->StartDate           = sanitizeDate(csv.StartDate);
   mbr->DSWDate             = sanitizeDate(csv.DSWDate);
@@ -63,99 +85,80 @@ CityStateRecord* iceCty;
   mbr->SecondaryEmail      = csv.SecondaryEmail;
   mbr->TextMsgPh1          = csv.txtDevPrim;
   mbr->TextMsgPh2          = csv.txtDevSec;
-  mbr->HandHeld            = csv.Handheld;
-  mbr->PortMobile          = csv.PortMobile;
-  mbr->PortPacket          = csv.PortPacket;
-  mbr->OtherEquip          = csv.OtherEquip;
-  mbr->Multilingual        = csv.Multilingual;
-  mbr->OtherCapabilities   = csv.OtherCapabilities;
-  mbr->Limitations         = csv.Limitations;
-  mbr->Comments            = csv.Comments;
+  mbr->HandHeld            = quoteStrIn(csv.Handheld);
+  mbr->PortMobile          = quoteStrIn(csv.PortMobile);
+  mbr->PortPacket          = quoteStrIn(csv.PortPacket);
+  mbr->OtherEquip          = quoteStrIn(csv.OtherEquip);
+  mbr->Multilingual        = quoteStrIn(csv.Multilingual);
+  mbr->OtherCapabilities   = quoteStrIn(csv.OtherCapabilities);
+  mbr->Limitations         = quoteStrIn(csv.Limitations);
+  mbr->Comments            = quoteStrIn(csv.Comments);
   mbr->ShirtSize           = csv.ShirtSize;
   mbr->SkillCertifications = csv.SkillCertifications;
   mbr->EOC_Certifications  = csv.EOC_Certifications;
   mbr->UpdateDate          = csv.UpdateDate;
 
-  mbr->AssgnPrefID         = getAssgnPrefID(csv.AssgnPrefKey, csv.AssgnPrefDsc);
+  mbr->AssgnPrefID         = assgnPrefTable.add(csv.AssgnPrefKey, csv.AssgnPrefDsc);
 
-  mbr->LocationPrefID      = getLocationPrefID(csv.LocationPrefKey, csv.LocationPref);
+  mbr->LocationPrefID      = locationPrefTable.add(csv.LocationPrefKey, csv.LocationPref);
   mbr->IsOfficer           = csv.IsOfficer;
-  mbr->StatusID            = getStatusID(csv.StatusAbr, csv.StatusDsc);
+  mbr->StatusID            = statusTable.add(csv.StatusAbr, csv.StatusDsc);
   mbr->BadgeOK             = csv.BadgeOK;
 
-  mbrEnt                   = getEntRcd(csv.mbrFirstName, csv.mbrLastName);
+  mbrEnt = entityTable.get(csv.mbrFirstName, csv.mbrLastName, csv.mbrEmail, csv.mbrPhone, csv.mbrCell);
 
   if (mbrEnt) {
     mbrEnt->MiddleInitial  = csv.mbrMiddleInitial;
     mbrEnt->Suffix         = csv.mbrSuffix;
     mbrEnt->AddrIsPO       = csv.mbrAddrIsPO == "1";
     mbrEnt->LocationZip    = csv.mbrLocationZip;
-    mbrEnt->eMail          = csv.mbrEmail;
-    mbrEnt->Phone1         = csv.mbrPhone;
-    mbrEnt->Phone2         = csv.mbrCell;
+    mbrEnt->mark();
 
-    mbrAdr                 = getAddrRcd(sanitizeAddr(csv.mbrStreet), sanitizeAddr(csv.mbrAptSuite));
+    mbrAdr = addressTable.get(sanitizeAddr(csv.mbrStreet), sanitizeAddr(csv.mbrAptSuite));
+    if (mbrAdr) mbrEnt->AddrID = mbrAdr->AddressID;
 
-    mbrCty                 = getCityRcd(csv.mbrCity , csv.mbrState, csv.mbrZip);
+    mbrCty = cityStateTable.get(csv.mbrCity , csv.mbrState, csv.mbrZip);
+    if (mbrCty) mbrEnt->CityStID = mbrCty->CityStateID;
+
+    mbr->MbrEntityID  = mbrEnt->EntityID;
     }
 
-  emplEnt                  = getEntRcd(csv.emplFirstName, csv.emplLastName);
-
+  emplEnt = entityTable.get(csv.emplFirstName, csv.emplLastName,
+                                                             csv.emplEmail, csv.emplPhone, csv.emplCell);
   if (emplEnt) {
     emplEnt->MiddleInitial = csv.emplMiddleInitial;
     emplEnt->Suffix        = csv.emplSuffix;
     emplEnt->AddrIsPO      = csv.emplAddrIsPO;
     emplEnt->LocationZip   = csv.emplLocationZip;
-    emplEnt->eMail         = csv.emplEmail;
-    emplEnt->Phone1        = csv.emplPhone;
-    emplEnt->Phone2        = csv.emplCell;
+    emplEnt->mark();
 
-    emplAdr                = getAddrRcd(sanitizeAddr(csv.emplStreet), sanitizeAddr(csv.emplAptSuite));
+    emplAdr                = addressTable.get(sanitizeAddr(csv.emplStreet), sanitizeAddr(csv.emplAptSuite));
+    if (emplAdr) emplEnt->AddrID = emplAdr->AddressID;
 
-    if (emplAdr) emplCty   = getCityRcd(csv.emplCity, csv.emplState, csv.emplZip);
+    emplCty                = cityStateTable.get(csv.emplCity, csv.emplState, csv.emplZip);
+    if (emplCty) emplEnt->CityStID = emplCty->CityStateID;
+
+    mbr->EmplEntityID = emplEnt->EntityID;
     }
 
-  iceEnt                   = getEntRcd(csv.iceFirstName, csv.iceLastName);
+  iceEnt = entityTable.get(csv.iceFirstName, csv.iceLastName, csv.iceEmail, csv.icePhone, csv.iceCell);
 
   if (iceEnt) {
     iceEnt->MiddleInitial  = csv.iceMiddleInitial;
     iceEnt->Suffix         = csv.iceSuffix;
     iceEnt->AddrIsPO       = csv.iceAddrIsPO;
     iceEnt->LocationZip    = csv.iceLocationZip;
-    iceEnt->eMail          = csv.iceEmail;
-    iceEnt->Phone1         = csv.icePhone;
-    iceEnt->Phone2         = csv.iceCell;
+    iceEnt->mark();
 
-    iceAdr                 = getAddrRcd(sanitizeAddr(csv.iceStreet), sanitizeAddr(csv.iceAptSuite));
+    iceAdr = addressTable.get(sanitizeAddr(csv.iceStreet), sanitizeAddr(csv.iceAptSuite));
+    if (iceAdr) iceEnt->AddrID = iceAdr->AddressID;
 
-    if (iceAdr) iceCty     = getCityRcd(csv.iceCity, csv.iceState, csv.iceZip);
-    }
-
-  cityTable.updateDatabase();   addressTable.updateDatabase();
-
-  if (mbrEnt) {
-    if (mbrAdr) mbrEnt->AddrID   = mbrAdr->AddressID;
-    if (mbrCty) mbrEnt->CityStID = mbrCty->CityStateID;
-    }
-
-  if (emplEnt) {
-    if (emplAdr) emplEnt->AddrID   = emplAdr->AddressID;
-    if (emplCty) emplEnt->CityStID = emplCty->CityStateID;
-    }
-
-  if (iceEnt) {
-    if (iceAdr) iceEnt->AddrID   = iceAdr->AddressID;
+    iceCty = cityStateTable.get(csv.iceCity, csv.iceState, csv.iceZip);
     if (iceCty) iceEnt->CityStID = iceCty->CityStateID;
+
+    mbr->ICE_EntityID = iceEnt->EntityID;
     }
 
-  entityTable.updateDatabase();
-
-  if (mbr) {
-    if (mbrEnt)  mbr->MbrEntityID  = mbrEnt->EntityID;
-    if (emplEnt) mbr->EmplEntityID = emplEnt->EntityID;
-    if (iceEnt)  mbr->ICE_EntityID = iceEnt->EntityID;
-    }
-
-  return true;
+  mbr->mark();   return true;
   }
 

@@ -30,8 +30,9 @@
   <WixVariable Id="WixUIDialogBmp" Value="C:\Program Files (x86)\WixApp\dialog.bmp"/>
   <WixVariable Id="WixUIBannerBmp" Value="C:\Program Files (x86)\WixApp\banner.bmp"/>
 
-  <Icon     Id="RWracesDBUIIcon.ico" SourceFile="$(var.SolutionDir)..\SrcFiles\res\RWracesDBUI.ico"/>
-  <Icon     Id="RWracesDBIcon.ico" SourceFile="$(var.SolutionDir)..\SrcFiles\res\RWracesDB.ico"/>
+  <Icon     Id="RWracesDBUIIcon.ico"
+                                SourceFile="$(var.SolutionDir)..\RWracesDB.prj\res\RWracesDBUI.ico"/>
+  <Icon     Id="RWracesDBIcon.ico" SourceFile="$(var.SolutionDir)..\RWracesDB.prj\res\RWracesDB.ico"/>
   <Property Id="ARPPRODUCTICON"  Value="RWracesDBUIIcon.ico" />
 
   <Feature Id="ProductFeatures" Title="Main Product" Level="1" >
@@ -97,7 +98,7 @@
 <Fragment>
 
   <Component Id="UninstallRacesDB.cmp" 
-                                Guid="BB100A6C-7D65-46EF-9213-94CFA973BC84" Directory="RWracesDB.pmf">
+                                Guid="13C5AD1C-8E63-4311-8E8A-4EC7A3BA1EC4" Directory="RWracesDB.pmf">
 
     <Shortcut Id               = "UninstallRacesDB.shc"
               Name             = "Uninstall RacesDB"

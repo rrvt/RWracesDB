@@ -127,7 +127,7 @@ dbgCnt++;
 
 
 void VertMgmt::initY() {
-  topBnd = y = int(topMgn * chHeight);  botBnd = int(botEdge - botMgn * chHeight);
+  topBnd = y = int(topMgn * chHeight/2);  botBnd = int(botEdge - botMgn * chHeight);
 #ifdef DebugVM
 dbgTop = topBnd;
 dbgBot = botBnd;
