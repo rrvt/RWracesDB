@@ -15,6 +15,6 @@ public:
                                                     CMFCToolBarEditBoxButton(id, image, style, width) { }
  ~TBEditBox() { }
 
-  static TBEditBox* get(int id) {return (TBEditBox*) GetByCmd((uint)id);}
+  static TBEditBox* get(int id);
   };
 

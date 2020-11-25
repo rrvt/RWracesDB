@@ -62,7 +62,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\SrcFiles\;$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -91,7 +91,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\SrcFiles\;$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -126,17 +126,20 @@
   </ProjectExtensions>
   <ItemGroup>
     <ClInclude Include="..\..\Library\AboutFiles\About.h" />
-    <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h" />
     <ClInclude Include="AddressMap.h" />
     <ClInclude Include="AddressTbl.h" />
     <ClInclude Include="AssgnPrefMap.h" />
     <ClInclude Include="AssgnPrefTbl.h" />
-    <ClInclude Include="Backup.cpp,Backup.h" />
     <ClInclude Include="BackupRcds.h" />
     <ClInclude Include="CityStateMap.h" />
     <ClInclude Include="CityStateTbl.h" />
+    <ClInclude Include="CntResponder.h" />
+    <ClInclude Include="MemberRpts.h" />
     <ClInclude Include="EntityMap.h" />
     <ClInclude Include="EntityTbl.h" />
+    <ClInclude Include="Everbridge.h" />
+    <ClInclude Include="FCClist.h" />
+    <ClInclude Include="GoogleRpt.h" />
     <ClInclude Include="LocationPrefMap.h" />
     <ClInclude Include="LocationPrefTbl.h" />
     <ClInclude Include="MainFrm.h" />
@@ -145,6 +148,10 @@
     <ClInclude Include="MemberList.h" />
     <ClInclude Include="MemberMap.h" />
     <ClInclude Include="MemberTbl.h" />
+    <ClInclude Include="NoteRpt.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsDlg.h" />
+    <ClInclude Include="Quoted.h" />
     <ClInclude Include="Records.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RWracesDB.h" />
@@ -153,14 +160,16 @@
     <ClInclude Include="StatusMap.h" />
     <ClInclude Include="StatusRcds.h" />
     <ClInclude Include="StatusTbl.h" />
+    <ClInclude Include="StatusUpdate.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Survey.h" />
+    <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UpdateRequest.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Library\AboutFiles\About.cpp" />
-    <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp" />
     <ClCompile Include="AddressMap.cpp" />
     <ClCompile Include="AddressTbl.cpp" />
     <ClCompile Include="AssgnPrefMap.cpp" />
@@ -168,12 +177,14 @@
     <ClCompile Include="BackupRcds.cpp" />
     <ClCompile Include="CityStateMap.cpp" />
     <ClCompile Include="CityStateTbl.cpp" />
-    <ClCompile Include="DspOneRecord.cpp" />
+    <ClCompile Include="CntResponder.cpp" />
+    <ClCompile Include="MemberRpts.cpp" />
     <ClCompile Include="EntityMap.cpp" />
     <ClCompile Include="EntityTbl.cpp" />
     <ClCompile Include="Everbridge.cpp" />
+    <ClCompile Include="FCClist.cpp" />
     <ClCompile Include="FixPrimaryeMail.cpp" />
-    <ClCompile Include="GoogleEarth.cpp" />
+    <ClCompile Include="GoogleRpt.cpp" />
     <ClCompile Include="LocationPrefMap.cpp" />
     <ClCompile Include="LocationPrefTbl.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -182,7 +193,10 @@
     <ClCompile Include="MemberList.cpp" />
     <ClCompile Include="MemberMap.cpp" />
     <ClCompile Include="MemberTbl.cpp" />
-    <ClCompile Include="OnUpdateDB.cpp" />
+    <ClCompile Include="NoteRpt.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="OptionsDlg.cpp" />
+    <ClCompile Include="Quoted.cpp" />
     <ClCompile Include="RestoreBackup.cpp" />
     <ClCompile Include="RWracesDB.cpp" />
     <ClCompile Include="RWracesDBDoc.cpp" />
@@ -190,8 +204,10 @@
     <ClCompile Include="StatusMap.cpp" />
     <ClCompile Include="StatusRcds.cpp" />
     <ClCompile Include="StatusTbl.cpp" />
+    <ClCompile Include="StatusUpdate.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Survey.cpp" />
+    <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp" />
     <ClCompile Include="UpdateRequest.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
@@ -199,11 +215,13 @@
     <None Include="..\..\Library\AboutFiles\About.rc2" />
     <None Include="..\README.md" />
     <None Include="res\RWracesDB.rc2" />
+    <None Include="..\..\RacesTraining\Data\Former.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\RWracesDB.ico" />
     <Image Include="res\RWracesDBUI.ico" />
     <Image Include="res\Toolbar22.bmp" />
+    <Image Include="res\Toolbar26.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\LibUni7\LibUni7.vcxproj">

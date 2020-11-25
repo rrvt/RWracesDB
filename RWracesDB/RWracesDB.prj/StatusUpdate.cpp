@@ -1,28 +1,39 @@
-// Update Database from Status file
+// Status Update -- Update Database from MemberStatus downloaded from Google Files
 
 
 #include "stdafx.h"
-#include "RWracesDB.h"
-#include "RWracesDBDOC.h"
+#include "StatusUpdate.h"
 #include "GetPathDlg.h"
+#include "MapData.h"
+#include "RWracesDB.h"
 #include "StatusRcds.h"
 
 
-void RWracesDBApp::OnLoadCSVfile() {
-String path;
+bool StatusUpdate::load() {
+int    noRcds = noRecords();
 
-  if (getPathDlg(_T("Status Update csv File"), 0, _T("csv"), _T("*.csv"), path))
-                                         {doc()->setDocType(StatusDocType); doc()->OnOpenDocument(path);}
+  notePad << _T("Number of Status CSV Records: ") << noRcds << nCrlf;
 
-  notePad << _T("Number of Status CSV Records: ") << doc()->noStatusCSV() << nCrlf;
-  invalidate();
+  return noRcds > 0;
   }
 
 
-void RWracesDBApp::OnUploadToDB() {doc()->uploadStsCSV(); announceFinish();}
+int StatusUpdate::noRecords() {
+StsIter    iter(statusRcds);
+StatusRcd* rcd;
+int        i;
+
+  for (i = 0, rcd = iter(); rcd; i++, rcd = iter++) if (rcd->callSign.isEmpty()) break;
+
+  return i;
+  }
 
 
-void RWracesDBDoc::uploadStsCSV() {
+
+void StatusUpdate::load(Archive& ar) {statusRcds.load(ar); return;}
+
+
+void StatusUpdate::toDatabase() {
 StsIter    iter(statusRcds);
 StatusRcd* rcd;
 
@@ -42,10 +53,10 @@ StatusRcd* rcd;
   }
 
 
-String fmr = _T("Fmr");
+static String fmr = _T("Fmr");
 
 
-void RWracesDBDoc::uploadOneStsCSV(StatusRcd& csv) {
+void StatusUpdate::uploadOneStsCSV(StatusRcd& csv) {
 MemberRecord* rcd        = memberTable.get(csv.callSign);
 String        abbr       = csv.activeStatus;
 long          stsID      = statusTable.findID(abbr);
@@ -85,4 +96,42 @@ bool          fmrMbr;
     notePad << nCrlf;
     }
   }
+
+
+void StatusUpdate::dspMemberName(MemberRecord* rcd) {
+EntityRecord* entity = entityTable.find(rcd->MbrEntityID);
+  if (entity) dspRcdName(entity);
+  else notePad << _T("Unknown");
+
+  setDspTabs(notePad);
+  }
+
+
+void StatusUpdate::dspRcdName(EntityRecord* entity) {
+  notePad << entity->FirstName << _T(" ");
+  if (!entity->MiddleInitial.empty()) notePad << entity->MiddleInitial << _T(" ");
+  notePad << entity->LastName;
+  }
+
+
+int StatusUpdate::header(NotePad& np, bool printing) {
+Date   dt;
+String s;
+
+  if (!printing) return 0;
+
+  dt.getToday();   s = dt.getDate() + _T(" ") + dt.getHHMM();
+
+  np << _T("Status Update") << nRight << s << nCrlf << nCrlf;   return 2;
+  }
+
+
+void StatusUpdate::setDspTabs(NotePad& np)
+        {np << nClrTabs << nSetTab(35) << nSetTab(50) << nSetTab(58) << nSetTab(63) << nSetTab(70);}
+
+
+
+
+//static void dspRcdName(EntityRecord* entity);
+//static void setDspTabs();
 

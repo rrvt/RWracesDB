@@ -133,8 +133,15 @@
     <ClInclude Include="BackupRcds.h" />
     <ClInclude Include="CityStateMap.h" />
     <ClInclude Include="CityStateTbl.h" />
+    <ClInclude Include="CntResponders.h" />
+    <ClInclude Include="DataBase.h" />
+    <ClInclude Include="DeadRcds.h" />
     <ClInclude Include="EntityMap.h" />
     <ClInclude Include="EntityTbl.h" />
+    <ClInclude Include="Everbridge.h" />
+    <ClInclude Include="FCClist.h" />
+    <ClInclude Include="GoogleRpt.h" />
+    <ClInclude Include="IDitem.h" />
     <ClInclude Include="LocationPrefMap.h" />
     <ClInclude Include="LocationPrefTbl.h" />
     <ClInclude Include="MainFrm.h" />
@@ -142,7 +149,12 @@
     <ClInclude Include="Maps.h" />
     <ClInclude Include="MemberList.h" />
     <ClInclude Include="MemberMap.h" />
+    <ClInclude Include="MemberRpts.h" />
     <ClInclude Include="MemberTbl.h" />
+    <ClInclude Include="NoteRpt.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsDlg.h" />
+    <ClInclude Include="Quoted.h" />
     <ClInclude Include="Records.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RWracesDB.h" />
@@ -151,10 +163,12 @@
     <ClInclude Include="StatusMap.h" />
     <ClInclude Include="StatusRcds.h" />
     <ClInclude Include="StatusTbl.h" />
+    <ClInclude Include="StatusUpdate.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Survey.h" />
     <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UpdateRequest.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,12 +180,14 @@
     <ClCompile Include="BackupRcds.cpp" />
     <ClCompile Include="CityStateMap.cpp" />
     <ClCompile Include="CityStateTbl.cpp" />
-    <ClCompile Include="DspOneRecord.cpp" />
+    <ClCompile Include="CntResponders.cpp" />
+    <ClCompile Include="DataBase.cpp" />
+    <ClCompile Include="DeadRcds.cpp" />
     <ClCompile Include="EntityMap.cpp" />
     <ClCompile Include="EntityTbl.cpp" />
     <ClCompile Include="Everbridge.cpp" />
-    <ClCompile Include="FixPrimaryeMail.cpp" />
-    <ClCompile Include="GoogleEarth.cpp" />
+    <ClCompile Include="FCClist.cpp" />
+    <ClCompile Include="GoogleRpt.cpp" />
     <ClCompile Include="LocationPrefMap.cpp" />
     <ClCompile Include="LocationPrefTbl.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -179,15 +195,19 @@
     <ClCompile Include="Maps.cpp" />
     <ClCompile Include="MemberList.cpp" />
     <ClCompile Include="MemberMap.cpp" />
+    <ClCompile Include="MemberRpts.cpp" />
     <ClCompile Include="MemberTbl.cpp" />
-    <ClCompile Include="OnUpdateDB.cpp" />
-    <ClCompile Include="RestoreBackup.cpp" />
+    <ClCompile Include="NoteRpt.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="OptionsDlg.cpp" />
+    <ClCompile Include="Quoted.cpp" />
     <ClCompile Include="RWracesDB.cpp" />
     <ClCompile Include="RWracesDBDoc.cpp" />
     <ClCompile Include="RWracesDBView.cpp" />
     <ClCompile Include="StatusMap.cpp" />
     <ClCompile Include="StatusRcds.cpp" />
     <ClCompile Include="StatusTbl.cpp" />
+    <ClCompile Include="StatusUpdate.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Survey.cpp" />
     <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp" />
@@ -196,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Library\AboutFiles\About.rc2" />
+    <None Include="..\..\RacesTraining\Data\Former.txt" />
     <None Include="..\README.md" />
     <None Include="res\RWracesDB.rc2" />
   </ItemGroup>
@@ -203,6 +224,7 @@
     <Image Include="res\RWracesDB.ico" />
     <Image Include="res\RWracesDBUI.ico" />
     <Image Include="res\Toolbar22.bmp" />
+    <Image Include="res\Toolbar26.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\LibUni7\LibUni7.vcxproj">

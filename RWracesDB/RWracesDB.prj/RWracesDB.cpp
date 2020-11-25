@@ -8,8 +8,10 @@
 #include "filename.h"
 #include "GetPathDlg.h"
 #include "MainFrm.h"
+#include "MapData.h"
 #include "MessageBox.h"
 #include "NotePad.h"
+#include "Options.h"
 #include "Resources.h"
 #include "RWracesDBDOC.h"
 #include "RWracesDBView.h"
@@ -20,17 +22,10 @@ IniFile      iniFile;
 
 
 BEGIN_MESSAGE_MAP(RWracesDBApp, CWinAppEx)
-  ON_COMMAND(ID_APP_ABOUT,        &RWracesDBApp::OnAppAbout)
-  ON_COMMAND(ID_OpenDatabase,     &RWracesDBApp::openDatabase)
   ON_COMMAND(ID_Refresh,          &RWracesDBApp::refresh)
-
-  // Standard print setup command
   ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinApp::OnFilePrintSetup)
-
-  ON_COMMAND(ID_LoadCSVfile,      &RWracesDBApp::OnLoadCSVfile)
-  ON_COMMAND(ID_UploadToDB,       &RWracesDBApp::OnUploadToDB)
-
   ON_COMMAND(ID_MakeFileCopy,     &RWracesDBApp::OnMakeFileCopy)
+  ON_COMMAND(ID_APP_ABOUT,        &RWracesDBApp::OnAppAbout)
 END_MESSAGE_MAP()
 
 
@@ -38,7 +33,8 @@ BOOL RWracesDBApp::InitInstance() {
 
   CWinAppEx::InitInstance();
 
-  iniFile.getAppDataPath(m_pszHelpFilePath);        //  iniFile.setPath(m_pszHelpFilePath);
+  iniFile.getAppDataPath(m_pszHelpFilePath);
+
   programName = getMainName(m_pszHelpFilePath);
 
   SetRegistryKey(appID);
@@ -60,10 +56,6 @@ BOOL RWracesDBApp::InitInstance() {
 
   AddDocTemplate(pDocTemplate);
 
-//  EnableShellOpen(); RegisterShellFileTypes(TRUE);       // Enable DDE Execute open
-
-  iniFile.readString(FileSection, DBFileKey,      databasePath);
-
   // Parse command line for standard shell commands, DDE, file open
 
   CCommandLineInfo cmdInfo;  ParseCommandLine(cmdInfo);
@@ -73,29 +65,19 @@ BOOL RWracesDBApp::InitInstance() {
 
   if (!ProcessShellCommand(cmdInfo)) return FALSE;
 
-  setAppName(_T("RacesDB"));
-  setTitle(_T("Database Manipulation Program"));
+  iniFile.readString(FileSection, DBFileKey, databasePath);
+
+  setAppName(_T("RacesDB"));    setTitle(_T("Database Manipulation Program"));
 
   notePad.clear();   view()->setFont(_T("Arial"), 120);
 
   maps.initializeMaps(DBFileKey, databasePath);
 
+  options.load();    view()->setOrientation(options.orient);
+
   m_pMainWnd->ShowWindow(SW_SHOW);   m_pMainWnd->UpdateWindow();   return TRUE;
   }
 
-
-
-void RWracesDBApp::openDatabase() {
-String title;
-String ext;
-
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
-
-  if (getPathDlg(_T("Database"), 0, _T("accdb"), _T("*.accdb"), databasePath))
-                                            iniFile.writeString(FileSection, DBFileKey, databasePath);
-
-  maps.initializeMaps(DBFileKey, databasePath);   invalidate();
-  }
 
 
 void RWracesDBApp::refresh() {maps.initializeMaps(DBFileKey, databasePath);}
@@ -130,39 +112,4 @@ void RWracesDBApp::announceFinish() {
 
 
 void RWracesDBApp::OnAppAbout() {CAboutDlg aboutDlg; aboutDlg.DoModal();}
-
-
-
-#if 0
-bool RWracesDBApp::getView() {
-POSITION   pos;
-
-  if (view) return true;
-
-  if (!getDocument()) return false;
-
-  pos  = doc->GetFirstViewPosition();        if (!pos)  return false;
-  view = (RWracesDBView*) doc->GetNextView(pos);
-
-  return view != 0;
-  }
-
-
-
-bool RWracesDBApp::getDocument() {
-
-  if (doc) return true;
-
-  POSITION      pos = GetFirstDocTemplatePosition(); if (!pos) return false;
-  CDocTemplate* t   = GetNextDocTemplate(pos);       if (!t)   return false;
-
-  pos = t->GetFirstDocPosition();                    if (!pos) return false;
-  doc = (RWracesDBDoc*) t->GetNextDoc(pos);              if (!doc) return false;
-
-  return true;
-  }
-
-
-//void RWracesDBApp::invalidate() {view()->Invalidate();}
-#endif
 

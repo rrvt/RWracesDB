@@ -5,6 +5,14 @@
 #include "TBComboBox.h"
 
 
+TBComboBox* TBComboBox::get(int id) {
+
+  try {return (TBComboBox*) GetByCmd((uint) id);}
+  catch (...) {return 0;}
+  }
+
+
+
 int TBComboBox::findExact(String& s) {
 int n = GetCount();
 int i;

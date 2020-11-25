@@ -1,7 +1,11 @@
-// Create Everbridge csv file
+// Everbridge Report
+
 
 #include "stdafx.h"
-#include "RWracesDBDOC.h"
+#include "Everbridge.h"
+#include "MapData.h"
+#include "MemberList.h"
+#include "NotePad.h"
 #include "RWracesDB.h"
 #include "RWracesDBView.h"
 #include "Utilities.h"
@@ -43,7 +47,26 @@
 */
 
 
-void RWracesDBDoc::ebHeader() {
+void Everbridge::operator() () {
+MemberList    ml(EverbridgeSrt);
+MbrIter       iter(ml);
+MemberRecord* rcd;
+
+  header();
+
+  for (rcd = iter(); rcd; rcd = iter++) {
+    int           statusID  = rcd->StatusID;
+    StatusRecord* statusRcd = statusTable.find(statusID);
+    String        responder = rcd->Responder.trim();
+
+    if (!statusRcd || statusRcd->Abbreviation == _T("Fmr")) continue;
+
+    display(*rcd);
+    }
+  }
+
+
+void Everbridge::header() {
 
   notePad.clear();   view()->setFont(_T("Arial"), 120);
 
@@ -369,7 +392,7 @@ Certifications,RACES,,,,,
 
 
 
-void RWracesDBDoc::dspOneEverbridgeRcd(MemberRecord& rcd) {
+void Everbridge::display(MemberRecord& rcd) {
 int                 mbrID             = rcd.MbrEntityID;
 int                 emplID            = rcd.EmplEntityID;
 int                 assgnPrefID       = rcd.AssgnPrefID;
@@ -388,20 +411,20 @@ String              key;
 String              s;
 String              t;                                              // The empty string
 
-  commaOut();
+  quoted.commaOut();
 
-  ebOut(mbrRcd->FirstName);                                         // First Name
-  ebOut(mbrRcd->MiddleInitial);                                     // Middle Initial
-  ebOut(mbrRcd->LastName);                                          // Last Name
-  ebOut(mbrRcd->Suffix);                                            // Suffix
+  out(mbrRcd->FirstName);                                         // First Name
+  out(mbrRcd->MiddleInitial);                                     // Middle Initial
+  out(mbrRcd->LastName);                                          // Last Name
+  out(mbrRcd->Suffix);                                            // Suffix
 
-  s = _T("RACES-") + rcd.CallSign;  ebOut(s);                       // External ID
+  s = _T("RACES-") + rcd.CallSign;  out(s);                       // External ID
 
-  s = _T("US"); ebOut(s);                                           // Country
+  s = _T("US"); out(s);                                           // Country
 
   notePad << _T(",");                                               // Business Name
 
-  s = _T("RACES"); ebOut(s);                                        // Record Type
+  s = _T("RACES"); out(s);                                        // Record Type
 
   s = _T("SJS RACES");
 
@@ -415,17 +438,17 @@ String              t;                                              // The empty
     }
 
   if (rcd.IsOfficer) s += _T("|SJS RACES 0 Officers");
-  ebOut(s);                                                         // Groups
+  out(s);                                                         // Groups
 
   notePad << _T(",,");                                              // SSO User ID,Group Remove,
 
   s.clear();
 
-  ebLocation(_T("Home"), mbrRcd);                                   // Location 1
-  ebLocation(_T("Work"), emplRcd);                                  // Location 2
-  ebLocation(0, 0);                                                 // Location 3
-  ebLocation(0, 0);                                                 // Location 4
-  ebLocation(0, 0);                                                 // Location 5
+  location(_T("Home"), mbrRcd);                                   // Location 1
+  location(_T("Work"), emplRcd);                                  // Location 2
+  location(0, 0);                                                 // Location 3
+  location(0, 0);                                                 // Location 4
+  location(0, 0);                                                 // Location 5
 
   emptyFields(3);                                                   // Extension Phone 1
   emptyFields(3);                                                   // Extension Phone 2
@@ -433,37 +456,37 @@ String              t;                                              // The empty
   emptyFields(3);                                                   // Extension Phone 4
   emptyFields(3);                                                   // Extension Phone 5
 
-  ebPhone(mbrRcd  ? mbrRcd->Phone2  : 0);                            //Phone 1
-  ebPhone(emplRcd ? emplRcd->Phone2 : 0);                            //Phone 2
-  ebPhone(mbrRcd  ? mbrRcd->Phone1  : 0);                            //Phone 3
-  ebPhone(emplRcd ? emplRcd->Phone1 : 0);                            //Phone 4
-  ebPhone(0);                                                        //Phone 5
-  ebPhone(0);                                                        //Phone 6
+  phone(mbrRcd  ? mbrRcd->Phone2  : 0);                            //Phone 1
+  phone(emplRcd ? emplRcd->Phone2 : 0);                            //Phone 2
+  phone(mbrRcd  ? mbrRcd->Phone1  : 0);                            //Phone 3
+  phone(emplRcd ? emplRcd->Phone1 : 0);                            //Phone 4
+  phone(0);                                                        //Phone 5
+  phone(0);                                                        //Phone 6
 
-  ebEmail(mbrRcd  ?  mbrRcd->eMail : 0);                            // Email Address 1
-  ebEmail(emplRcd ? emplRcd->eMail : 0);                            // Email Address 2
-  ebOut(0);                                                         // Email Address 3
-  ebOut(0);                                                         // Email Address 4
-  ebOut(0);                                                         // Email Address 5
+  eMail(mbrRcd  ?  mbrRcd->eMail : 0);                            // Email Address 1
+  eMail(emplRcd ? emplRcd->eMail : 0);                            // Email Address 2
+  out(0);                                                         // Email Address 3
+  out(0);                                                         // Email Address 4
+  out(0);                                                         // Email Address 5
 
-  ebOut(0);                                                         // Plain Text Email - 1 way
-  ebOut(0);                                                         // Plain Text - 1 way Pager Service
+  out(0);                                                         // Plain Text Email - 1 way
+  out(0);                                                         // Plain Text - 1 way Pager Service
 
-  ebOut(0);                                                         // Plain Text Email - 2 way
+  out(0);                                                         // Plain Text Email - 2 way
 
-  ebPhone(rcd.TextMsgPh1);                                          // SMS 1
-  ebPhone(rcd.TextMsgPh2);                                          // SMS 2
-  ebPhone(0);                                                       // SMS 3
-  ebPhone(0);                                                       // SMS 4
-  ebPhone(0);                                                       // SMS 5
+  phone(rcd.TextMsgPh1);                                          // SMS 1
+  phone(rcd.TextMsgPh2);                                          // SMS 2
+  phone(0);                                                       // SMS 3
+  phone(0);                                                       // SMS 4
+  phone(0);                                                       // SMS 5
 
-  ebPhone(0);                                                       // FAX 1
-  ebPhone(0);                                                       // FAX 2
-  ebPhone(0);                                                       // FAX 3
+  phone(0);                                                       // FAX 1
+  phone(0);                                                       // FAX 2
+  phone(0);                                                       // FAX 3
 
-  ebPhone(0);                                                       // TTY 1
-  ebPhone(0);                                                       // TTY 2
-  ebPhone(0);                                                       // TTY 3
+  phone(0);                                                       // TTY 1
+  phone(0);                                                       // TTY 2
+  phone(0);                                                       // TTY 3
 
   //Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                    // 4
   emptyFields(4);
@@ -471,17 +494,17 @@ String              t;                                              // The empty
   //TAP Pager,TAP Pager Country,TAP Pager Pin,                                                      // 3
   emptyFields(3);
 
-  ebPhone(0);                                                       // One Way SMS
+  phone(0);                                                       // One Way SMS
 
-  ebOut(_T("Certifications"));                                      // Custom Field 1
-  ebOut(_T("RACES"));                                               // Custom Field 2
+  out(_T("Certifications"));                                      // Custom Field 1
+  out(_T("RACES"));                                               // Custom Field 2
   emptyFields(26);
   notePad << _T("END") << nCrlf;
   }
 
 
 
-void RWracesDBDoc::ebLocation(TCchar* title, EntityRecord* rcd) {
+void Everbridge::location(TCchar* title, EntityRecord* rcd) {
 AddressRecord*   addrRcd = 0;
 CityStateRecord* cityRcd = 0;
 String           s;
@@ -499,47 +522,47 @@ String           t;
     emptyFields(4);   return;
     }
 
-  ebOut(title);                                                                 // Location n
+  out(title);                                                                 // Location n
 
   if (rcd->AddrIsPO) {                                                          // Street Address n
-    s = !addrRcd->Address1.isEmpty() ? addrRcd->Address1 : _T("PO Box 1234");  ebOut(s);
-    ebOut(t);                                                                   // Apt/Suite/Unit n
+    s = !addrRcd->Address1.isEmpty() ? addrRcd->Address1 : _T("PO Box 1234");  out(s);
+    out(t);                                                                   // Apt/Suite/Unit n
 
     if (cityRcd) {
-      s = !cityRcd->City.isEmpty()   ? cityRcd->City     : _T("San Jose");     ebOut(s); // City n
-      s = !cityRcd->State.isEmpty()  ? cityRcd->State    : _T("CA");           ebOut(s); // State/Province
-      ebOut(cityRcd->Zip);                                                      // Postal Code 1
+      s = !cityRcd->City.isEmpty()   ? cityRcd->City     : _T("San Jose");     out(s); // City n
+      s = !cityRcd->State.isEmpty()  ? cityRcd->State    : _T("CA");           out(s); // State/Province
+      out(cityRcd->Zip);                                                      // Postal Code 1
       }
     else {
-      s = _T("San Jose"); ebOut(s);                                             // City n
-      s = _T(" CA");      ebOut(s);                                             // State/Province n
-      ebOut(rcd->LocationZip);                                                  // Postal Code 1
+      s = _T("San Jose"); out(s);                                             // City n
+      s = _T(" CA");      out(s);                                             // State/Province n
+      out(rcd->LocationZip);                                                  // Postal Code 1
       }
     }
 
   else {
-    ebOut(addrRcd->Address1);                                                   // Street Address n
-    ebOut(addrRcd->Address2);                                                   // Apt/Suite/Unit n
+    out(addrRcd->Address1);                                                   // Street Address n
+    out(addrRcd->Address2);                                                   // Apt/Suite/Unit n
 
     if (cityRcd) {
-      s = !cityRcd->City.isEmpty()  ? cityRcd->City  : _T("San Jose");  ebOut(s); // City n
-      s = !cityRcd->State.isEmpty() ? cityRcd->State : _T(" CA");       ebOut(s); // State/Province n
-      ebOut(cityRcd->Zip);                                                        // Postal Code n
+      s = !cityRcd->City.isEmpty()  ? cityRcd->City  : _T("San Jose");  out(s); // City n
+      s = !cityRcd->State.isEmpty() ? cityRcd->State : _T(" CA");       out(s); // State/Province n
+      out(cityRcd->Zip);                                                        // Postal Code n
       }
     else {
-      s = _T("San Jose"); ebOut(s);                                               // City n
-      s = _T(" CA");      ebOut(s);                                               // State/Province n
+      s = _T("San Jose"); out(s);                                               // City n
+      s = _T(" CA");      out(s);                                               // State/Province n
       emptyFields(1);                                                              // Postal Code n
       }
     }
 
   //Country 1,Latitude 1,Longitude 1,Location Id 1,                                     // 4
 
-  s = _T("US"); ebOut(s);   emptyFields(3);
+  s = _T("US"); out(s);   emptyFields(3);
   }
 
 
-void RWracesDBDoc::ebEmail(TCchar* em) {
+void Everbridge::eMail(TCchar* em) {
 String s;
 
   if (!em || !*em) {emptyFields(1); return;}
@@ -552,20 +575,20 @@ String s;
 
 //Phone 1,Phone Country 1,
 
-void RWracesDBDoc::ebPhone(TCchar* ph) {
+void Everbridge::phone(TCchar* ph) {
 String s;
 
   if (!ph || !*ph) {emptyFields(2); return;}
 
   s = ph;   if (s.length() == 1) {emptyFields(2); return;}
 
-  ebOut(ph);                                                                      // Phone n
-  ebOut(_T("US"));                                                                // Phone Country n
+  out(ph);                                                                      // Phone n
+  out(_T("US"));                                                                // Phone Country n
   }
 
 
 
-void RWracesDBDoc::ebOut(TCchar* p) {
+void Everbridge::out(TCchar* p) {
 String s;
 
   if (!p || !*p) {emptyFields(1); return;}
@@ -577,5 +600,6 @@ String s;
 
 static String Commas = _T(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
 
-void RWracesDBDoc::emptyFields(int n) {String s = Commas.substr(0, n);   notePad << s;}
+void Everbridge::emptyFields(int n) {String s = Commas.substr(0, n);   notePad << s;}
+
 

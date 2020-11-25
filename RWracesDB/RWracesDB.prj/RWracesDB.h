@@ -15,15 +15,14 @@ class RWracesDBView;
 
 class RWracesDBApp : public CApp {
 
-String        programName;
+String programName;
 
 public:
 
-String         databasePath;
+String databasePath;
 
   RWracesDBApp() { }
 
-  void openDatabase();
   void refresh();
 
   void announceFinish();
@@ -35,8 +34,6 @@ String         databasePath;
 
   afx_msg void OnAppAbout();
   afx_msg void OnMakeFileCopy();
-  afx_msg void OnLoadCSVfile();
-  afx_msg void OnUploadToDB();
 
   DECLARE_MESSAGE_MAP()
 

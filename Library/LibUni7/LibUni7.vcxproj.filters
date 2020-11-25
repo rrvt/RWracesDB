@@ -234,6 +234,24 @@
     <ClInclude Include="..\LibFiles\TBEditBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\LibFiles\PrintMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\DsplyMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\ShowMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\NoteMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\ReportBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LibFiles\NoteRptB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\LibFiles\AceDao.cpp">
@@ -408,6 +426,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\LibFiles\TBEditBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\PrintMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\DsplyMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\ShowMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\NoteMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\ReportBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LibFiles\NoteRptB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

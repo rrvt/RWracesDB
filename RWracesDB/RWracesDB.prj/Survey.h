@@ -4,33 +4,12 @@
 
 
 #pragma once
+#include "IDitem.h"
 #include "maps.h"
 
 
+class Archive;
 class SrvyLine;
-class RWracesDBDoc;
-
-
-class IDitem {
-public:
-String name;
-String callSign;
-String badgeNumber;
-bool   check;
-
-  IDitem() : check(false) { }
- ~IDitem() {check = true;}
-
-  bool operator==    (IDitem& item) {return name == item.name;}         //  *p == *q
-  bool operator>     (IDitem& item) {return name >  item.name;}         //  *p >  *q
-  bool operator<=    (IDitem& item) {return name <= item.name;}         //  *p <= *q
-
-  // *s =  *p
-  IDitem& operator= (IDitem& item) {
-    name = item.name; callSign = item.callSign; badgeNumber = item.badgeNumber; check = item.check;
-    return *this;
-    }
-  };
 
 
 
@@ -53,25 +32,24 @@ private:
 enum EquipData {HandHeldData, PortMobileData, PortPacketData, OtherEquipData, OtherCapData};
 
   void equip(TCchar* prefix, EquipData equipData);
-
   };
 
 
 
 class SurveyCommand {
-RWracesDBDoc& doc;
+
 Expandable<IDitem, 1> idList;
+
 public:
 
-  SurveyCommand(RWracesDBDoc& d) : doc(d) { }
-  void doIt();
+  SurveyCommand() { }
+
+  void operator() ();
+
+  void load(Archive& ar);
+
   bool surveyDone(String& callSign);
 
-  bool loadIDfilter();
   void getItem(String& line);
-
-private:
-
-  SurveyCommand() : doc(*(RWracesDBDoc*)0) { }
   };
 

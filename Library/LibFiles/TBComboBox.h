@@ -13,7 +13,7 @@ public:
                                                 CMFCToolBarComboBoxButton(uiID, image, style, width) { }
  ~TBComboBox() { }
 
-  static TBComboBox* get(int id) {return (TBComboBox*) GetByCmd((uint)id);}
+  static TBComboBox* get(int id);
 
   int findExact(TCchar* tc) {String s = tc; return findExact(s);}
   int findExact(String& s);

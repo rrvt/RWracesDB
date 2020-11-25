@@ -22,6 +22,7 @@
     <None Include="res\RWracesDB.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\RacesTraining\Data\Former.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Library\AboutFiles\About.cpp">
@@ -51,22 +52,13 @@
     <ClCompile Include="CityStateTbl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DspOneRecord.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EntityMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityTbl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Everbridge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FixPrimaryeMail.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GoogleEarth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LocationPrefMap.cpp">
@@ -93,12 +85,6 @@
     <ClCompile Include="MemberTbl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OnUpdateDB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RestoreBackup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RWracesDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,10 +109,46 @@
     <ClCompile Include="Survey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusUpdate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoteRpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quoted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Everbridge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="UpdateRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities.cpp">
+    <ClCompile Include="FCClist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemberRpts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GoogleRpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CntResponders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadRcds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -224,6 +246,48 @@
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusUpdate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoteRpt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quoted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Everbridge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FCClist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberRpts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GoogleRpt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CntResponders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadRcds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RWracesDB.rc">
@@ -238,6 +302,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Toolbar22.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar26.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

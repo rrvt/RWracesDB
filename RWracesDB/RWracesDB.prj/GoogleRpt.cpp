@@ -1,10 +1,34 @@
-// Display Google Earth Records
+// Google Earch Report
 
 
 #include "stdafx.h"
-#include "RWracesDBDOC.h"
+#include "GoogleRpt.h"
+#include "MapData.h"
+#include "MemberList.h"
+#include "NotePad.h"
 #include "RWracesDB.h"
 #include "RWracesDBView.h"
+
+
+
+void GoogleRpt::operator() () {
+MemberList    ml(GoogleEarthSrt);
+MbrIter       iter(ml);
+MemberRecord* rcd;
+
+  header();
+
+  for (rcd = iter(); rcd; rcd = iter++) {
+    int           statusID  = rcd->StatusID;
+    StatusRecord* statusRcd = statusTable.find(statusID);
+    String        responder = rcd->Responder.trim();
+
+    if (!statusRcd || statusRcd->Abbreviation == _T("Fmr")) continue;
+
+    display(*rcd, false);
+    display(*rcd, true);
+    }
+  }
 
 
 //Name,Call,Status,Type,Disp Priority,Disp Location,Limitations,
@@ -18,7 +42,7 @@
 //"APRS-capable, WiFi",Packet Manager; Missing certs.,"Anderson, N6YXK"
 
 
-void RWracesDBDoc::dspGoogleHeader() {
+void GoogleRpt::header() {
 
   notePad.clear();   view()->setFont(_T("Arial"), 120);
 
@@ -44,7 +68,7 @@ void RWracesDBDoc::dspGoogleHeader() {
   }
 
 
-void RWracesDBDoc::dspOneGoogleRcd(MemberRecord& rcd, bool workAddr) {
+void GoogleRpt::display(MemberRecord& rcd, bool workAddr) {
 int                 mbrID             = rcd.MbrEntityID;
 int                 emplID            = rcd.EmplEntityID;
 int                 assgnPrefID       = rcd.AssgnPrefID;
@@ -69,27 +93,27 @@ bool          avail = addrAvail(r, addrRcd);
 
   if (workAddr && !avail) return;
 
-  commaOut();
+  quoted.commaOut();
 
 if (rcd.CallSign == _T("KC6THM")) {
 int x = 1;
 }
 
-  quoteStrOut(rcd.CallSign);
+  quoted.stg(rcd.CallSign);
 
   s = mbrRcd->FirstName + _T(' ') + mbrRcd->LastName;
   if (!mbrRcd->Suffix.isEmpty()) s += mbrRcd->Suffix;
-  quoteStrOut(s);
+  quoted.stg(s);
 
   if (statusRcd) {
     s = statusRcd->Abbreviation == "Act" ? _T("Active") : _T("Inactive");
-    quoteStrOut(s);
+    quoted.stg(s);
     }
   else notePad << _T(",");
 
   s =  responder.isEmpty() ? _T("non-Responder") : _T("Responder");
   s += dsw.isEmpty()       ? _T(" - No DSW")     : _T(" - DSW");
-  quoteStrOut(s);
+  quoted.stg(s);
 
   if (assgnPrefRcd) {
     s = assgnPrefRcd->APKey;
@@ -99,7 +123,7 @@ int x = 1;
     else if (s == _T("L")) s = _T("Last Call");
     else if (s == _T("A")) s = _T("ARES Only");
     else                   s = assgnPrefRcd->Txt;
-    quoteStrOut(s);
+    quoted.stg(s);
     }
   else notePad << _T("ARES Only,");
 
@@ -110,44 +134,44 @@ int x = 1;
     else if (s == _T("1")) s = _T("Within 1 mile");
     else if (s == _T("N")) s = _T("Within neighborhood");
     else                   s = locationPrefRcd->Txt;
-    quoteStrOut(s);
+    quoted.stg(s);
     }
   else notePad << _T("Anywhere,");
 
-  quoteStrOut(rcd.Limitations);
+  quoted.stg(rcd.Limitations);
 
-  quoteStrOut(addrType);
+  quoted.stg(addrType);
 
   entityOut(r, addrRcd);
 
-  quoteStrOut(formatPhoneNo(rcd.TextMsgPh1));
+  quoted.stg(formatPhoneNo(rcd.TextMsgPh1));
 
-  quoteStrOut(mbrRcd->eMail);
+  quoted.stg(mbrRcd->eMail);
 
-  quoteStrOut(rcd.Multilingual);
+  quoted.stg(rcd.Multilingual);
 
   s.clear();
   if (!rcd.HandHeld.isEmpty())   {                                s += _T("HT: ")    + rcd.HandHeld;}
   if (!rcd.PortMobile.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Port: ")  + rcd.PortMobile;}
   if (!rcd.PortPacket.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Pkt: ")   + rcd.PortPacket;}
   if (!rcd.OtherEquip.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Other: ") + rcd.OtherEquip;}
-  quoteStrOut(s);
+  quoted.stg(s);
 
-  quoteStrOut(rcd.OtherEquip);
+  quoted.stg(rcd.OtherEquip);
 
-  quoteStrOut(rcd.Comments);
+  quoted.stg(rcd.Comments);
 
-  noComma();
+  quoted.noComma();
 
   s = mbrRcd->LastName + _T(" - ") + rcd.CallSign;  if (workAddr) s += _T(" - Wrk");
 
-  quoteStrOut(s);
+  quoted.stg(s);
 
   notePad << nCrlf;
   }
 
 
-String RWracesDBDoc::formatPhoneNo(String& ph) {
+String GoogleRpt::formatPhoneNo(String& ph) {
 int    lng;
 String area;
 String prefix;
@@ -171,7 +195,7 @@ String no;
   }
 
 
-String  RWracesDBDoc::RWracesDBDoc::formatZip(String& zip) {
+String  GoogleRpt::formatZip(String& zip) {
 int    lng = zip.length();
 String s;
 
@@ -184,7 +208,7 @@ String s;
 
 
 
-bool RWracesDBDoc::addrAvail(EntityRecord* rcd, AddressRecord*& addrRcd) {
+bool GoogleRpt::addrAvail(EntityRecord* rcd, AddressRecord*& addrRcd) {
 
   if (!rcd) return false;
 
@@ -194,7 +218,7 @@ bool RWracesDBDoc::addrAvail(EntityRecord* rcd, AddressRecord*& addrRcd) {
   }
 
 
-void RWracesDBDoc::entityOut(EntityRecord* rcd, AddressRecord*& addrRcd) {
+void GoogleRpt::entityOut(EntityRecord* rcd, AddressRecord*& addrRcd) {
 CityStateRecord* cityRcd = cityStateTable.find(rcd->CityStID);
 String           s;
 
@@ -204,7 +228,7 @@ String           s;
     if (!cityRcd->State.isEmpty())   {if (!s.isEmpty()) s += _T(" "); s += cityRcd->State;}
     if (!rcd->LocationZip.isEmpty()) {if (!s.isEmpty()) s += _T(" "); s += formatZip(rcd->LocationZip);}
 
-    quoteStrOut(s);
+    quoted.stg(s);
     }
 
   else {
@@ -216,10 +240,11 @@ String           s;
       s += cityRcd->State.isEmpty() ? _T(" CA")        : _T(" ")  + cityRcd->State;
       if (cityRcd->Zip)                             s += _T(" ")  + formatZip(cityRcd->Zip);
       }
-    quoteStrOut(s);
+    quoted.stg(s);
     }
 
-  quoteStrOut(formatPhoneNo(rcd->Phone2));
-  quoteStrOut(formatPhoneNo(rcd->Phone1));
+  quoted.stg(formatPhoneNo(rcd->Phone2));
+  quoted.stg(formatPhoneNo(rcd->Phone1));
   }
+
 

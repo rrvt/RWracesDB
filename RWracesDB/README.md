@@ -53,6 +53,12 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 11/25/20
+
+Library improvement project integrated into this application.  Then I noticed that the Doc module had
+too many unrelated functions.  This led to refactoring the program into many classes which are called
+for the Doc module as a consequence of the user selecting a command.
+
 ### Update 9/27/20
 Added a feature to display and save the non-former members for which badges may be created.  The list
 may be sorted by expiration date of the badge or by the member's call sign.

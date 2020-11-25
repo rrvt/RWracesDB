@@ -1,66 +1,44 @@
-// Restore Backup File
+// Database Restoration
 
 
 #include "stdafx.h"
-#include "RWracesDBDoc.h"
+#include "DataBase.h"
+#include "Archive.h"
 #include "BackupRcds.h"
 #include "GetPathDlg.h"
-#include "RWracesDB.h"
+#include "MapData.h"
 #include "Utilities.h"
 
 
 
 
-void RWracesDBDoc::loadBackupData(Archive& ar) {backupRcds.load(ar);}
-
-
-void RWracesDBDoc::OnBackup() {
-MmbrIter      iter(memberTable);
-MemberRecord* rcd;
-
-  setFileSaveAttr(_T("Backup"), _T("csv"));
-
-  dspRecordHeader();
-
-  for (rcd = iter(); rcd; rcd = iter++) dspOneRecord(*rcd, BkupDspType);
-
-  invalidate();
-  }
-
-
-void RWracesDBDoc::OnRestoreNew() {
-String path;
-
-  if (getPathDlg(_T("Restore Database from csv File"), 0, _T("csv"), _T("*.csv"), path))
-                       {setDocType(RestoreDocType);   if (OnOpenDocument(path)) restoreBackupCSV();}
-  theApp.announceFinish();
-  }
-
-
-void RWracesDBDoc::restoreBackupCSV() {
+void DataBase::restore() {
+String     path;
 BkpIter    iter(backupRcds);
 BackupRcd* csv;
 int        i;
 
-  dspType = BkupDspType;
-
   initDefaultBadgeNo();
+
   statusTable.FixedInit();   locationPrefTable.FixedInit();   assgnPrefTable.FixedInit();
 
   csv = iter();   if (csv && csv->CallSign == _T("CallSign")) csv = iter++;
 
   for (i = 0; csv; i++, csv = iter++) {
-    if (!restoreOneBackupRcd(*csv)) {
+    if (!restoreRcd(*csv)) {
       notePad << _T("Unable to upload: ") << csv->mbrFirstName << _T(" ") << csv->mbrLastName << _T(" ");
       notePad << csv->CallSign << nCrlf;
       }
     }
 
-  memberTable.toDatabase();   entityTable.toDatabase();    invalidate();
+  memberTable.toDatabase();   entityTable.toDatabase();
   }
 
 
-bool RWracesDBDoc::restoreOneBackupRcd(BackupRcd& csv) {
+void DataBase::load(Archive& ar) {backupRcds.load(ar);}
+
+
+bool DataBase::restoreRcd(BackupRcd& csv) {
 MemberRecord*    mbr     = 0;
 EntityRecord*    mbrEnt  = 0;
 AddressRecord*   mbrAdr  = 0;
@@ -85,14 +63,14 @@ CityStateRecord* iceCty  = 0;
   mbr->SecondaryEmail      = csv.SecondaryEmail;
   mbr->TextMsgPh1          = csv.txtDevPrim;
   mbr->TextMsgPh2          = csv.txtDevSec;
-  mbr->HandHeld            = quoteStrIn(csv.Handheld);
-  mbr->PortMobile          = quoteStrIn(csv.PortMobile);
-  mbr->PortPacket          = quoteStrIn(csv.PortPacket);
-  mbr->OtherEquip          = quoteStrIn(csv.OtherEquip);
-  mbr->Multilingual        = quoteStrIn(csv.Multilingual);
-  mbr->OtherCapabilities   = quoteStrIn(csv.OtherCapabilities);
-  mbr->Limitations         = quoteStrIn(csv.Limitations);
-  mbr->Comments            = quoteStrIn(csv.Comments);
+  mbr->HandHeld            = quoted.remDbl(csv.Handheld);
+  mbr->PortMobile          = quoted.remDbl(csv.PortMobile);
+  mbr->PortPacket          = quoted.remDbl(csv.PortPacket);
+  mbr->OtherEquip          = quoted.remDbl(csv.OtherEquip);
+  mbr->Multilingual        = quoted.remDbl(csv.Multilingual);
+  mbr->OtherCapabilities   = quoted.remDbl(csv.OtherCapabilities);
+  mbr->Limitations         = quoted.remDbl(csv.Limitations);
+  mbr->Comments            = quoted.remDbl(csv.Comments);
   mbr->ShirtSize           = csv.ShirtSize;
   mbr->SkillCertifications = csv.SkillCertifications;
   mbr->EOC_Certifications  = csv.EOC_Certifications;
@@ -132,7 +110,7 @@ CityStateRecord* iceCty  = 0;
     emplEnt->LocationZip   = csv.emplLocationZip;
     emplEnt->mark();
 
-    emplAdr                = addressTable.get(sanitizeAddr(csv.emplStreet), sanitizeAddr(csv.emplAptSuite));
+    emplAdr             = addressTable.get(sanitizeAddr(csv.emplStreet), sanitizeAddr(csv.emplAptSuite));
     if (emplAdr) emplEnt->AddrID = emplAdr->AddressID;
 
     emplCty                = cityStateTable.get(csv.emplCity, csv.emplState, csv.emplZip);
@@ -161,4 +139,5 @@ CityStateRecord* iceCty  = 0;
 
   mbr->mark();   return true;
   }
+
 

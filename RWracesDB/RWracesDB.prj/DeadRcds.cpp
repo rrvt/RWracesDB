@@ -1,15 +1,18 @@
-// Fix Primary eMail
+// Dead Record Removal
 
 
 #include "stdafx.h"
-#include "RWracesDBDOC.h"
+#include "DeadRcds.h"
+#include "MapData.h"
 #include "NotePad.h"
 #include "RWracesDB.h"
+#include "RWracesDBView.h"
 
 
-
-void RWracesDBDoc::OnFixDeadRcds() {
+void DeadRcds::fix() {
 int n = 0;
+
+  notePad.clear();   view()->setFont(_T("Arial"), 120);
 
   notePad << nBeginLine << _T("Deleted Entity Records") << nEndLine << nCrlf;
   n += removeDeadEntityRcds();
@@ -18,11 +21,10 @@ int n = 0;
   notePad << nBeginLine << _T("Deleted City/State Records") << nEndLine << nCrlf;
   n += removeDeadCityRcds();
   notePad << _T("Deleted ") <<  n << _T(" records.") << nCrlf;
-  invalidate();
   }
 
 
-int RWracesDBDoc::removeDeadEntityRcds() {
+int DeadRcds::removeDeadEntityRcds() {
 EntyIter      iter(entityTable);
 EntityRecord* rcd;
 long          id;
@@ -42,7 +44,7 @@ int           n = 0;
 
 
 
-bool RWracesDBDoc::entityRcdNeeded(long id) {
+bool DeadRcds::entityRcdNeeded(long id) {
 MmbrIter      iter(memberTable);
 MemberRecord* rcd;
 
@@ -57,7 +59,7 @@ MemberRecord* rcd;
 
 
 
-int RWracesDBDoc::removeDeadAddrRcds() {
+int DeadRcds::removeDeadAddrRcds() {
 AddsIter       iter(addressTable);
 AddressRecord* rcd;
 long           id;
@@ -77,7 +79,7 @@ int            n = 0;
 
 
 
-bool RWracesDBDoc::addrRcdNeeded(long id) {
+bool DeadRcds::addrRcdNeeded(long id) {
 EntyIter      iter(entityTable);
 EntityRecord* rcd;
 
@@ -87,7 +89,7 @@ EntityRecord* rcd;
   }
 
 
-int RWracesDBDoc::removeDeadCityRcds() {
+int DeadRcds::removeDeadCityRcds() {
 CtySIter         iter(cityStateTable);
 CityStateRecord* rcd;
 long             id;
@@ -107,7 +109,7 @@ int              n = 0;
 
 
 
-bool RWracesDBDoc::cityRcdNeeded(long id) {
+bool DeadRcds::cityRcdNeeded(long id) {
 EntyIter      iter(entityTable);
 EntityRecord* rcd;
 
@@ -115,4 +117,5 @@ EntityRecord* rcd;
 
   return false;
   }
+
 

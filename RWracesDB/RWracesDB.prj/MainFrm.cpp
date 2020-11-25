@@ -66,7 +66,7 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
   if (!toolBar.CreateEx(this, TBSTYLE_FLAT,
                                         WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_TOOLTIPS | CBRS_FLYBY) ||
-      !toolBar.LoadToolBar(IDR_MAINFRAME)) {TRACE0("Failed to create toolbar\n"); return -1;}
+      !toolBar.LoadToolBar(IDR_MAINFRAME, 0, 0, TRUE)) {TRACE0("Failed to create toolbar\n"); return -1;}
 
   if (!m_wndStatusBar.Create(this)) {TRACE0("Failed to create status bar\n"); return -1;}
 
@@ -77,9 +77,9 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
   CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
                                                                        // Affects look of toolbar, etc.
-  if (!CMFCToolBar::AddToolBarForImageCollection(IDR_MAINFRAME))
-                                              {TRACE0("Failed to add to image collection\n"); return -1;}
-  setupToolBar();
+//  if (!CMFCToolBar::AddToolBarForImageCollection(IDR_MAINFRAME))
+//                                              {TRACE0("Failed to add to image collection\n"); return -1;}
+//  setupToolBar();
 
   return 0;
   }
@@ -87,16 +87,18 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
 
 void MainFrame::setupToolBar() {
-HMENU hMenu;
 
-  menu.LoadMenu(IDR_BadgeOpts);   hMenu = menu.GetSafeHmenu();
+  if (!menu.m_hMenu)    menu.LoadMenu(IDR_BadgeOpts);
+  if (!fmrMenu.m_hMenu) fmrMenu.LoadMenu(IDR_FormerOpts);
 
-  toolBar.setMnuCtrl(ID_Badges, hMenu, _T("Menu"));
+  toolBar.setMnuCtrl(ID_Badges,    menu.GetSafeHmenu(), _T("Badged"));
+  toolBar.setMnuCtrl(ID_Former, fmrMenu.GetSafeHmenu(), _T("Former"));
+
   toolBar.install();
   }
 
 
-afx_msg LRESULT MainFrame::OnResetToolBar(WPARAM wParam, LPARAM lParam) {toolBar.install(); return 0;}
+afx_msg LRESULT MainFrame::OnResetToolBar(WPARAM wParam, LPARAM lParam) {setupToolBar(); return 0;}
 
 
 void MainFrame::setTitle(TCchar* rightPart) {

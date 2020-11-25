@@ -5,7 +5,7 @@
 #include "Maps.h"
 
 
-enum SortCriteria {GoogleEarth, Everbridge};
+enum SortCriteria {GoogleEarthSrt, EverbridgeSrt};
 
 
 class Member {

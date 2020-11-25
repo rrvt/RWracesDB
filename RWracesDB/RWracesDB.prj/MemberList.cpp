@@ -8,23 +8,6 @@
 
 static bool sortForGEP = false;
 
-
-  #if 0
-  if (assgnPrefRcd) {
-    s = assgnPrefRcd->APKey;
-    if      (s == _T("P")) s = _T("1st Call");
-    else if (s == _T("E")) s = _T("not 1st Call");
-    else if (s == _T("G")) s = _T("General");
-    else if (s == _T("L")) s = _T("Last Call");
-    else if (s == _T("A")) s = _T("ARES Only");
-    else                   s = assgnPrefRcd->Txt;
-    quoteStrOut(s);
-    }
-  else notePad << _T("ARES Only,");
-#endif
-
-
-
 static TCchar* keys[5] = {_T("P"),
                           _T("E"),
                           _T("G"),
@@ -39,7 +22,7 @@ MmbrIter      iter(memberTable);
 MemberRecord* rcd;
 int           i;
 
-  sortForGEP = sortCriteria == GoogleEarth;
+  sortForGEP = sortCriteria == GoogleEarthSrt;
 
   for (rcd = iter(); rcd; rcd = iter++) {
     int           statusID  = rcd->StatusID;

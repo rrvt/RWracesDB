@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "Survey.h"
+#include "Archive.h"
 #include "GetPathDlg.h"
 #include "MemberList.h"
 #include "RWracesDB.h"
@@ -12,20 +13,6 @@
 #include "RWracesDBView.h"
 
 
-#if 0
-What information needs to be verified, here are some suggestions (feel free to make alternative or additional suggestions):
-
-    Assignment Pref -- First Call, Second Call, Probably Respond, ARES Only
-    Location Pref -- Anywhere, 5 mile radious, 1 mile radius, Neighborhood only, etc.
-    All phone numbers
-    Text phone number
-    eMail addresses
-    home address
-    work address (daytime)
-    Current equipment list/capabilities
-
-My intention is to send the current database entries with a request for a confirmation return eMail or an eMail with changes
-#endif
 
 #if 0
 <name>:
@@ -104,16 +91,12 @@ static String locPref[5] = {_T("A"),
 
 
 
-void SurveyCommand::doIt() {
-MemberList    ml(Everbridge);
+void SurveyCommand::operator() () {
+MemberList    ml(EverbridgeSrt);
 MbrIter       iter(ml);
 MemberRecord* rcd;
 int           i;
 int           n;
-
-  if (!loadIDfilter()) return;
-
-  doc.setFileSaveAttr(_T("Survey"), _T("txt"));   doc.setDspType(ExcelDspType);
 
   notePad.clear();  view()->setFont(_T("Arial"), 120);
 
@@ -127,12 +110,42 @@ int           n;
     String        responder = rcd->Responder.trim();
 
     if (!statusRcd || statusRcd->Abbreviation == _T("Fmr")) continue;
-//    if (!rcd->IsOfficer) continue;
 
     if (surveyDone(rcd->CallSign)) continue;
 
     Survey survey(rcd);    survey.request();
     }
+  }
+
+
+void SurveyCommand::load(Archive& ar) {
+int    i;
+String line;
+
+  for (i = 0; ar.read(line); i++) if (i) getItem(line);
+
+  return;
+  }
+
+
+void SurveyCommand::getItem(String& line) {
+IDitem  item;
+int     x;
+int     y;
+String  s;
+
+  y = line.find(_T(','));   if (y < 0) return;
+  s = line.substr(0, y);    s.trim();   item.name = s;
+
+  x = y + 1; y = line.find(_T(','), x);   if (y < 0) return;
+  s = line.substr(x, y-x);    s.trim();   item.callSign = s;
+
+  x = y + 1; y = line.find(_T(':'), x);   if (y < 0) return;
+  s = line.substr(x, y-x);    s.trim();   item.badgeNumber = s;
+
+  x = y + 1; s = line.substr(x);  s.trim();  item.check = !s.isEmpty();
+
+  idList += item;
   }
 
 
@@ -150,35 +163,6 @@ int n = idList.end();
   }
 
 
-
-bool SurveyCommand::loadIDfilter() {
-String path;
-
-  if (getPathDlg(_T("Load Filter"), 0, _T("txt"), _T("*.txt"), path)) {
-
-    doc.setDocType(FilterDocType);
-
-    if (doc.OnOpenDocument(path)) return true;
-    }
-  return false;
-  }
-
-
-void SurveyCommand::getItem(String& line) {
-IDitem  item;
-int     x;
-int     y;
-String  s;
-  y = line.find(_T(','));   if (y < 0) return;
-  s = line.substr(0, y);    s.trim();   item.name = s;
-  x = y + 1; y = line.find(_T(','), x);   if (y < 0) return;
-  s = line.substr(x, y-x);    s.trim();   item.callSign = s;
-  x = y + 1; y = line.find(_T(':'), x);   if (y < 0) return;
-  s = line.substr(x, y-x);    s.trim();   item.badgeNumber = s;
-  x = y + 1; s = line.substr(x);  s.trim();  item.check = !s.isEmpty();
-
-  idList += item;
-  }
 
 
 class SrvyLine {
@@ -223,14 +207,6 @@ String              s;
   dspeMail(mbrRcd, mbrRcd->eMail);
   dspeMail(mbrRcd, rcd.SecondaryEmail);
   if (emplRcd) dspeMail(mbrRcd, emplRcd->eMail);
-#if 0
-  notePad << mbrRcd->FirstName << _T(" ") << mbrRcd->LastName;
-  notePad << _T(" <") << mbrRcd->eMail << _T("> ") << nCrlf;
-  notePad << mbrRcd->FirstName << _T(" ") << mbrRcd->LastName;
-  notePad << _T(" <") << rcd.SecondaryEmail << _T("> ") << nCrlf;
-  notePad << mbrRcd->FirstName << _T(" ") << mbrRcd->LastName;
-  notePad << _T(" <") << emplRcd->eMail << _T("> ") << nCrlf;
-#endif
 
   notePad << _T("SJ RACES Biennial Membership Attribute Survey, 2020 Version") << nCrlf << nCrlf;
 
@@ -506,7 +482,4 @@ String s;
 
   notePad << s;
   }
-
-
-
 

@@ -5,8 +5,34 @@
 
 
 #include "stdafx.h"
-#include "RWracesDBDoc.h"
+#include "UpdateRequest.h"
+#include "MapData.h"
+#include "MemberList.h"
 #include "NotePad.h"
+#include "RWracesDB.h"
+#include "RWracesDBView.h"
+
+
+void UpdateRequest::operator() () {
+MemberList    ml(EverbridgeSrt);
+MbrIter       iter(ml);
+MemberRecord* rcd;
+
+  notePad.clear();   view()->setFont(_T("Arial"), 120);
+
+  for (rcd = iter(); rcd; rcd = iter++) {
+    int           statusID  = rcd->StatusID;
+    StatusRecord* statusRcd = statusTable.find(statusID);
+    String        responder = rcd->Responder.trim();
+
+    if (!statusRcd || statusRcd->Abbreviation == _T("Fmr")) continue;
+    if (responder.isEmpty()) continue;
+    if (rcd->IsOfficer) continue;
+
+    display(*rcd);
+    }
+  }
+
 
 
 static String keys[5] = {_T("P"),
@@ -25,7 +51,7 @@ static String locPref[5] = {_T("A"),
 
 
 
-void RWracesDBDoc::UpdateRequest(MemberRecord& rcd) {
+void UpdateRequest::display(MemberRecord& rcd) {
 int                 mbrID             = rcd.MbrEntityID;
 int                 emplID            = rcd.EmplEntityID;
 int                 assgnPrefID       = rcd.AssgnPrefID;
@@ -90,7 +116,7 @@ int                 i;
   }
 
 
-AssgnPrefRecord* RWracesDBDoc::findAvail(TCchar* key) {
+AssgnPrefRecord* UpdateRequest::findAvail(TCchar* key) {
 AgPfIter         iter(assgnPrefTable);
 AssgnPrefRecord* r;
 
@@ -101,7 +127,7 @@ AssgnPrefRecord* r;
 
 
 
-LocationPrefRecord* RWracesDBDoc::findLoc(TCchar* key) {
+LocationPrefRecord* UpdateRequest::findLoc(TCchar* key) {
 LcPfIter            iter(locationPrefTable);
 LocationPrefRecord* r;
 
@@ -109,4 +135,5 @@ LocationPrefRecord* r;
 
   return 0;
   }
+
 

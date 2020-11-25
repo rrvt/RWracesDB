@@ -12,6 +12,7 @@ CMFCMenuBar   m_wndMenuBar;
 ToolBar       toolBar;
 CMFCStatusBar m_wndStatusBar;
 CMenu         menu;
+CMenu         fmrMenu;
 
 protected: // create from serialization only
 
