@@ -30,7 +30,7 @@ int              i;
 int              counts[6];
 int              total;
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   for (i = 0; i < noElements(counts); i++) counts[i] = 0;
 

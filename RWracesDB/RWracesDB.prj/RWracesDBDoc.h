@@ -3,10 +3,10 @@
 #pragma once
 #include "CDoc.h"
 
-class  SurveyCommand;
+//class  SurveyCommand;
 
 
-enum DataSource {NoteSource, RestoreSrc, StsUpdtSrc, FilterSrc};
+enum DataSource {NotePadSrc, RestoreSrc, StsUpdtSrc};
 
 
 class RWracesDBDoc : public CDoc {
@@ -20,7 +20,7 @@ String      filePath;
 String      sffx;             // Suffix of db<sffx>.<fileType>
 String      fileType;
 
-SurveyCommand* surveyCmd;
+//SurveyCommand* surveyCmd;
 
 protected: // create from serialization only
 
@@ -34,8 +34,9 @@ public:
           void setDataSrc(DataSource ds) {dataSource = ds;}
     DataSource dataSrc() {return dataSource;}
 
+          void display(DataSource ds);
+
           void setFileSaveAttr(TCchar* suffix, TCchar* ext) {sffx = suffix; fileType = ext;}
-          void OnFileSave();
 
           void getTitle();
 
@@ -64,9 +65,9 @@ public:
   afx_msg void OnEverbridge();
   afx_msg void OnCountResponders();
   afx_msg void OnFCCcallSigns();
-  afx_msg void OnUpdateRequest();
-  afx_msg void OnSurveyRequest();
-  afx_msg void OnIDlist();
+//  afx_msg void OnUpdateRequest();
+//  afx_msg void OnSurveyRequest();
+//  afx_msg void OnIDlist();
   afx_msg void OnMemberInfo();
   afx_msg void OnBadgesDT();
   afx_msg void OnBadgesCS();
@@ -75,6 +76,7 @@ public:
   afx_msg void OnComparison();
   afx_msg void OnFixDeadRcds();
   afx_msg void OnOptions();
+  afx_msg void OnFileSave();
   };
 
 

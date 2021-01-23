@@ -62,14 +62,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\Extras\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Version.lib</AdditionalDependencies>
+      <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Midl>
@@ -80,7 +80,7 @@
     <ResourceCompile>
       <Culture>0x0409</Culture>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\AboutFiles\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\Extras\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,7 +91,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\LibFiles\;$(SolutionDir)..\..\Library\AboutFiles\;$(SolutionDir)..\..\Library\TableDescriptors\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\Extras\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -99,7 +99,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Version.lib</AdditionalDependencies>
+      <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <Midl>
@@ -110,7 +110,7 @@
     <ResourceCompile>
       <Culture>0x0409</Culture>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\AboutFiles\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IntDir);$(SolutionDir)..\..\Library\Extras\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -125,7 +125,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <ClInclude Include="..\..\Library\AboutFiles\About.h" />
+    <ClInclude Include="..\..\Library\Extras\About.h" />
     <ClInclude Include="AddressMap.h" />
     <ClInclude Include="AddressTbl.h" />
     <ClInclude Include="AssgnPrefMap.h" />
@@ -139,6 +139,7 @@
     <ClInclude Include="EntityMap.h" />
     <ClInclude Include="EntityTbl.h" />
     <ClInclude Include="Everbridge.h" />
+    <ClInclude Include="..\..\Library\Extras\ExtraResource.h" />
     <ClInclude Include="FCClist.h" />
     <ClInclude Include="GoogleRpt.h" />
     <ClInclude Include="IDitem.h" />
@@ -151,9 +152,7 @@
     <ClInclude Include="MemberMap.h" />
     <ClInclude Include="MemberRpts.h" />
     <ClInclude Include="MemberTbl.h" />
-    <ClInclude Include="NoteRpt.h" />
-    <ClInclude Include="Options.h" />
-    <ClInclude Include="OptionsDlg.h" />
+    <ClInclude Include="..\..\Library\Extras\OptionsDlg.h" />
     <ClInclude Include="Quoted.h" />
     <ClInclude Include="Records.h" />
     <ClInclude Include="resource.h" />
@@ -162,17 +161,16 @@
     <ClInclude Include="RWracesDBView.h" />
     <ClInclude Include="StatusMap.h" />
     <ClInclude Include="StatusRcds.h" />
+    <ClInclude Include="StatusRpt.h" />
     <ClInclude Include="StatusTbl.h" />
     <ClInclude Include="StatusUpdate.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Survey.h" />
-    <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h" />
+    <ClInclude Include="..\..\Library\Extras\TableDscrs.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="UpdateRequest.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Library\AboutFiles\About.cpp" />
+    <ClCompile Include="..\..\Library\Extras\About.cpp" />
     <ClCompile Include="AddressMap.cpp" />
     <ClCompile Include="AddressTbl.cpp" />
     <ClCompile Include="AssgnPrefMap.cpp" />
@@ -197,26 +195,24 @@
     <ClCompile Include="MemberMap.cpp" />
     <ClCompile Include="MemberRpts.cpp" />
     <ClCompile Include="MemberTbl.cpp" />
-    <ClCompile Include="NoteRpt.cpp" />
-    <ClCompile Include="Options.cpp" />
-    <ClCompile Include="OptionsDlg.cpp" />
+    <ClCompile Include="..\..\Library\Extras\OptionsDlg.cpp" />
     <ClCompile Include="Quoted.cpp" />
     <ClCompile Include="RWracesDB.cpp" />
     <ClCompile Include="RWracesDBDoc.cpp" />
     <ClCompile Include="RWracesDBView.cpp" />
     <ClCompile Include="StatusMap.cpp" />
     <ClCompile Include="StatusRcds.cpp" />
+    <ClCompile Include="StatusRpt.cpp" />
     <ClCompile Include="StatusTbl.cpp" />
     <ClCompile Include="StatusUpdate.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Survey.cpp" />
-    <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp" />
-    <ClCompile Include="UpdateRequest.cpp" />
+    <ClCompile Include="..\..\Library\Extras\TableDscrs.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Library\AboutFiles\About.rc2" />
+    <None Include="..\..\Library\Extras\About.rc2" />
     <None Include="..\..\RacesTraining\Data\Former.txt" />
+    <None Include="..\..\Library\Extras\Options.rc2" />
     <None Include="..\README.md" />
     <None Include="res\RWracesDB.rc2" />
   </ItemGroup>
@@ -227,7 +223,7 @@
     <Image Include="res\Toolbar26.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Library\LibUni7\LibUni7.vcxproj">
+    <ProjectReference Include="..\..\Library\Library.prj\Library.vcxproj">
       <Project>{cf57f3ec-d3db-4469-8519-3f9d73785d9b}</Project>
     </ProjectReference>
   </ItemGroup>

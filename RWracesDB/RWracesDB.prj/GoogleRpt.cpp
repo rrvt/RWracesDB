@@ -44,7 +44,7 @@ MemberRecord* rcd;
 
 void GoogleRpt::header() {
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   notePad << _T("Call Sign,");
   notePad << _T("Name,");
@@ -80,7 +80,6 @@ String              dsw               = rcd.DSWDate.trim();
 EntityRecord*       mbrRcd            = entityTable.find(mbrID);      if (!mbrRcd) return;
 EntityRecord*       emplRcd           = entityTable.find(emplID);
 AddressRecord*      addrRcd;
-//CityStateRecord*    cityRcd           = cityStateTable.find(mbrRcd->CityStID);
 
 AssgnPrefRecord*    assgnPrefRcd      = assgnPrefTable.find(assgnPrefID);
 LocationPrefRecord* locationPrefRcd   = locationPrefTable.find(locPrefID);
@@ -94,10 +93,6 @@ bool          avail = addrAvail(r, addrRcd);
   if (workAddr && !avail) return;
 
   quoted.commaOut();
-
-if (rcd.CallSign == _T("KC6THM")) {
-int x = 1;
-}
 
   quoted.stg(rcd.CallSign);
 

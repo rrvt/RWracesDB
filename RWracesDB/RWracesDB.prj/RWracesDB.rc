@@ -79,7 +79,7 @@ IDR_MAINFRAME           ICON                    "res\\RWracesDB.ico"
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP                  "res\\Toolbar29.bmp"
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar69.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,14 +90,13 @@ IDR_MAINFRAME           BITMAP                  "res\\Toolbar29.bmp"
 IDR_MAINFRAME TOOLBAR 16, 15
 BEGIN
     BUTTON      ID_OpenDatabase
+    BUTTON      ID_Status
     BUTTON      ID_ExcelReport
     BUTTON      ID_GoogleEarth
     BUTTON      ID_Everbridge
     BUTTON      ID_CntResponders
     BUTTON      ID_FCC
-    BUTTON      ID_UpdateReq
-    BUTTON      ID_SurveyReq
-    BUTTON      ID_MemberInto
+    BUTTON      ID_MemberIDs
     BUTTON      ID_Badges
     BUTTON      ID_Former
     BUTTON      ID_FILE_SAVE
@@ -106,6 +105,9 @@ BEGIN
     BUTTON      ID_APP_ABOUT
     BUTTON      ID_APP_EXIT
 END
+
+//  BUTTON      ID_UpdateReq
+//  BUTTON      ID_SurveyReq
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -125,54 +127,65 @@ BEGIN
     MENUITEM "Sort by Date",            ID_BadgesDate
 END
 
+IDR_MemberStatus MENU
+BEGIN
+  MENUITEM "Load CSV File",             ID_LoadCSVfile
+  MENUITEM "Upload to DB",              ID_UploadToDB
+END
+
 IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "Refresh",             ID_Refresh
-        MENUITEM SEPARATOR
-        MENUITEM "&Save...\tCtrl+S",    ID_FILE_SAVE
-        MENUITEM "&Print...\tCtrl+P",   ID_FILE_PRINT
-        MENUITEM "Print Pre&view",      ID_FILE_PRINT_PREVIEW
-        MENUITEM "P&rint Setup...",     ID_FILE_PRINT_SETUP
-        MENUITEM SEPARATOR
-        MENUITEM "Make File Copy",      ID_MakeFileCopy
-        MENUITEM SEPARATOR
-        MENUITEM "E&xit",               ID_APP_EXIT
+      MENUITEM "Refresh",             ID_Refresh
+      MENUITEM SEPARATOR
+      MENUITEM "&Save...\tCtrl+S",    ID_FILE_SAVE
+      MENUITEM "&Print...\tCtrl+P",   ID_FILE_PRINT
+      MENUITEM "Print Pre&view",      ID_FILE_PRINT_PREVIEW
+      MENUITEM "P&rint Setup...",     ID_FILE_PRINT_SETUP
+      MENUITEM SEPARATOR
+      MENUITEM "Make File Copy",      ID_MakeFileCopy
+      MENUITEM SEPARATOR
+      MENUITEM "E&xit",               ID_APP_EXIT
     END
     POPUP "Status Update"
     BEGIN
-        MENUITEM "Load CSV File",       ID_LoadCSVfile
-        MENUITEM "Upload to DB",        ID_UploadToDB
+      MENUITEM "Load CSV File",       ID_LoadCSVfile
+      MENUITEM "Upload to DB",        ID_UploadToDB
     END
     POPUP "Reports"
     BEGIN
-        MENUITEM "Excel CSV",           ID_ExcelReport
-        MENUITEM "GoogleRpt CSV",     ID_GoogleEarth
-        MENUITEM "Everbridge CSV",      ID_Everbridge
-        MENUITEM "Responder Counts",    ID_CntResponders
-        MENUITEM "FCC Call Signs",      ID_FCC
-        MENUITEM "Update Requests",     ID_UpdateReq
-        MENUITEM "Survey Requests",     ID_SurveyReq
-        MENUITEM "ID List",             ID_IDlist
-        MENUITEM "Member Information",  ID_MemberInto
+      MENUITEM "Excel CSV File",           ID_ExcelReport
+      MENUITEM "Google Earth CSV File",     ID_GoogleEarth
+      MENUITEM "Everbridge CSV File",      ID_Everbridge
+      MENUITEM "Responder Counts",    ID_CntResponders
+      MENUITEM "FCC Call Signs",      ID_FCC
+//      MENUITEM "ID List",             ID_IDlist
+      MENUITEM "Member IDs",          ID_MemberIDs
     END
     POPUP "Backup/Restore"
     BEGIN
-        MENUITEM "Backup",              ID_Backup
-        MENUITEM "Restore",             ID_Restore
-        MENUITEM "Comparison File",     ID_Comparison
+      MENUITEM "Backup",              ID_Backup
+      MENUITEM "Restore",             ID_Restore
+      MENUITEM "Comparison File",     ID_Comparison
     END
     POPUP "Fix"
     BEGIN
-        MENUITEM "Dead Rcds",           ID_FixDeadRcds
+      MENUITEM "Dead Rcds",           ID_FixDeadRcds
     END
     POPUP "Tools"
     BEGIN
-        MENUITEM "Options",             ID_Options
+      MENUITEM "Options",             ID_Options
     END
-    MENUITEM "About",                   ID_APP_ABOUT
+    POPUP "Help"
+    BEGIN
+      MENUITEM "Introduction",            ID_Help
+      MENUITEM "About",                   ID_APP_ABOUT
+    END
 END
+
+//    MENUITEM "Update Requests",     ID_UpdateReq
+//    MENUITEM "Survey Requests",     ID_SurveyReq
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -189,37 +202,12 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Dialog
-
-IDD_Options DIALOGEX 0, 0, 130, 137
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Options"
-FONT 12, "Arial", 400, 0, 0x0
-BEGIN
-    LTEXT           "Orientation:",IDC_STATIC,5,7,47,9,SS_CENTERIMAGE,WS_EX_RIGHT
-    COMBOBOX        IDC_Orientation,54,7,68,50,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Margins",IDC_STATIC,7,38,116,75,BS_FLAT,WS_EX_CLIENTEDGE
-    LTEXT           "Top:",IDC_STATIC,11,49,28,12,SS_CENTERIMAGE,WS_EX_RIGHT
-    EDITTEXT        IDC_TopMargin,43,49,60,12,ES_AUTOHSCROLL
-    LTEXT           "Left:",IDC_STATIC,11,64,28,12,SS_CENTERIMAGE,WS_EX_RIGHT
-    EDITTEXT        IDC_LeftMargin,43,64,60,12,ES_AUTOHSCROLL
-    LTEXT           "Right:",IDC_STATIC,11,79,28,12,SS_CENTERIMAGE,WS_EX_RIGHT
-    EDITTEXT        IDC_RightMargin,43,79,60,12,ES_AUTOHSCROLL
-    LTEXT           "Bottom:",IDC_STATIC,11,94,28,12,SS_CENTERIMAGE,WS_EX_RIGHT
-    EDITTEXT        IDC_BotMargin,43,94,60,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,7,116,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,73,116,50,14
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,9,3
- PRODUCTVERSION 1,9,3
+ FILEVERSION 1,9,5
+ PRODUCTVERSION 1,9,5
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -236,44 +224,18 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Bob -- K6RWY"
             VALUE "FileDescription", "Manipulate RACES DB"
-            VALUE "FileVersion", "1.9.3"
+            VALUE "FileVersion", "1.9.5"
             VALUE "InternalName", "RWracesDB.exe"
             VALUE "LegalCopyright", "(c), All rights reserved."
             VALUE "OriginalFilename", "RWracesDB.exe"
             VALUE "ProductName", "Read/Write RACES DB"
-            VALUE "ProductVersion", "1.9.3"
+            VALUE "ProductVersion", "1.9.5"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
         VALUE "Translation", 0x409, 1252
     END
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
-BEGIN
-    IDD_Options, DIALOG
-    BEGIN
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// AFX_DIALOG_LAYOUT
-//
-
-IDD_Options AFX_DIALOG_LAYOUT
-BEGIN
-    0
 END
 
 
@@ -294,11 +256,12 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_ExcelReport          "Create Report\nCreate Report"
-    ID_GoogleEarth          "Create Google Earth CSV File\nCreate Google Earth CSV File"
-    ID_Everbridge           "Create Everbridge CSV File\nCreate Everbridge CSV File"
+    ID_ExcelReport          "Excel CSV File\nExcel CSV File"
+    ID_GoogleEarth          "Google Earth CSV File\nGoogle Earth CSV File"
+    ID_Everbridge           "Everbridge CSV File\nEverbridge CSV File"
     ID_CntResponders        "Count Responders\nCount Responders"
-    ID_FCC                  "Create FCC Call Sign List\nCreate FCC Call Sign List"
+    ID_FCC                  "FCC Call Sign List\nFCC Call Sign List"
+    ID_MemberIDs            "Member IDs\nMember IDs"
     ID_UpdateReq            "Update Requests\nUpdate Requests"
     ID_SurveyReq            "Survey Requests\nSurvey Requests"
     ID_Refresh              "Refresh Database"

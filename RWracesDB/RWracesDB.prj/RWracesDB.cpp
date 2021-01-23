@@ -22,10 +22,11 @@ IniFile      iniFile;
 
 
 BEGIN_MESSAGE_MAP(RWracesDBApp, CWinAppEx)
-  ON_COMMAND(ID_Refresh,          &RWracesDBApp::refresh)
-  ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinApp::OnFilePrintSetup)
-  ON_COMMAND(ID_MakeFileCopy,     &RWracesDBApp::OnMakeFileCopy)
-  ON_COMMAND(ID_APP_ABOUT,        &RWracesDBApp::OnAppAbout)
+  ON_COMMAND(ID_Refresh,          &refresh)
+  ON_COMMAND(ID_MakeFileCopy,     &OnMakeFileCopy)
+  ON_COMMAND(ID_Help,             &OnHelp)
+  ON_COMMAND(ID_APP_ABOUT,        &OnAppAbout)
+  ON_COMMAND(ID_FILE_PRINT_SETUP, &OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
@@ -69,7 +70,7 @@ BOOL RWracesDBApp::InitInstance() {
 
   setAppName(_T("RacesDB"));    setTitle(_T("Database Manipulation Program"));
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   maps.initializeMaps(DBFileKey, databasePath);
 
@@ -78,6 +79,9 @@ BOOL RWracesDBApp::InitInstance() {
   m_pMainWnd->ShowWindow(SW_SHOW);   m_pMainWnd->UpdateWindow();   return TRUE;
   }
 
+
+
+void RWracesDBApp::OnFilePrintSetup() {view()->setPrntrOrient(getDevMode());   CWinApp::OnFilePrintSetup();}
 
 
 void RWracesDBApp::refresh() {maps.initializeMaps(DBFileKey, databasePath);}
@@ -107,7 +111,14 @@ int    pos;
 
 
 void RWracesDBApp::announceFinish() {
-  notePad << nFSize(160) << nCenter << _T("Upload Completed") << nFont << nCrlf;   invalidate();
+  notePad << nFSize(16.0) << nCenter << _T("Upload Completed") << nFont << nCrlf;   invalidate();
+  }
+
+
+void RWracesDBApp::OnHelp() {
+String topic = m_pszHelpFilePath; topic += _T(">Introduction");
+
+  ::HtmlHelp(m_pMainWnd->m_hWnd, topic,  HH_DISPLAY_TOC, 0);
   }
 
 

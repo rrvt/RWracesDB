@@ -11,8 +11,9 @@ class MainFrame : public CMainFrm {
 CMFCMenuBar   m_wndMenuBar;
 ToolBar       toolBar;
 CMFCStatusBar m_wndStatusBar;
-CMenu         menu;
+CMenu         bdgMenu;
 CMenu         fmrMenu;
+CMenu         stsMenu;
 
 protected: // create from serialization only
 
@@ -25,9 +26,6 @@ public:
   virtual ~MainFrame();
 
   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-
-  void setAppName(TCchar* name) {m_strTitle = name;}
-  void setTitle(  TCchar* leftPart);
 
   virtual void OnMove(int x, int y);
   virtual void OnSize(UINT nType, int cx, int cy);

@@ -15,22 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Library\AboutFiles\About.rc2">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\README.md" />
     <None Include="res\RWracesDB.rc2">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\..\RacesTraining\Data\Former.txt" />
+    <None Include="..\..\Library\Extras\About.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\Library\Extras\Options.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Library\AboutFiles\About.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Library\TableDescriptors\TableDscrs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AddressMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FixPrimaryeMail.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LocationPrefMap.cpp">
@@ -112,16 +106,7 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OptionsDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StatusUpdate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NoteRpt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Quoted.cpp">
@@ -151,14 +136,20 @@
     <ClCompile Include="DeadRcds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Library\Extras\About.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Library\Extras\OptionsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Library\Extras\TableDscrs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusRpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Library\AboutFiles\About.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Library\TableDescriptors\TableDscrs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AddressMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -246,16 +237,7 @@
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StatusUpdate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoteRpt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quoted.h">
@@ -286,6 +268,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DeadRcds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Library\Extras\About.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Library\Extras\ExtraResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Library\Extras\OptionsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Library\Extras\TableDscrs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusRpt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

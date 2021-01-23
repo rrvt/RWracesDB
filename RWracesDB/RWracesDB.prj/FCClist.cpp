@@ -30,7 +30,7 @@ Expandable<String, 128> callSigns;
 
   nCallSigns = callSigns.end();    qsort(&callSigns[0], &callSigns[nCallSigns-1]);
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   for (i = 0; i < nCallSigns; i++) notePad << callSigns[i] << nCrlf;
   }

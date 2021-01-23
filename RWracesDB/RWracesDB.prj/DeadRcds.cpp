@@ -12,7 +12,7 @@
 void DeadRcds::fix() {
 int n = 0;
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   notePad << nBeginLine << _T("Deleted Entity Records") << nEndLine << nCrlf;
   n += removeDeadEntityRcds();

@@ -59,6 +59,7 @@ RECT       rect;
 
 
 int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
+
   if (CFrameWndEx::OnCreate(lpCreateStruct) == -1) return -1;
 
   if (!m_wndMenuBar.Create(this)) {TRACE0("Failed to create menubar\n"); return -1;}
@@ -88,12 +89,13 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
 void MainFrame::setupToolBar() {
 
-  if (!menu.m_hMenu)    menu.LoadMenu(IDR_BadgeOpts);
+  if (!bdgMenu.m_hMenu) bdgMenu.LoadMenu(IDR_BadgeOpts);
   if (!fmrMenu.m_hMenu) fmrMenu.LoadMenu(IDR_FormerOpts);
+  if (!stsMenu.m_hMenu) stsMenu.LoadMenu(IDR_MemberStatus);
 
-  toolBar.setMnuCtrl(ID_Badges,    menu.GetSafeHmenu(), _T("Badged"));
+  toolBar.setMnuCtrl(ID_Badges, bdgMenu.GetSafeHmenu(), _T("Badged"));
   toolBar.setMnuCtrl(ID_Former, fmrMenu.GetSafeHmenu(), _T("Former"));
-
+  toolBar.setMnuCtrl(ID_Status, stsMenu.GetSafeHmenu(), _T("Mbr Status"));
   toolBar.install();
   }
 
@@ -101,6 +103,7 @@ void MainFrame::setupToolBar() {
 afx_msg LRESULT MainFrame::OnResetToolBar(WPARAM wParam, LPARAM lParam) {setupToolBar(); return 0;}
 
 
+#if 0
 void MainFrame::setTitle(TCchar* rightPart) {
 String s = m_strTitle;
 
@@ -108,6 +111,7 @@ String s = m_strTitle;
 
   SetWindowText(s);
   }
+#endif
 
 
 void MainFrame::OnMove(int x, int y) {

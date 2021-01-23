@@ -53,6 +53,11 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 1/22/21
+
+Cleaned up the toolbar removing obsolete commands and adding icons for some of the CSV file
+reports.  Added a help file.
+
 ### Update 11/25/20
 
 Library improvement project integrated into this application.  Then I noticed that the Doc module had

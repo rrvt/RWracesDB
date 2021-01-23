@@ -68,7 +68,7 @@ MemberRecord* rcd;
 
 void Everbridge::header() {
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   notePad << _T("First Name,");
   notePad << _T("Middle Initial,");

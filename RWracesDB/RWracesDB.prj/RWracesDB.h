@@ -21,7 +21,7 @@ public:
 
 String databasePath;
 
-  RWracesDBApp() { }
+  RWracesDBApp() : CApp(this) { }
 
   void refresh();
 
@@ -39,6 +39,7 @@ String databasePath;
 
   friend  RWracesDBDoc* doc();
   afx_msg void OnFilePrintSetup();
+  afx_msg void OnHelp();
   };
 
 

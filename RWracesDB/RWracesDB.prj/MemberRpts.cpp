@@ -26,7 +26,7 @@ Expandable<MemberInfo, 2> members;
     memberInfo.sortKey = memberInfo.callSign;   members = memberInfo;
     }
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   for (i = 0, n = members.end(); i < n; i++) {
     MemberInfo& mi = members[i];
@@ -59,7 +59,7 @@ Expandable<IDitem, 128> data;
 
   n = data.end();   qsort(&data[0], &data[n-1]);
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   notePad << nSetTab(26) << nSetRTab(45) << nSetTab(47);
 
@@ -106,11 +106,11 @@ int                       maxLn = 0;
     members = memberInfo;
     }
 
-  int tab2 = 8    + maxFn + 1;
-  int tab3 = tab2 + maxLn + 1;
+  int tab2 = 8    + maxFn + 2;
+  int tab3 = tab2 + maxLn + 2;
   int tab4 = tab3 + 4;
 
-  notePad.clear();   view()->setFont(_T("Courier New"), 120);
+  notePad.clear();   view()->setFont(_T("Courier New"), 12.0);
 
   notePad << nClrTabs << nSetTab(8) << nSetTab(tab2) << nSetTab(tab3) << nSetTab(tab4);
 
@@ -195,15 +195,15 @@ int           tab2;
     }
 
   if (sortKey == FmrNameSort) {
-    tab1 = maxFn + 1;
-    tab2 = tab1 + maxLn + 1;
+    tab1 = maxFn + 2;
+    tab2 = tab1 + maxLn + 2;
     }
   else {
     tab1 = 8;
-    tab2 = tab1 + maxFn + 1;
+    tab2 = tab1 + maxFn + 2;
     }
 
-  notePad.clear();   view()->setFont(_T("Courier New"), 120);
+  notePad.clear();   view()->setFont(_T("Courier New"), 12.0);
 
   notePad << nClrTabs << nSetTab(tab1) << nSetTab(tab2);
 
@@ -303,7 +303,7 @@ MemberRecord* rcd;
 
 void MemberRpts::header(bool comparison) {
 
-  notePad.clear();   view()->setFont(_T("Arial"), 120);
+  notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
   notePad << _T("BadgeNumber,");
   notePad << _T("mbrFirstName,");

@@ -19,19 +19,18 @@ public:
   StatusUpdate() { }
  ~StatusUpdate() { }
 
-  bool load();
   void load(Archive& ar);
+  bool isLoaded();
 
   int  noRecords();
 
   void toDatabase();
-  int  header(NotePad& np, bool printing);
-  void setDspTabs(NotePad& np);
 
 private:
 
   void uploadOneStsCSV(StatusRcd& csv);
   void dspMemberName(MemberRecord* rcd);
+  void setDspTabs(NotePad& np);
   void dspRcdName(EntityRecord* entity);
   };
 

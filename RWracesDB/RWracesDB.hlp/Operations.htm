@@ -1,0 +1,218 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/OneColumnPage.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Operations</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link href="App.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="container">
+<div class="content">
+<!-- InstanceBeginEditable name="Title" -->
+<h1>RacesDB Operations</h1>
+<!-- InstanceEndEditable -->
+
+<!-- InstanceBeginEditable name="Body" -->
+<h2>Toolbar Operations</h2>
+<h3><img src="Images/OpenDatabase.jpg" width="16" height="15"> Open Database File </h3>
+<p>
+Opens a database file and displays the number of records in each table.
+</p>
+<h3><img src="Images/MbrStatusDropDownButton.jpg" width="132" height="72" align="top"> Member Status Upload Drop Down Command Button
+</h3>
+<p>
+There are three command buttons here but only two commands.  Selecting Member Status, the button, will load the
+Member Status CSV file.  Selecting Load CSV File will also load the CSV file.  Selecting the  "Upload to DB"
+button will upload any changes in the status to the database.  This will result in a description of the
+changes and attempted changes that have not been made (with the reason for the change not having been made).
+</p>
+<h3><img src="Images/Excel.jpg" width="16" height="15"> Excel CSV File</h3>
+<p>
+All current members information will be displayed in the window in a format suitable for loading into Excel.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h3><img src="Images/GoogleEarth.jpg" width="16" height="15"> Google Earth CSV File</h3>
+<p>
+The member information needed for Google Earth is displayed on the screen.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h3><img src="Images/Everbridge.jpg" width="16" height="15"> Everbridge CSV File</h3>
+<p>
+The member information is configured for Everbridge and displayed on the screen.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h3><img src="Images/Counts.jpg" width="16" height="15"> Responder Counts by Dispatch Category</h3>
+<p>
+The counts reflect the rediness of the individuals to report quickly, slowly, maybe and to not at all.  This
+list can be printed and or saved in a text file.
+</p>
+<h3><img src="Images/FCC.jpg" width="16" height="15"> FCC Call Signs of Current Members</h3>
+<p>
+Just the call signs sorted.  May be printed or saved in a text file.
+</p>
+<h3><img src="Images/IDs.jpg" width="16" height="15"> Member Identifiers CSV File</h3>
+<p>
+This list is in CSV format, includes the call sign, name and badge number.  It may be printed or saved as a
+text file.
+</p>
+<h3>
+<img src="Images/Badged.jpg" width="148" height="74" align="top">
+Badge Expiration Dates, Sorted by Call Sign and by Expiration Date
+</h3>
+<p>
+Three buttons, two commands:  Sort list by call sign, Sort list by date.  Note members that have earned a
+badge but one has not been issued yet appear at the top of the list.  Due to the pandemic there are several
+in this category as well as members with badges that have not beeu updated due to the pandemic.
+</p>
+<h3><img src="Images/FormerMbrs.jpg" width="148" height="73" align="top"> Former Member List Sorted by Name or Call Sign</h3>
+<p>
+Three buttons, two commands: Lists former members by name and call sign.  Note this list is only a few years
+old as I started keeping the data in the database and marking the entries as former.
+</p>
+<h3><img src="Images/Floppy.jpg" width="16" height="15"> Save File</h3>
+<p>
+Displays a Save File Dialog with the type and a filename suggestion based on the data that is displayed in the window and saves the file to the file named.
+</p>
+
+<h3><img src="Images/Options.jpg" width="16" height="15"> Options</h3>
+<p>
+The options dialog allows specifying the Display and Printer Font Size Scale Factor, the printer
+orientation and the printer margins.
+</p>
+
+
+<h3><img src="Images/Printer.jpg" width="16" height="15"> Print</h3>
+<p>
+Will do all the normal things to print a file.
+</p>
+<h3><img src="Images/About.jpg" width="16" height="15"> About</h3>
+<p>
+Displays the About Box.
+</p>
+<h3><img src="Images/Exit.jpg" width="16" height="15"> Exit</h3>
+<p>
+Exit the application with no reservations.
+</p>
+
+<h2>Menus</h2>
+<h3>File</h3>
+<h4>Refresh</h4>
+<p>
+Reload the data from the database into the application.
+</p>
+<h4>Save</h4>
+<p>
+Displays a Save File Dialog with the type and a filename suggestion based on the data that is displayed in the window and saves the file to the file named.
+</p>
+<h4>Print</h4>
+<p>
+Will do all the normal things to print a file.
+</p>
+<h4>Print Preview</h4>
+<p>
+Will display the current report (window) in a print preview window.
+</p>
+<h4>Print Setup</h4>
+<p>
+Opens the MFC Print Setup dialog box.  The orientation is initialized from the Options module.
+</p>
+<h4>Make File Copy</h4>
+<p>
+Starts an open file dialog box setup to open a database file and then when one is selected copy the content to a 
+file with the same name and " - Copy" appended to it.
+</p>
+<h4>Exit</h4>
+<p>
+Exit the application with no reservations.
+</p>
+<h3>Status Update</h3>
+<h4>Load CSV File</h4>
+<p>
+Start an open file dialog box to select the Member Status file downloaded from Google Files.  Load the content
+of the file into the application.
+</p>
+<h4>Upload to DB</h4>
+<p>
+Upload the Member Status data previously loaded into the application into the database. 
+</p>
+<h3>Reports</h3>
+<h4>Excel CSV File</h4>
+<p>
+All current members information will be displayed in the window in a format suitable for loading into Excel.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h4>Google Earth CSV File</h4>
+<p>
+The member information needed for Google Earth is displayed on the screen.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h4>Everbridge CSV File</h4>
+<p>
+The member information is configured for Everbridge and displayed on the screen.
+The Save button, <img src="Images/Floppy.jpg" width="16" height="15">, has been configured to save this data
+with a suitable name (which you are allowed to change).
+</p>
+<h4>Responder Counts</h4>
+<p>
+The counts reflect the rediness of the individuals to report quickly, slowly, maybe and to not at all.  This
+list can be printed and or saved in a text file.
+</p>
+<h4>FCC Call Signs</h4>
+<p>
+Just the call signs sorted.  May be printed or saved in a text file.
+</p>
+<h4>Member IDs</h4>
+<p>
+This list is in CSV format, includes the call sign, name and badge number.  It may be printed or saved as a
+text file.
+</p>
+<h3>Backup/Restore</h3>
+<h4>Backup</h4>
+<p>
+This command displays the content of the database in CSV format.  It setups the Save command to create a dbBackup 
+file.
+</p>
+<h4>Restore</h4>
+<p>
+Purports to restore an empty database with the data stored in a file.  Hasn't been tested for some time.
+</p>
+<h4>Comparison File</h4>
+<p>
+Organize the data in shorter lines so the a comparisons will yield that differences easier.
+</p>
+<h3>Fix</h3>
+<h4>Dead Records</h4>
+<p>
+Look for records that are not referenced anywhere.  The remove them.
+</p>
+<h3>Tools</h3>
+<h4>Options</h4>
+<p>
+The options dialog allows specifying the Display and Printer Font Size Scale Factor, the printer
+orientation and the printer margins.
+</p>
+<h3>Help</h3>
+<h4>Introductions</h4>
+<p>
+Starts the help file.
+</p>
+<h4>About</h4>
+<p>
+Displays the About Box.
+</p>
+<!-- InstanceEndEditable -->
+</div><!-- end .content -->
+</div><!-- end .container -->
+</body>
+<!-- InstanceEnd --></html>

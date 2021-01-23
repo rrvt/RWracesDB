@@ -3,7 +3,8 @@
 
 #pragma once
 #include "CScrView.h"
-#include "NoteRpt.h"
+#include "NotePadRpt.h"
+#include "StatusRpt.h"
 
 
 class RWracesDBDoc;
@@ -11,12 +12,15 @@ class RWracesDBDoc;
 
 class RWracesDBView : public CScrView {
 
-NoteRpt dspNote;
-NoteRpt prtNote;
+NotePadRpt dspNote;
+NotePadRpt prtNote;
+StatusRpt  dspStatus;
+StatusRpt  prtStatus;
 
 protected: // create from serialization only
 
-  RWracesDBView() : dspNote( nMgr.getNotePad()), prtNote( pMgr.getNotePad()) { }
+  RWracesDBView() : dspNote(  dMgr.getNotePad()), prtNote(  pMgr.getNotePad()),
+                    dspStatus(dMgr.getNotePad()), prtStatus(pMgr.getNotePad()) { }
   DECLARE_DYNCREATE(RWracesDBView)
 
 // Attributes
@@ -26,10 +30,10 @@ public:
   virtual ~RWracesDBView() { }
 
   virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
-  virtual void onPrepareOutput(bool isNotePad, bool printing);
+  virtual void onPrepareOutput(bool printing);
 
   virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-  virtual void printFooter(Display& dev, int pageNo);
+  virtual void printFooter(Device& dev, int pageNo);
   virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
   RWracesDBDoc* GetDocument() const;

@@ -9,10 +9,10 @@
 #include "StatusRcds.h"
 
 
-bool StatusUpdate::load() {
+bool StatusUpdate::isLoaded() {
 int    noRcds = noRecords();
 
-  notePad << _T("Number of Status CSV Records: ") << noRcds << nCrlf;
+  notePad << nCrlf << _T("Number of Status CSV Records: ") << noRcds << nCrlf << nCrlf;
 
   return noRcds > 0;
   }
@@ -45,7 +45,7 @@ StatusRcd* rcd;
 
   memberTable.toDatabase();
 
-  notePad << nFSize(160) << nCenter;
+  notePad << nFSize(16.0) << nCenter;
 
   if (noUpdates) {notePad << noUpdates << _T(" Update");    if (noUpdates > 1) notePad << _T("s");}
   else            notePad << _T("No Updates");
@@ -107,6 +107,10 @@ EntityRecord* entity = entityTable.find(rcd->MbrEntityID);
   }
 
 
+void StatusUpdate::setDspTabs(NotePad& np)
+        {np << nClrTabs << nSetTab(35) << nSetTab(50) << nSetTab(58) << nSetTab(63) << nSetTab(70);}
+
+
 void StatusUpdate::dspRcdName(EntityRecord* entity) {
   notePad << entity->FirstName << _T(" ");
   if (!entity->MiddleInitial.empty()) notePad << entity->MiddleInitial << _T(" ");
@@ -114,24 +118,5 @@ void StatusUpdate::dspRcdName(EntityRecord* entity) {
   }
 
 
-int StatusUpdate::header(NotePad& np, bool printing) {
-Date   dt;
-String s;
 
-  if (!printing) return 0;
-
-  dt.getToday();   s = dt.getDate() + _T(" ") + dt.getHHMM();
-
-  np << _T("Status Update") << nRight << s << nCrlf << nCrlf;   return 2;
-  }
-
-
-void StatusUpdate::setDspTabs(NotePad& np)
-        {np << nClrTabs << nSetTab(35) << nSetTab(50) << nSetTab(58) << nSetTab(63) << nSetTab(70);}
-
-
-
-
-//static void dspRcdName(EntityRecord* entity);
-//static void setDspTabs();
 

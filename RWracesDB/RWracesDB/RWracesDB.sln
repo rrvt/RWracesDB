@@ -5,13 +5,22 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "RWracesDBinstaller", "..\Installer\RWracesDBinstaller.wixproj", "{4E327A7C-4164-4311-819A-06BD32E6FBF5}"
 	ProjectSection(ProjectDependencies) = postProject
+		{5B038064-4B63-4A80-A32A-98EEDB64032C} = {5B038064-4B63-4A80-A32A-98EEDB64032C}
 		{686EE781-7916-49BC-ABB9-1AA46AC1D9CD} = {686EE781-7916-49BC-ABB9-1AA46AC1D9CD}
 		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B} = {CF57F3EC-D3DB-4469-8519-3F9D73785D9B}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibUni7", "..\..\Library\LibUni7\LibUni7.vcxproj", "{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RWracesDB", "..\RWracesDB.prj\RWracesDB.vcxproj", "{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B038064-4B63-4A80-A32A-98EEDB64032C} = {5B038064-4B63-4A80-A32A-98EEDB64032C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Library", "..\..\Library\Library.prj\Library.vcxproj", "{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B038064-4B63-4A80-A32A-98EEDB64032C} = {5B038064-4B63-4A80-A32A-98EEDB64032C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RWracesDB.hlp", "..\RWracesDB.hlp\RWracesDB.hlp.vcxproj", "{5B038064-4B63-4A80-A32A-98EEDB64032C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,14 +31,18 @@ Global
 		{4E327A7C-4164-4311-819A-06BD32E6FBF5}.Debug|Win32.ActiveCfg = Debug|x86
 		{4E327A7C-4164-4311-819A-06BD32E6FBF5}.Release|Win32.ActiveCfg = Release|x86
 		{4E327A7C-4164-4311-819A-06BD32E6FBF5}.Release|Win32.Build.0 = Release|x86
-		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Debug|Win32.Build.0 = Debug|Win32
-		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Release|Win32.ActiveCfg = Release|Win32
-		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Release|Win32.Build.0 = Release|Win32
 		{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}.Debug|Win32.ActiveCfg = Debug|Win32
 		{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}.Debug|Win32.Build.0 = Debug|Win32
 		{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}.Release|Win32.ActiveCfg = Release|Win32
 		{686EE781-7916-49BC-ABB9-1AA46AC1D9CD}.Release|Win32.Build.0 = Release|Win32
+		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Debug|Win32.Build.0 = Debug|Win32
+		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Release|Win32.ActiveCfg = Release|Win32
+		{CF57F3EC-D3DB-4469-8519-3F9D73785D9B}.Release|Win32.Build.0 = Release|Win32
+		{5B038064-4B63-4A80-A32A-98EEDB64032C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5B038064-4B63-4A80-A32A-98EEDB64032C}.Debug|Win32.Build.0 = Debug|Win32
+		{5B038064-4B63-4A80-A32A-98EEDB64032C}.Release|Win32.ActiveCfg = Release|Win32
+		{5B038064-4B63-4A80-A32A-98EEDB64032C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

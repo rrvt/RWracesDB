@@ -18,8 +18,8 @@
 #include "RWracesDB.h"
 #include "RWracesDBView.h"
 #include "StatusUpdate.h"
-#include "Survey.h"
-#include "UpdateRequest.h"
+//#include "Survey.h"
+//#include "UpdateRequest.h"
 
 
 enum {col2 = 10, col3 = 35, col4 = 58, col5 = 81};
@@ -31,22 +31,31 @@ IMPLEMENT_DYNCREATE(RWracesDBDoc, CDocument)
 BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
 
   ON_COMMAND(ID_OpenDatabase,   &openDatabase)
+
+  ON_COMMAND(ID_Status,         &OnLoadCSVfile)
+  ON_COMMAND(ID_LoadCSVfile,    &OnLoadCSVfile)
+  ON_COMMAND(ID_UploadToDB,     &OnUploadToDB)
+
   ON_COMMAND(ID_ExcelReport,    &OnExcelReport)
   ON_COMMAND(ID_GoogleEarth,    &OnGoogleEarth)
   ON_COMMAND(ID_Everbridge,     &OnEverbridge)
   ON_COMMAND(ID_CntResponders,  &OnCountResponders)
   ON_COMMAND(ID_FCC,            &OnFCCcallSigns)
-  ON_COMMAND(ID_UpdateReq,      &OnUpdateRequest)
-  ON_COMMAND(ID_SurveyReq,      &OnSurveyRequest)
-  ON_COMMAND(ID_MemberInto,     &OnMemberInfo)
+//  ON_COMMAND(ID_UpdateReq,      &OnUpdateRequest)
+//  ON_COMMAND(ID_SurveyReq,      &OnSurveyRequest)
+  ON_COMMAND(ID_MemberIDs,      &OnMemberInfo)
+
+//  ON_COMMAND(ID_IDlist,         &OnIDlist)
+
   ON_COMMAND(ID_Badges,         &OnBadgesCS)
+  ON_COMMAND(ID_BadgesCS,       &OnBadgesCS)
+  ON_COMMAND(ID_BadgesDate,     &OnBadgesDT)
+
+  ON_COMMAND(ID_FormerNm,       &OnFormerNm)
   ON_COMMAND(ID_Former,         &OnFormerNm)
+  ON_COMMAND(ID_FormerCS,       &OnFormerCS)
+
   ON_COMMAND(ID_FILE_SAVE,      &OnFileSave)
-
-  ON_COMMAND(ID_LoadCSVfile,    &OnLoadCSVfile)
-  ON_COMMAND(ID_UploadToDB,     &OnUploadToDB)
-
-  ON_COMMAND(ID_IDlist,         &OnIDlist)
 
   ON_COMMAND(ID_Backup,         &OnBackup)
   ON_COMMAND(ID_Restore,        &OnRestoreNew)
@@ -54,20 +63,12 @@ BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
 
   ON_COMMAND(ID_Options,        &OnOptions)
 
-  ON_COMMAND(ID_FormerNm,       &OnFormerNm)
-  ON_COMMAND(ID_FormerCS,       &OnFormerCS)
-  ON_COMMAND(ID_BadgesCS,       &OnBadgesCS)
-  ON_COMMAND(ID_BadgesDate,     &OnBadgesDT)
   ON_COMMAND(ID_FixDeadRcds,    &OnFixDeadRcds)
 END_MESSAGE_MAP()
 
 
-RWracesDBDoc::RWracesDBDoc() : dataSource(NoteSource), surveyCmd(0) {
-
-  defaultExtension = _T("Save Files|*.csv|All Files|*.*||");
-
-  getTitle();
-  }
+RWracesDBDoc::RWracesDBDoc() : dataSource(NotePadSrc)               //, surveyCmd(0)
+                              {defaultExtension = _T("Save Files|*.csv|All Files|*.*||");   getTitle();}
 
 
 void RWracesDBDoc::getTitle() {CString  ttl;   ttl.LoadString(AFX_IDS_APP_TITLE); title = ttl;}
@@ -82,7 +83,7 @@ String ext;
   if (getPathDlg(_T("Database"), 0, _T("accdb"), _T("*.accdb"), theApp.databasePath))
                                        iniFile.writeString(FileSection, DBFileKey, theApp.databasePath);
 
-  maps.initializeMaps(DBFileKey, theApp.databasePath);   invalidate();
+  maps.initializeMaps(DBFileKey, theApp.databasePath);   display(NotePadSrc);
   }
 
 
@@ -138,6 +139,7 @@ void RWracesDBDoc::OnFCCcallSigns()
           {FCClist fccList;   setFileSaveAttr(_T("CallSigns"), _T("txt"));    fccList();   invalidate();}
 
 
+#if 0
 void RWracesDBDoc::OnUpdateRequest()
               {UpdateRequest rpt;   setFileSaveAttr(_T("Updates"), _T("txt"));   rpt();   invalidate();}
 
@@ -154,7 +156,7 @@ String path;
 
   (*surveyCmd)();  delete surveyCmd; surveyCmd = 0; invalidate();
   }
-
+#endif
 
 void RWracesDBDoc::OnMemberInfo() {
 MemberRpts rpt(ExcelDspType);
@@ -200,7 +202,7 @@ StatusUpdate stsUpdt;
 
   if (getPathDlg(_T("Status Update csv File"), 0, _T("csv"), _T("*.csv"), path)) {OnOpenDocument(path);}
 
-  stsUpdt.load();   invalidate();
+  stsUpdt.isLoaded();   invalidate();
   }
 
 
@@ -213,18 +215,26 @@ StatusUpdate stsUpdt;
   }
 
 
+#if 0
 void RWracesDBDoc::OnIDlist() {
 MemberRpts rpt(ExcelDspType);
 
   setFileSaveAttr(_T("IDlist"), _T("txt"));   rpt.idList();  invalidate();
   }
+#endif
 
 
 void RWracesDBDoc::OnFixDeadRcds()
   {DeadRcds deadRcds;setFileSaveAttr(_T("DeadFields"), _T("txt"));     deadRcds.fix(); invalidate();}
 
 
-void RWracesDBDoc::OnOptions() {options();  view()->setOrientation(options.orient);}
+void RWracesDBDoc::display(DataSource ds) {dataSource = ds; invalidate();}
+
+
+void RWracesDBDoc::OnOptions() {
+  options(view());
+  view()->setOrientation(options.orient);
+  }
 
 
 void RWracesDBDoc::OnFileSave() {
@@ -243,15 +253,12 @@ String ext      = _T("*.") + fileType;
 
 void RWracesDBDoc::serialize(Archive& ar) {
 
-  switch(ar.isStoring()) {
-    case true: notePad.archive(ar); return;
+  if (ar.isStoring()) notePad.archive(ar);
 
-    case false:
-      switch(dataSource) {
-        case RestoreSrc : {DataBase db(BkupDspType);  db.load(ar); return;}
-        case StsUpdtSrc : {StatusUpdate stsUpdt; stsUpdt.load(ar);  return;}
-        case FilterSrc  : if (surveyCmd) surveyCmd->load(ar);       return;
-        }
+  else
+    switch(dataSource) {
+    case RestoreSrc : {DataBase db(BkupDspType);  db.load(ar); return;}
+    case StsUpdtSrc : {StatusUpdate stsUpdt; stsUpdt.load(ar);  return;}
     }
   }
 
