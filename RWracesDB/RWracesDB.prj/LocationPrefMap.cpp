@@ -1,4 +1,4 @@
-// LocationPref Map logic, Version 1.5.7.0
+// LocationPref Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #include "stdafx.h"
@@ -7,23 +7,23 @@
 #include "NotePad.h"
 
 
-LocationPrefTable::MyMap LocationPrefTable::myMap;
+LocationPrefMap::MyMap LocationPrefMap::myMap;
 
 
-bool LocationPrefTable::add(LocationPrefRecord& rcd) {
+bool LocationPrefMap::add(LocationPrefRecord& rcd) {
 LcPfIter::Pair pair;
 
-  if (!rcd.LocationPrefID) rcd.LocationPrefID = maxKey + 1;
+  if (!rcd.LocationPrefID) rcd.LocationPrefID = nextKey();
 
   pair = myMap.insert(make_pair(rcd.LocationPrefID, rcd));
 
-  if (pair.second && rcd.LocationPrefID > maxKey) maxKey = rcd.LocationPrefID;
+  if (pair.second) setKey(rcd.LocationPrefID);
 
   return pair.second;
   }
 
 
-bool LocationPrefDB::toTable(AceRecordSet& records, LocationPrefTable& myTable) {
+bool LocationPrefDB::toTable(AceRecordSet& records, LocationPrefMap& myTable) {
 AceFields          fields(records);
 AFIter             iter(fields);
 AceFieldDsc*       dsc;
@@ -34,10 +34,10 @@ LocationPrefRecord rcd;
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     v = dsc->value;
     switch (i) {
-      case  0 : rcd.LocationPrefID = v; break;
-      case  1 : rcd.Key = v; break;
-      case  2 : rcd.Txt = v; break;
-      default : return false;
+      case  0: rcd.LocationPrefID = v; break;
+      case  1: rcd.Key            = v; break;
+      case  2: rcd.Txt            = v; break;
+      default: return false;
       }
     }
 
@@ -45,7 +45,7 @@ LocationPrefRecord rcd;
   }
 
 
-bool LocationPrefDB::toDatabase(LocationPrefTable& myTable) {
+bool LocationPrefDB::toDatabase(LocationPrefMap& myTable) {
 LcPfIter            iter(myTable);
 LocationPrefRecord* r;
 
@@ -53,7 +53,7 @@ LocationPrefRecord* r;
 
   for (r = iter(); r; r = iter++) {
 
-    if (r->toDelete()) {erase(r->LocationPrefID); iter.erase(); continue;}
+    if (r->toDelete()) {remove(r->LocationPrefID); iter.remove(); continue;}
 
     if (r->isDirty()) {wrt(*r); r->clearMarks();}
     }
@@ -62,9 +62,7 @@ LocationPrefRecord* r;
   }
 
 
-bool LocationPrefDB::erase(long key) {
-  return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();
-  }
+bool LocationPrefDB::remove(long key) {return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();}
 
 
 bool LocationPrefDB::wrt(LocationPrefRecord& rcd) {
@@ -79,10 +77,10 @@ variant_t    v;
 
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     switch (i) {
-      case  0 : rcd.LocationPrefID = dsc->value; continue;
-      case  1 : v = rcd.Key; break;
-      case  2 : v = rcd.Txt; break;
-      default : return false;
+      case  0: rcd.LocationPrefID = dsc->value; continue;
+      case  1: v                  = rcd.Key; break;
+      case  2: v                  = rcd.Txt; break;
+      default: return false;
       }
 
     dsc->write(v);
@@ -102,3 +100,7 @@ String LocationPrefRecord::getFldVal(int i) {
   return _T("");
   }
 
+
+void LocationPrefRecord::copy(const LocationPrefRecord& r) {
+  MapRecord::copy(r); LocationPrefID = r.LocationPrefID; Key = r.Key; Txt = r.Txt;
+  }

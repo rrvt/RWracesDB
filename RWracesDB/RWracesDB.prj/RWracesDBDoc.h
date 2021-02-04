@@ -65,9 +65,6 @@ public:
   afx_msg void OnEverbridge();
   afx_msg void OnCountResponders();
   afx_msg void OnFCCcallSigns();
-//  afx_msg void OnUpdateRequest();
-//  afx_msg void OnSurveyRequest();
-//  afx_msg void OnIDlist();
   afx_msg void OnMemberInfo();
   afx_msg void OnBadgesDT();
   afx_msg void OnBadgesCS();

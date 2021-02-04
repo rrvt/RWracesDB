@@ -6,7 +6,7 @@
 
 class Archive;
 class BackupRcd;
-
+class MapBase;
 
 class DataBase {
 
@@ -25,6 +25,10 @@ private:
   void   csvToDB();
   bool   restoreRcd(BackupRcd& csv);
 
+
+
   DataBase() : quoted(NilDspType) { }
   };
+
+
 

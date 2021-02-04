@@ -23,23 +23,23 @@ String databasePath;
 
   RWracesDBApp() : CApp(this) { }
 
-  void refresh();
+  virtual BOOL InitInstance();
 
   void announceFinish();
 
   RWracesDBDoc*  doc()  {return (RWracesDBDoc*)  CApp::getDoc();}
   RWracesDBView* view() {return (RWracesDBView*) CApp::getView();}
 
-  virtual BOOL InitInstance();
+  DECLARE_MESSAGE_MAP()
 
+  afx_msg void refresh();
   afx_msg void OnAppAbout();
   afx_msg void OnMakeFileCopy();
 
-  DECLARE_MESSAGE_MAP()
-
-  friend  RWracesDBDoc* doc();
   afx_msg void OnFilePrintSetup();
   afx_msg void OnHelp();
+
+  friend  RWracesDBDoc* doc();
   };
 
 

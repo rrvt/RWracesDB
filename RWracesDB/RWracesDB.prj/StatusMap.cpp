@@ -1,4 +1,4 @@
-// Status Map logic, Version 1.5.7.0
+// Status Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #include "stdafx.h"
@@ -7,23 +7,23 @@
 #include "NotePad.h"
 
 
-StatusTable::MyMap StatusTable::myMap;
+StatusMap::MyMap StatusMap::myMap;
 
 
-bool StatusTable::add(StatusRecord& rcd) {
+bool StatusMap::add(StatusRecord& rcd) {
 SttsIter::Pair pair;
 
-  if (!rcd.StsID) rcd.StsID = maxKey + 1;
+  if (!rcd.StsID) rcd.StsID = nextKey();
 
   pair = myMap.insert(make_pair(rcd.StsID, rcd));
 
-  if (pair.second && rcd.StsID > maxKey) maxKey = rcd.StsID;
+  if (pair.second) setKey(rcd.StsID);
 
   return pair.second;
   }
 
 
-bool StatusDB::toTable(AceRecordSet& records, StatusTable& myTable) {
+bool StatusDB::toTable(AceRecordSet& records, StatusMap& myTable) {
 AceFields    fields(records);
 AFIter       iter(fields);
 AceFieldDsc* dsc;
@@ -34,10 +34,10 @@ StatusRecord rcd;
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     v = dsc->value;
     switch (i) {
-      case  0 : rcd.StsID        = v; break;
-      case  1 : rcd.Abbreviation        = v; break;
-      case  2 : rcd.Description        = v; break;
-      default : return false;
+      case  0: rcd.StsID        = v; break;
+      case  1: rcd.Abbreviation = v; break;
+      case  2: rcd.Description  = v; break;
+      default: return false;
       }
     }
 
@@ -45,7 +45,7 @@ StatusRecord rcd;
   }
 
 
-bool StatusDB::toDatabase(StatusTable& myTable) {
+bool StatusDB::toDatabase(StatusMap& myTable) {
 SttsIter      iter(myTable);
 StatusRecord* r;
 
@@ -53,7 +53,7 @@ StatusRecord* r;
 
   for (r = iter(); r; r = iter++) {
 
-    if (r->toDelete()) {erase(r->StsID); iter.erase(); continue;}
+    if (r->toDelete()) {remove(r->StsID); iter.remove(); continue;}
 
     if (r->isDirty()) {wrt(*r); r->clearMarks();}
     }
@@ -62,9 +62,7 @@ StatusRecord* r;
   }
 
 
-bool StatusDB::erase(long key) {
-  return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();
-  }
+bool StatusDB::remove(long key) {return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();}
 
 
 bool StatusDB::wrt(StatusRecord& rcd) {
@@ -79,10 +77,10 @@ variant_t    v;
 
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     switch (i) {
-      case  0 : rcd.StsID = dsc->value; continue;
-      case  1 : v = rcd.Abbreviation; break;
-      case  2 : v = rcd.Description; break;
-      default : return false;
+      case  0: rcd.StsID = dsc->value; continue;
+      case  1: v         = rcd.Abbreviation; break;
+      case  2: v         = rcd.Description; break;
+      default: return false;
       }
 
     dsc->write(v);
@@ -102,3 +100,7 @@ String StatusRecord::getFldVal(int i) {
   return _T("");
   }
 
+
+void StatusRecord::copy(const StatusRecord& r) {
+  MapRecord::copy(r); StsID = r.StsID; Abbreviation = r.Abbreviation; Description = r.Description;
+  }

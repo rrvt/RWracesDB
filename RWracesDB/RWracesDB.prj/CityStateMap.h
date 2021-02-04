@@ -1,9 +1,9 @@
-// CityState Map logic, Version 1.5.7.0
+// CityState Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #pragma once
 #include "AceDao.h"
-#include "MapTable.h"
+#include "MapBase.h"
 
 
 struct CityStateRecord : public MapRecord {
@@ -13,74 +13,73 @@ String State;
 String Zip;
 
   CityStateRecord() : CityStateID(0), City(), State(), Zip() {}
-  CityStateRecord(const CityStateRecord& r) : MapRecord(r), CityStateID(r.CityStateID),
-           City(r.City), State(r.State), Zip(r.Zip) {}
+  CityStateRecord(const CityStateRecord& r) {copy(r);}
  ~CityStateRecord() {}
 
-  CityStateRecord operator= (CityStateRecord& r) {
-    copy(r, *this); CityStateID = r.CityStateID; City = r.City;
-    State = r.State; Zip = r.Zip;
-    }
+  CityStateRecord& operator= (const CityStateRecord& r) {copy(r); return *this;}
 
   String getFldVal(int i);
+
+private:
+
+  void copy(const CityStateRecord& r);
   };
 
 
-class CityStateTable;
+class CityStateMap;
 
 
 class CityStateDB {
 AceRecordSet rcdSet;
-public:
+protected:
 
   CityStateDB() : rcdSet() {}
  ~CityStateDB() {}
 
   // toTable copies all records from a database table into a map container in memory.  It is
-  // called from MapsT<MapData>::loadRecords(TableDsc* tableDsc) which is in turn
+  // called from MapsT<MapData>::loadRecords(TblDsc* tableDsc) which is in turn
   // called from MapsT<MapData>::loadAllMaps(String& path).  Essentially there is a table
   // with all the database tables and all the tables are copied into a corresponding map table.
   // The tables are implemented as trees for fast access and other properties (see std::map)
 
-  bool toTable(AceRecordSet& records, CityStateTable& myTable);
+  bool toTable(AceRecordSet& records, CityStateMap& myTable);
 
   // After all changes have been made in the map, call toDatabase to copy the changes
   // back to the database.
 
-  bool toDatabase(CityStateTable& myTable);
+  bool toDatabase(CityStateMap& myTable);
 
 private:
 
   bool wrt(CityStateRecord& src);
-  bool erase(long key);
+  bool remove(long key);
+
+  friend class CityStateMap;
   };
 
 
-class CityStateTable : public MapTable {
+class CityStateMap : public MapBase {
 
 typedef map<const long, CityStateRecord> MyMap;
 
 static MyMap myMap;
-long         maxKey;
 CityStateDB  myDB;
 
-public:
+protected:
 
-  CityStateTable() {initialize();}
+  CityStateMap() {initialize();}
 
   void initialize() {
-    maxKey = 0;   if (!myMap.empty()) myMap.clear();
-    MapTable::initialize(_T("CityState"));
+    if (!myMap.empty()) myMap.clear();
+    MapBase::initialize(_T("CityState"));
     }
 
   bool add(CityStateRecord& rcd);
 
   int  curSize() {return (int) myMap.size();}
 
-  long nextKey() {return maxKey+1;}
-
   // toTable copies all records from a database table into a map container in memory.  It is
-  // called from MapsT<MapData>::loadRecords(TableDsc* tableDsc) which is in turn
+  // called from MapsT<MapData>::loadRecords(TblDsc* tableDsc) which is in turn
   // called from MapsT<MapData>::loadAllMaps(String& path).  Essentially there is a table
   // with all the database tables and all the tables are copied into a corresponding map table.
   // The tables are implemented as trees for fast access and other properties (see std::map)
@@ -93,47 +92,6 @@ public:
   bool toDatabase() {return myDB.toDatabase(*this);}
 
   friend class CtySIter;
-  };
-
-
-class CtySIter {
-
-typedef CityStateTable::MyMap MyMap;
-typedef MyMap::iterator       MyIter;
-
-MyMap& myMap;
-MyIter iter;
-
-public:
-
-typedef pair<MyIter, bool> Pair;
-
-  CtySIter(CityStateTable& dataStore) : myMap(dataStore.myMap), iter(myMap.end())  { }
-
-  CityStateRecord* operator() (bool fwd = true) {
-    if (fwd) {iter = myMap.begin(); return iter == myMap.end() ? 0 : &iter->second;}
-    else     {iter = myMap.end();   return decr();}
-    }
-
-  CityStateRecord* operator++ (int)
-                            {return iter == myMap.end() ? 0 : ++iter == myMap.end() ? 0 : &iter->second;}
-
-  CityStateRecord* operator-- (int) {return decr();}
-
-  CityStateRecord* find(const long key)
-                               {iter = myMap.find(key);  return iter == myMap.end() ? 0 : &iter->second;}
-
-  void erase() {iter = myMap.erase(iter);}
-
-  long curKey() {return iter != myMap.end() ?  iter->first  : -1;}
-
-  bool isLast()  {MyIter x = iter; x++;  return x == myMap.end();}
-  bool isBbegin() {return iter == myMap.begin();}
-
-private:
-
-  CityStateRecord* decr() {return iter == myMap.begin() ? 0 : &(--iter)->second;}
-
-  CtySIter() : myMap(*(MyMap*) 0) { }                   // Prevents uninitizlized iterator
+  friend class CityStateDB;
   };
 

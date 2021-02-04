@@ -46,7 +46,7 @@
     <ClCompile Include="IniFile.cpp" />
     <ClCompile Include="LexTOut.cpp" />
     <ClCompile Include="LoadScratchPad.cpp" />
-    <ClCompile Include="MapTable.cpp" />
+    <ClCompile Include="MapBase.cpp" />
     <ClCompile Include="match.cpp" />
     <ClCompile Include="MessageBox.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -119,8 +119,8 @@
     <ClInclude Include="LexTOut.h" />
     <ClInclude Include="LoadScratchPad.h" />
     <ClInclude Include="ManipT.h" />
+    <ClInclude Include="MapBase.h" />
     <ClInclude Include="MapsT.h" />
-    <ClInclude Include="MapTable.h" />
     <ClInclude Include="match.h" />
     <ClInclude Include="MessageBox.h" />
     <ClInclude Include="NewAllocator.h" />

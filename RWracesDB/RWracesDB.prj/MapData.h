@@ -1,5 +1,5 @@
-// A little class to control the order of initialization of the Table classes
-// MapData Map logic, Version 1.5.7.0
+// A little class to initialize of the Table classes and load the data from the database
+// MapData Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 
@@ -25,9 +25,9 @@ String databasePath;
   MapData() {}
  ~MapData() {closeDB();}
 
-  bool    openDB(String& path);
+  bool    openDB(TCchar* path);
 
-  void    initializeMaps(Maps* mps);
+  void    initializeMaps();
 
   bool    openRcdSet( TCchar* name, DaoOptions option, AceRecordSet& rcdSet);
   bool    openFldDscs(TCchar* name, AceFieldNames& fldDscs);

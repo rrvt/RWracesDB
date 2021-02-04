@@ -31,13 +31,7 @@
     <ClCompile Include="AddressMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddressTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AssgnPrefMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AssgnPrefTbl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BackupRcds.cpp">
@@ -46,19 +40,10 @@
     <ClCompile Include="CityStateMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CityStateTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EntityMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EntityTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LocationPrefMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocationPrefTbl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainFrm.cpp">
@@ -76,9 +61,6 @@
     <ClCompile Include="MemberMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemberTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RWracesDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,13 +76,7 @@
     <ClCompile Include="StatusRcds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StatusTbl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Survey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
@@ -113,9 +89,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Everbridge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UpdateRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FCClist.cpp">
@@ -142,10 +115,31 @@
     <ClCompile Include="..\..\Library\Extras\OptionsDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\Extras\TableDscrs.cpp">
+    <ClCompile Include="StatusRpt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StatusRpt.cpp">
+    <ClCompile Include="AddressTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssgnPrefTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CityStateTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationPrefTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemberTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Library\Extras\TblList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -153,13 +147,7 @@
     <ClInclude Include="AddressMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AddressTbl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AssgnPrefMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AssgnPrefTbl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BackupRcds.h">
@@ -168,19 +156,10 @@
     <ClInclude Include="CityStateMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CityStateTbl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityTbl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LocationPrefMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocationPrefTbl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MainFrm.h">
@@ -196,9 +175,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MemberMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberTbl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Records.h">
@@ -222,13 +198,7 @@
     <ClInclude Include="StatusRcds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StatusTbl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Survey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
@@ -244,9 +214,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Everbridge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UpdateRequest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FCClist.h">
@@ -279,10 +246,31 @@
     <ClInclude Include="..\..\Library\Extras\OptionsDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\Extras\TableDscrs.h">
+    <ClInclude Include="StatusRpt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StatusRpt.h">
+    <ClInclude Include="AddressTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssgnPrefTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CityStateTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationPrefTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Library\Extras\TblList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

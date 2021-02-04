@@ -1,4 +1,4 @@
-// Address Map logic, Version 1.5.7.0
+// Address Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #include "stdafx.h"
@@ -7,23 +7,23 @@
 #include "NotePad.h"
 
 
-AddressTable::MyMap AddressTable::myMap;
+AddressMap::MyMap AddressMap::myMap;
 
 
-bool AddressTable::add(AddressRecord& rcd) {
+bool AddressMap::add(AddressRecord& rcd) {
 AddsIter::Pair pair;
 
-  if (!rcd.AddressID) rcd.AddressID = maxKey + 1;
+  if (!rcd.AddressID) rcd.AddressID = nextKey();
 
   pair = myMap.insert(make_pair(rcd.AddressID, rcd));
 
-  if (pair.second && rcd.AddressID > maxKey) maxKey = rcd.AddressID;
+  if (pair.second) setKey(rcd.AddressID);
 
   return pair.second;
   }
 
 
-bool AddressDB::toTable(AceRecordSet& records, AddressTable& myTable) {
+bool AddressDB::toTable(AceRecordSet& records, AddressMap& myTable) {
 AceFields     fields(records);
 AFIter        iter(fields);
 AceFieldDsc*  dsc;
@@ -34,10 +34,10 @@ AddressRecord rcd;
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     v = dsc->value;
     switch (i) {
-      case  0 : rcd.AddressID = v; break;
-      case  1 : rcd.Address1  = v; break;
-      case  2 : rcd.Address2  = v; break;
-      default : return false;
+      case  0: rcd.AddressID = v; break;
+      case  1: rcd.Address1  = v; break;
+      case  2: rcd.Address2  = v; break;
+      default: return false;
       }
     }
 
@@ -45,7 +45,7 @@ AddressRecord rcd;
   }
 
 
-bool AddressDB::toDatabase(AddressTable& myTable) {
+bool AddressDB::toDatabase(AddressMap& myTable) {
 AddsIter       iter(myTable);
 AddressRecord* r;
 
@@ -53,7 +53,7 @@ AddressRecord* r;
 
   for (r = iter(); r; r = iter++) {
 
-    if (r->toDelete()) {erase(r->AddressID); iter.erase(); continue;}
+    if (r->toDelete()) {remove(r->AddressID); iter.remove(); continue;}
 
     if (r->isDirty()) {wrt(*r); r->clearMarks();}
     }
@@ -62,9 +62,7 @@ AddressRecord* r;
   }
 
 
-bool AddressDB::erase(long key) {
-  return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();
-  }
+bool AddressDB::remove(long key) {return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();}
 
 
 bool AddressDB::wrt(AddressRecord& rcd) {
@@ -79,10 +77,10 @@ variant_t    v;
 
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     switch (i) {
-      case  0 : rcd.AddressID = dsc->value; continue;
-      case  1 : v = rcd.Address1; break;
-      case  2 : v = rcd.Address2; break;
-      default : return false;
+      case  0: rcd.AddressID = dsc->value; continue;
+      case  1: v             = rcd.Address1; break;
+      case  2: v             = rcd.Address2; break;
+      default: return false;
       }
 
     dsc->write(v);
@@ -102,3 +100,7 @@ String AddressRecord::getFldVal(int i) {
   return _T("");
   }
 
+
+void AddressRecord::copy(const AddressRecord& r) {
+  MapRecord::copy(r); AddressID = r.AddressID; Address1 = r.Address1; Address2 = r.Address2;
+  }

@@ -5,11 +5,11 @@
 #include "Maps.h"
 
 
-AddressTbl      addressTable;
-AssgnPrefTbl    assgnPrefTable;
-CityStateTbl    cityStateTable;
-EntityTbl       entityTable;
-LocationPrefTbl locationPrefTable;
-MemberTbl       memberTable;
-StatusTbl       statusTable;
+AddressTable      addressTable;
+AssgnPrefTable    assgnPrefTable;
+CityStateTable    cityStateTable;
+EntityTable       entityTable;
+LocationPrefTable locationPrefTable;
+MemberTable       memberTable;
+StatusTable       statusTable;
 

@@ -1,7 +1,6 @@
-// A little class to control the order of initialization of the Table classes
-// MapData Map logic, Version 1.5.7.0
+// A little class to initialize of the Table classes and load the data from the database
+// MapData Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
-
 
 
 #include "stdafx.h"
@@ -18,28 +17,28 @@ TCchar* GenFilePathKey = _T("GenFilePath");
 Maps maps;
 
 
-void MapData::initializeMaps(Maps* mps) {
-TDIter     tdIter(tableDscrs);
-TableDsc*  dsc;
+void MapData::initializeMaps() {
+TLIter     iter(tblList);
+TblDsc*    dsc;
 AceTables  aceTables(dao);
 ATIter     atIter(aceTables);
 TableDesc* atDsc;
 
-  tableDscrs.add(addressTable, mps);
-  tableDscrs.add(assgnPrefTable, mps);
-  tableDscrs.add(cityStateTable, mps);
-  tableDscrs.add(entityTable, mps);
-  tableDscrs.add(locationPrefTable, mps);
-  tableDscrs.add(memberTable, mps);
-  tableDscrs.add(statusTable, mps);
+  tblList.add(addressTable);
+  tblList.add(assgnPrefTable);
+  tblList.add(cityStateTable);
+  tblList.add(entityTable);
+  tblList.add(locationPrefTable);
+  tblList.add(memberTable);
+  tblList.add(statusTable);
 
-  for (dsc = tdIter(); dsc; dsc = tdIter++) if (dsc->mapTable) dsc->mapTable->initialize();
+  for (dsc = iter(); dsc; dsc = iter++) if (dsc->mapTable) dsc->mapTable->initialize();
 
-  for (atDsc = atIter(); atDsc; atDsc = atIter++) tableDscrs.add(atDsc->name, 0, mps);
+  for (atDsc = atIter(); atDsc; atDsc = atIter++) tblList.add(atDsc->name, 0);
   }
 
 
-bool MapData::openDB(String& path) {return dao.open(path);}
+bool MapData::openDB(TCchar* path) {return dao.open(path);}
 
 
 void MapData::closeDB() {dao.close();}

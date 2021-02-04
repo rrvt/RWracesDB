@@ -74,7 +74,10 @@ bool          fmrMbr;
     if (!fmrMbr) {rcd->StatusID = stsID;   rcd->mark();   noUpdates++;}
 
     dspMemberName(rcd);   notePad << nTab << _T("Status");
-    notePad << nTab << statusTable.findAbbr(orgStsID) << nTab << _T("->") << nTab << abbr;
+                                                                      // statusTable.findAbbr(orgStsID)
+    StatusRecord* stsRcd = statusTable.find(orgStsID);
+
+    notePad << nTab << stsRcd->Abbreviation << nTab << _T("->") << nTab << abbr;
 
     if (fmrMbr) notePad << nTab << _T("Not Changed");
 

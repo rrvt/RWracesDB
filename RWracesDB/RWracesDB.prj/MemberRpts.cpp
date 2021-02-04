@@ -250,6 +250,7 @@ bool MemberRpts::getMemberInfo(MemberRecord& rcd, MemberInfo& memberInfo) {
   StatusRecord* statusRcd = statusTable.find(statusID);
 
   if (!statusRcd || statusRcd->Abbreviation == _T("Fmr")) return false;
+
   EntityRecord* mbrRcd = entityTable.find(rcd.MbrEntityID);   if (!mbrRcd) return false;
 
   memberInfo.lastName  = mbrRcd->LastName;   memberInfo.lastName.trim();

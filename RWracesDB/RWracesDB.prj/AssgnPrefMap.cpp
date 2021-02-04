@@ -1,4 +1,4 @@
-// AssgnPref Map logic, Version 1.5.7.0
+// AssgnPref Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #include "stdafx.h"
@@ -7,23 +7,23 @@
 #include "NotePad.h"
 
 
-AssgnPrefTable::MyMap AssgnPrefTable::myMap;
+AssgnPrefMap::MyMap AssgnPrefMap::myMap;
 
 
-bool AssgnPrefTable::add(AssgnPrefRecord& rcd) {
+bool AssgnPrefMap::add(AssgnPrefRecord& rcd) {
 AgPfIter::Pair pair;
 
-  if (!rcd.AssgnPrefID) rcd.AssgnPrefID = maxKey + 1;
+  if (!rcd.AssgnPrefID) rcd.AssgnPrefID = nextKey();
 
   pair = myMap.insert(make_pair(rcd.AssgnPrefID, rcd));
 
-  if (pair.second && rcd.AssgnPrefID > maxKey) maxKey = rcd.AssgnPrefID;
+  if (pair.second) setKey(rcd.AssgnPrefID);
 
   return pair.second;
   }
 
 
-bool AssgnPrefDB::toTable(AceRecordSet& records, AssgnPrefTable& myTable) {
+bool AssgnPrefDB::toTable(AceRecordSet& records, AssgnPrefMap& myTable) {
 AceFields       fields(records);
 AFIter          iter(fields);
 AceFieldDsc*    dsc;
@@ -34,10 +34,10 @@ AssgnPrefRecord rcd;
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     v = dsc->value;
     switch (i) {
-      case  0 : rcd.AssgnPrefID = v; break;
-      case  1 : rcd.APKey = v; break;
-      case  2 : rcd.Txt = v; break;
-      default : return false;
+      case  0: rcd.AssgnPrefID = v; break;
+      case  1: rcd.APKey       = v; break;
+      case  2: rcd.Txt         = v; break;
+      default: return false;
       }
     }
 
@@ -45,7 +45,7 @@ AssgnPrefRecord rcd;
   }
 
 
-bool AssgnPrefDB::toDatabase(AssgnPrefTable& myTable) {
+bool AssgnPrefDB::toDatabase(AssgnPrefMap& myTable) {
 AgPfIter         iter(myTable);
 AssgnPrefRecord* r;
 
@@ -53,7 +53,7 @@ AssgnPrefRecord* r;
 
   for (r = iter(); r; r = iter++) {
 
-    if (r->toDelete()) {erase(r->AssgnPrefID); iter.erase(); continue;}
+    if (r->toDelete()) {remove(r->AssgnPrefID); iter.remove(); continue;}
 
     if (r->isDirty()) {wrt(*r); r->clearMarks();}
     }
@@ -62,9 +62,7 @@ AssgnPrefRecord* r;
   }
 
 
-bool AssgnPrefDB::erase(long key) {
-  return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();
-  }
+bool AssgnPrefDB::remove(long key) {return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();}
 
 
 bool AssgnPrefDB::wrt(AssgnPrefRecord& rcd) {
@@ -79,10 +77,10 @@ variant_t    v;
 
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     switch (i) {
-      case  0 : rcd.AssgnPrefID = dsc->value; continue;
-      case  1 : v = rcd.APKey; break;
-      case  2 : v = rcd.Txt; break;
-      default : return false;
+      case  0: rcd.AssgnPrefID = dsc->value; continue;
+      case  1: v               = rcd.APKey; break;
+      case  2: v               = rcd.Txt; break;
+      default: return false;
       }
 
     dsc->write(v);
@@ -102,3 +100,7 @@ String AssgnPrefRecord::getFldVal(int i) {
   return _T("");
   }
 
+
+void AssgnPrefRecord::copy(const AssgnPrefRecord& r) {
+  MapRecord::copy(r); AssgnPrefID = r.AssgnPrefID; APKey = r.APKey; Txt = r.Txt;
+  }

@@ -2,8 +2,6 @@
 Manipulate SJ RACES Database in a variety of ways:
 
   - Connect to the RACES database and show the number of records in each table
-  - Print anything in the window
-  - Save content of the window to a file (all reports are output to the window)
   - Load an attendance/activity csv file maintained by other members into the App.
   - Upload the information from the attendance/activity csv into the database
   - Produce Monthly update reports based on the database:
@@ -13,12 +11,16 @@ Manipulate SJ RACES Database in a variety of ways:
     * Everbridge compatible csv file
     * Counts of members by readiness categories
     * List of FCC call signs
-  - Produce the text for asking a new responder his readiness parameters
-  - Produce the text for asking the members (i.e. survey) to check their contact information,
-    filtered by having already responded
-  - Produce a list containing the identities of each user (used as a check list for the survey)
-  - Produce a list for each current member for use with the eICs211 program.  It contains the members
-    name, call sign and badge number in a csv format.
+    * Member ID list in CSV format
+    * Members Badge Expiration Date Sorted by
+      # Call Sign
+      # Expiration Date
+    * Former Members Sorted by
+      # Name
+      # Call Sign
+  - Save content of the window to a file (all reports are output to the window)
+  - Display Options dialog
+  - Print anything in the window
 
 ## Getting Started
 
@@ -52,6 +54,18 @@ All the code is contained in the two directories.
 
 
 ## Updates
+
+### Update 2/3/21
+
+While working on CodeGen to create a help file many changes in the database interface files
+were made to simplify the interface to the c++ application and to make the inner workings more
+secure (by hiding things from the c++ application).  The effect of trying to explain things
+one notices things which it the light of day could be improved.  Just the name of things were
+changed to reflect their real function in an application, moving things to put them in better
+places as well as programming changes to improve the interfaces.
+
+I also removed several out of date functions.  Having said that, they may come back sometime
+in the future as the needs of the application/membership change.
 
 ### Update 1/22/21
 

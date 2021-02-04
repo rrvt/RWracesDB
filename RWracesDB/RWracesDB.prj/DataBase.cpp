@@ -12,6 +12,37 @@
 
 
 
+struct Status {
+TCchar* key;
+TCchar* desc;
+};
+
+
+static void FixedInit(Status sts[], int n, MapBase& tbl);
+
+
+static Status locPref[5]    = {{_T("A"), _T("Available to be dispatched anywhere needed")},
+                               {_T("5"), _T("Available to be dispatched within 5 miles of location")},
+                               {_T("1"), _T("Available to be dispatched within 1 mile of location")},
+                               {_T("N"), _T("Available to accept assignments in neighborhood")},
+                               {_T("O"), _T("Not available for RACES dispatch.")}
+                               };
+
+static Status statusList[3] = {{_T("Act"), _T("Member is Active")},
+                               {_T("InA"), _T("Member is deemed inactive but still a member")},
+                               {_T("Fmr"), _T("Member is a former member and not active")}
+                               };
+
+static Status asnPref[6] = {
+                        {_T("P"), _T("RACES is first call, ready to be dispatched immediately")},
+                        {_T("E"), _T("RACES is second call, ready to be dispatched immediately")},
+                        {_T("G"), _T("Will probably respond, may take some time to assemble equipment")},
+                        {_T("A"), _T("ARES only")},
+                        {_T("L"), _T("Last resort resource")},
+                        {_T("O"), _T("Pending regained health")}
+                        };
+
+
 void DataBase::restore() {
 String     path;
 BkpIter    iter(backupRcds);
@@ -20,7 +51,9 @@ int        i;
 
   initDefaultBadgeNo();
 
-  statusTable.FixedInit();   locationPrefTable.FixedInit();   assgnPrefTable.FixedInit();
+  FixedInit(statusList, noElements(statusList), statusTable);
+  FixedInit(locPref,    noElements(locPref),    locationPrefTable);
+  FixedInit(asnPref,    noElements(asnPref),    assgnPrefTable);
 
   csv = iter();   if (csv && csv->CallSign == _T("CallSign")) csv = iter++;
 
@@ -32,6 +65,13 @@ int        i;
     }
 
   memberTable.toDatabase();   entityTable.toDatabase();
+  }
+
+
+void FixedInit(Status sts[], int n, MapBase& tbl) {
+int i;
+
+  for (i = 0; i < n; i++) {Status& itm = sts[i];  tbl.add(itm.key, itm.desc);}
   }
 
 

@@ -1,4 +1,4 @@
-// Entity Map logic, Version 1.5.7.0
+// Entity Map logic, Version 1.5.15.0
 // Copyright Bob -- K6RWY, 2019.  All rights reserved.
 
 #include "stdafx.h"
@@ -7,23 +7,23 @@
 #include "NotePad.h"
 
 
-EntityTable::MyMap EntityTable::myMap;
+EntityMap::MyMap EntityMap::myMap;
 
 
-bool EntityTable::add(EntityRecord& rcd) {
+bool EntityMap::add(EntityRecord& rcd) {
 EntyIter::Pair pair;
 
-  if (!rcd.EntityID) rcd.EntityID = maxKey + 1;
+  if (!rcd.EntityID) rcd.EntityID = nextKey();
 
   pair = myMap.insert(make_pair(rcd.EntityID, rcd));
 
-  if (pair.second && rcd.EntityID > maxKey) maxKey = rcd.EntityID;
+  if (pair.second) setKey(rcd.EntityID);
 
   return pair.second;
   }
 
 
-bool EntityDB::toTable(AceRecordSet& records, EntityTable& myTable) {
+bool EntityDB::toTable(AceRecordSet& records, EntityMap& myTable) {
 AceFields    fields(records);
 AFIter       iter(fields);
 AceFieldDsc* dsc;
@@ -34,19 +34,19 @@ EntityRecord rcd;
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     v = dsc->value;
     switch (i) {
-      case  0 : rcd.EntityID      = v; break;
-      case  1 : rcd.FirstName      = v; break;
-      case  2 : rcd.MiddleInitial      = v; break;
-      case  3 : rcd.LastName      = v; break;
-      case  4 : rcd.Suffix      = v; break;
-      case  5 : rcd.AddrID      = v; break;
-      case  6 : rcd.CityStID      = v; break;
-      case  7 : rcd.AddrIsPO      = v; break;
-      case  8 : rcd.LocationZip      = v; break;
-      case  9 : rcd.eMail      = v; break;
-      case 10 : rcd.Phone1      = v; break;
-      case 11 : rcd.Phone2      = v; break;
-      default : return false;
+      case  0: rcd.EntityID      = v; break;
+      case  1: rcd.FirstName     = v; break;
+      case  2: rcd.MiddleInitial = v; break;
+      case  3: rcd.LastName      = v; break;
+      case  4: rcd.Suffix        = v; break;
+      case  5: rcd.AddrID        = v; break;
+      case  6: rcd.CityStID      = v; break;
+      case  7: rcd.AddrIsPO      = v; break;
+      case  8: rcd.LocationZip   = v; break;
+      case  9: rcd.eMail         = v; break;
+      case 10: rcd.Phone1        = v; break;
+      case 11: rcd.Phone2        = v; break;
+      default: return false;
       }
     }
 
@@ -54,7 +54,7 @@ EntityRecord rcd;
   }
 
 
-bool EntityDB::toDatabase(EntityTable& myTable) {
+bool EntityDB::toDatabase(EntityMap& myTable) {
 EntyIter      iter(myTable);
 EntityRecord* r;
 
@@ -62,7 +62,7 @@ EntityRecord* r;
 
   for (r = iter(); r; r = iter++) {
 
-    if (r->toDelete()) {erase(r->EntityID); iter.erase(); continue;}
+    if (r->toDelete()) {remove(r->EntityID); iter.remove(); continue;}
 
     if (r->isDirty()) {wrt(*r); r->clearMarks();}
     }
@@ -71,9 +71,7 @@ EntityRecord* r;
   }
 
 
-bool EntityDB::erase(long key) {
-  return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();
-  }
+bool EntityDB::remove(long key) {return rcdSet.findRecord(key) && rcdSet.deleteCurrentRecord();}
 
 
 bool EntityDB::wrt(EntityRecord& rcd) {
@@ -88,19 +86,19 @@ variant_t    v;
 
   for (dsc = iter(), i = 0; dsc; dsc = iter++, i++) {
     switch (i) {
-      case  0 : rcd.EntityID = dsc->value; continue;
-      case  1 : v = rcd.FirstName; break;
-      case  2 : v = rcd.MiddleInitial; break;
-      case  3 : v = rcd.LastName; break;
-      case  4 : v = rcd.Suffix; break;
-      case  5 : v = rcd.AddrID; break;
-      case  6 : v = rcd.CityStID; break;
-      case  7 : v = rcd.AddrIsPO; break;
-      case  8 : v = rcd.LocationZip; break;
-      case  9 : v = rcd.eMail; break;
-      case 10 : v = rcd.Phone1; break;
-      case 11 : v = rcd.Phone2; break;
-      default : return false;
+      case  0: rcd.EntityID = dsc->value; continue;
+      case  1: v            = rcd.FirstName; break;
+      case  2: v            = rcd.MiddleInitial; break;
+      case  3: v            = rcd.LastName; break;
+      case  4: v            = rcd.Suffix; break;
+      case  5: v            = rcd.AddrID; break;
+      case  6: v            = rcd.CityStID; break;
+      case  7: v            = rcd.AddrIsPO; break;
+      case  8: v            = rcd.LocationZip; break;
+      case  9: v            = rcd.eMail; break;
+      case 10: v            = rcd.Phone1; break;
+      case 11: v            = rcd.Phone2; break;
+      default: return false;
       }
 
     dsc->write(v);
@@ -129,3 +127,10 @@ String EntityRecord::getFldVal(int i) {
   return _T("");
   }
 
+
+void EntityRecord::copy(const EntityRecord& r) {
+  MapRecord::copy(r); EntityID = r.EntityID; FirstName = r.FirstName; MiddleInitial = r.MiddleInitial;
+  LastName = r.LastName; Suffix = r.Suffix; AddrID = r.AddrID; CityStID = r.CityStID;
+  AddrIsPO = r.AddrIsPO; LocationZip = r.LocationZip; eMail = r.eMail; Phone1 = r.Phone1;
+  Phone2 = r.Phone2;
+  }

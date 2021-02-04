@@ -41,11 +41,7 @@ BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
   ON_COMMAND(ID_Everbridge,     &OnEverbridge)
   ON_COMMAND(ID_CntResponders,  &OnCountResponders)
   ON_COMMAND(ID_FCC,            &OnFCCcallSigns)
-//  ON_COMMAND(ID_UpdateReq,      &OnUpdateRequest)
-//  ON_COMMAND(ID_SurveyReq,      &OnSurveyRequest)
   ON_COMMAND(ID_MemberIDs,      &OnMemberInfo)
-
-//  ON_COMMAND(ID_IDlist,         &OnIDlist)
 
   ON_COMMAND(ID_Badges,         &OnBadgesCS)
   ON_COMMAND(ID_BadgesCS,       &OnBadgesCS)
@@ -215,15 +211,6 @@ StatusUpdate stsUpdt;
   }
 
 
-#if 0
-void RWracesDBDoc::OnIDlist() {
-MemberRpts rpt(ExcelDspType);
-
-  setFileSaveAttr(_T("IDlist"), _T("txt"));   rpt.idList();  invalidate();
-  }
-#endif
-
-
 void RWracesDBDoc::OnFixDeadRcds()
   {DeadRcds deadRcds;setFileSaveAttr(_T("DeadFields"), _T("txt"));     deadRcds.fix(); invalidate();}
 
@@ -275,4 +262,14 @@ void RWracesDBDoc::AssertValid() const {CDocument::AssertValid();}
 void RWracesDBDoc::Dump(CDumpContext& dc) const {CDocument::Dump(dc);}
 
 #endif //_DEBUG
+
+
+
+#if 0
+void RWracesDBDoc::OnIDlist() {
+MemberRpts rpt(ExcelDspType);
+
+  setFileSaveAttr(_T("IDlist"), _T("txt"));   rpt.idList();  invalidate();
+  }
+#endif
 

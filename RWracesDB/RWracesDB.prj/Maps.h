@@ -2,19 +2,19 @@
 
 
 #pragma once
-#include "AddressTbl.h"
-#include "AssgnPrefTbl.h"
-#include "CityStateTbl.h"
-#include "EntityTbl.h"
-#include "LocationPrefTbl.h"
-#include "MemberTbl.h"
-#include "StatusTbl.h"
+#include "AddressTable.h"
+#include "AssgnPrefTable.h"
+#include "CityStateTable.h"
+#include "EntityTable.h"
+#include "LocationPrefTable.h"
+#include "MemberTable.h"
+#include "StatusTable.h"
 
 
-extern AddressTbl      addressTable;
-extern AssgnPrefTbl    assgnPrefTable;
-extern CityStateTbl    cityStateTable;
-extern EntityTbl       entityTable;
-extern LocationPrefTbl locationPrefTable;
-extern MemberTbl       memberTable;
-extern StatusTbl       statusTable;
+extern AddressTable      addressTable;
+extern AssgnPrefTable    assgnPrefTable;
+extern CityStateTable    cityStateTable;
+extern EntityTable       entityTable;
+extern LocationPrefTable locationPrefTable;
+extern MemberTable       memberTable;
+extern StatusTable       statusTable;
