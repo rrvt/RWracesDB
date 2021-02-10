@@ -55,6 +55,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 2/10/21
+
+Updated the icons on the toolbar.
+
 ### Update 2/3/21
 
 While working on CodeGen to create a help file many changes in the database interface files

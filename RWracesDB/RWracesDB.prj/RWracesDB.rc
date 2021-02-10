@@ -79,7 +79,7 @@ IDR_MAINFRAME           ICON                    "res\\RWracesDB.ico"
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP                  "res\\Toolbar69.bmp"
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar70.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -206,8 +206,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,10,0
- PRODUCTVERSION 1,10,0
+ FILEVERSION 1,10,1
+ PRODUCTVERSION 1,10,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -224,12 +224,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Bob -- K6RWY"
             VALUE "FileDescription", "Manipulate RACES DB"
-            VALUE "FileVersion", "1.10.0"
+            VALUE "FileVersion", "1.10.1"
             VALUE "InternalName", "RWracesDB.exe"
             VALUE "LegalCopyright", "(c), All rights reserved."
             VALUE "OriginalFilename", "RWracesDB.exe"
             VALUE "ProductName", "Read/Write RACES DB"
-            VALUE "ProductVersion", "1.10.0"
+            VALUE "ProductVersion", "1.10.1"
         END
     END
     BLOCK "VarFileInfo"

@@ -13,11 +13,11 @@ Manipulate SJ RACES Database in a variety of ways:
     * List of FCC call signs
     * Member ID list in CSV format
     * Members Badge Expiration Date Sorted by
-      # Call Sign
-      # Expiration Date
+      * Call Sign
+      * Expiration Date
     * Former Members Sorted by
-      # Name
-      # Call Sign
+      * Name
+      * Call Sign
   - Save content of the window to a file (all reports are output to the window)
   - Display Options dialog
   - Print anything in the window
