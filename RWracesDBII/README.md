@@ -55,6 +55,12 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 5/20/21
+
+Fixed a bug in delete dead records.  Also clear the internal database before loading a new one.  Ugh!
+
+Also modified CodeGen to provide a clear function in the table modules.
+
 ### Update 4/20/21
 
 CodeGen changed the names in fields to non-capitalized names and this caused changes in the application.

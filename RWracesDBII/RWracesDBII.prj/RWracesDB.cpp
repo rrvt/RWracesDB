@@ -76,7 +76,9 @@ BOOL RWracesDBApp::InitInstance() {
 
   options.load();    view()->setOrientation(options.orient);
 
-  iniFile.readString(FileSection, DBFileKey, databasePath);    dbTables.load(databasePath);
+  iniFile.readString(FileSection, DBFileKey, databasePath);
+
+  dbTables.load(databasePath);
 
   m_pMainWnd->ShowWindow(SW_SHOW);   m_pMainWnd->UpdateWindow();   return TRUE;
   }

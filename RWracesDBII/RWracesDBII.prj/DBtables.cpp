@@ -1,4 +1,6 @@
 // Defines all Database Tables and a list of them
+// The DBtable object must be defined before the individual table objects.
+// This module determines the order of initialization.
 
 
 #include "stdafx.h"

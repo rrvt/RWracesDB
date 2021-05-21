@@ -84,7 +84,7 @@ bool DeadRcds::addrRcdNeeded(long id) {
 EntIter    iter(entityTbl);
 EntityRcd* rcd;
 
-  for (rcd = iter(); rcd; rcd = iter++) if (rcd->id  == id) return true;
+  for (rcd = iter(); rcd; rcd = iter++) if (rcd->addrID  == id) return true;
 
   return false;
   }

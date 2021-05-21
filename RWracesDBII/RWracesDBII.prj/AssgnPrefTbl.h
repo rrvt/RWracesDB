@@ -53,6 +53,7 @@ public:
 
    virtual bool operator== (TCchar* name) {return this->name == name;}
 
+           void clear() {data.clear();}
            bool load(DAOtable* daoTable);  // load database table into memory, does not use addNewRcd.
 
   AssgnPrefRcd* add(AssgnPrefRcd& rcd);     // Add a new record to table and database
