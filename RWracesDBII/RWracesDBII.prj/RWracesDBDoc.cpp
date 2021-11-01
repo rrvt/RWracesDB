@@ -52,6 +52,8 @@ BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
   ON_COMMAND(ID_Former,         &OnFormerNm)
   ON_COMMAND(ID_FormerCS,       &OnFormerCS)
 
+  ON_COMMAND(ID_CovidList,      &OnCovidList)
+
   ON_COMMAND(ID_FILE_SAVE,      &OnFileSave)
 
   ON_COMMAND(ID_Backup,         &OnBackup)
@@ -88,6 +90,13 @@ void RWracesDBDoc::OnExcelReport() {
 MemberRpts memberRpts(ExcelDspType);
 
   setFileSaveAttr(_T("Excel"), _T("csv"));   memberRpts.excel();      display(NotePadSrc);
+  }
+
+
+void RWracesDBDoc::OnCovidList() {
+MemberRpts memberRpts(ExcelDspType);
+
+  setFileSaveAttr(_T("CovidList"), _T("csv"));   memberRpts.covidList();      display(NotePadSrc);
   }
 
 

@@ -46,6 +46,6 @@ String databasePath;
 extern RWracesDBApp theApp;
 
 inline void           invalidate() {theApp.invalidate();}
-inline RWracesDBDoc*  doc()  {return theApp.doc();}
-inline RWracesDBView* view() {return theApp.view();}
+inline RWracesDBDoc*  doc()        {return theApp.doc();}
+inline RWracesDBView* view()       {return theApp.view();}
 

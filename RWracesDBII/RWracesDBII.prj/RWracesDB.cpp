@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "RWracesDB.h"
-#include "About.h"
+#include "AboutDlg.h"
 #include "Copyfile.h"
 #include "DBtables.h"
 #include "filename.h"
@@ -136,5 +136,5 @@ String topic = m_pszHelpFilePath; topic += _T(">Introduction");
   }
 
 
-void RWracesDBApp::OnAppAbout() {CAboutDlg aboutDlg; aboutDlg.DoModal();}
+void RWracesDBApp::OnAppAbout() {AboutDlg aboutDlg; aboutDlg.DoModal();}
 

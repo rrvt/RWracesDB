@@ -125,7 +125,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <ClInclude Include="..\..\Library\Extras\About.h" />
+    <ClInclude Include="..\..\Library\Extras\AboutDlg.h" />
     <ClInclude Include="AddressTbl.h" />
     <ClInclude Include="AssgnPrefTbl.h" />
     <ClInclude Include="BackupRcds.h" />
@@ -161,7 +161,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Library\Extras\About.cpp" />
+    <ClCompile Include="..\..\Library\Extras\AboutDlg.cpp" />
     <ClCompile Include="AddressTbl.cpp" />
     <ClCompile Include="AssgnPrefTbl.cpp" />
     <ClCompile Include="BackupRcds.cpp" />
@@ -192,8 +192,8 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Library\Extras\AboutDlg.rc2" />
     <None Include="..\README.md" />
-    <None Include="..\..\Library\Extras\About.rc2" />
     <None Include="..\..\Library\Extras\Options.rc2" />
     <None Include="..\..\RacesTraining\Data\Former.txt" />
     <None Include="res\RWracesDB.rc2" />

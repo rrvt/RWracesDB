@@ -32,18 +32,41 @@ int        i;
 
 
 
-void StatusUpdate::load(Archive& ar) {statusRcds.load(ar); return;}
+void StatusUpdate::load(Archive& ar) {
+String line;
+int    pos;
+
+  while (ar.read(line)) {
+    pos = line.find(_T(','));
+    if (pos > 0 && line.substr(0,pos) == _T("<Start of Data>")) break;
+    }
+
+  statusRcds.load(ar); return;
+  }
 
 
 void StatusUpdate::store() {
 SRcdIter   iter(statusRcds);
 CSVstsRcd* rcd;
+int        pos;
 
   noUpdates = 0;
 
-  rcd = iter();  if (rcd->callSign == _T("CallSign")) rcd = iter++;
+//  notePad << _T("Records") << nCrlf << nCrlf;
 
-  for ( ; rcd; rcd = iter++) if (!rcd->callSign.empty()) uploadOneStsCSV(*rcd);
+//  notePad << nClrTabs << nSetTab(10) << nSetTab(24) << nSetRTab(36) << nSetTab(38);
+
+  for (rcd = iter(); rcd; rcd = iter++) {
+//    notePad << rcd->callSign << nTab << rcd->lastName << nTab << rcd->firstName;
+//    notePad << nTab << rcd->activityCnt;
+//    notePad << nCrlf;
+
+    String& callSign = rcd->callSign;
+
+    pos = callSign.find(_T(' '));   if (pos > 0 && callSign.substr(0, pos) == _T("Active")) break;
+
+    if (!rcd->callSign.empty()) uploadOneStsCSV(*rcd);
+    }
 
   memberTbl.store();
 
@@ -55,15 +78,18 @@ CSVstsRcd* rcd;
   }
 
 
+static String Act = _T("Act");
+static String InA = _T("InA");
 static String fmr = _T("Fmr");
 
 
 void StatusUpdate::uploadOneStsCSV(CSVstsRcd& csv) {
 MemberRcd* rcd        = memberTbl.find(csv.callSign);
-String     abbr       = csv.activeStatus;
+uint       x;
+int        cnt        = csv.activityCnt.stoi(x);
+String     abbr       = x > 0 && cnt > 0 ? Act : InA;
 long       stsID      = statusTbl.find(abbr)->id;
 long       fmrID      = statusTbl.find(fmr)->id;
-bool       csvBadgeOK = csv.eligibleForBadge == _T("Yes");
 
   if (!rcd)
     {notePad << _T("Call Sign: ") << csv.callSign << _T(" not found in database") << nCrlf; return;}
@@ -86,6 +112,7 @@ bool       csvBadgeOK = csv.eligibleForBadge == _T("Yes");
     notePad << nCrlf;
     }
 
+#if 0
   if (rcd->badgeOK != csvBadgeOK) {
 
     bool orig = rcd->badgeOK;
@@ -97,6 +124,7 @@ bool       csvBadgeOK = csv.eligibleForBadge == _T("Yes");
     notePad << nTab << _T("Badge OK") << nTab << orig << nTab << _T("->") << nTab << rcd->badgeOK;
     notePad << nCrlf;
     }
+#endif
 
   if (rcd->textMsgPh1.empty()) {
 

@@ -52,13 +52,14 @@
 #define ID_FormerNm                     426
 #define ID_Help                         427
 #define ID_Status                       428
+#define ID_CovidList                    429
 
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        107
-#define _APS_NEXT_COMMAND_VALUE         429
+#define _APS_NEXT_COMMAND_VALUE         430
 #define _APS_NEXT_CONTROL_VALUE         212
 #define _APS_NEXT_SYMED_VALUE           300
 #endif

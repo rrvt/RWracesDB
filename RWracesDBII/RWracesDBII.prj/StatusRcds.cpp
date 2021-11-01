@@ -10,12 +10,10 @@ StatusRcds statusRcds;
 
 void    CSVstsRcd::put(TCchar* p) {
   switch (putI) {
-    case 0: callSign         = p; break;
-    case 1: activeFlag       = p; break;
-    case 2: activeStatus     = p; break;
-    case 3: dispatchable     = p; break;
-    case 4: workEOC          = p; break;
-    case 5: eligibleForBadge = p; break;
+    case 0: callSign    = p; break;
+    case 1: lastName    = p; break;
+    case 2: firstName   = p; break;
+    case 3: activityCnt = p; break;
     }
   }
 
@@ -23,23 +21,19 @@ void    CSVstsRcd::put(TCchar* p) {
 String* CSVstsRcd::get() {
   switch (getI) {
     case 0: return &callSign;
-    case 1: return &activeFlag;
-    case 2: return &activeStatus;
-    case 3: return &dispatchable;
-    case 4: return &workEOC;
-    case 5: return &eligibleForBadge;
+    case 1: return &lastName;
+    case 2: return &firstName;
+    case 3: return &activityCnt;
     }
   return 0;
   }
 
 
 void CSVstsRcd::copy(CSVstsRcd& r) {
-  callSign         = r.callSign;
-  activeFlag       = r.activeFlag;
-  activeStatus     = r.activeStatus;
-  dispatchable     = r.dispatchable;
-  workEOC          = r.workEOC;
-  eligibleForBadge = r.eligibleForBadge;
+  callSign    = r.callSign;
+  lastName    = r.lastName;
+  firstName   = r.firstName;
+  activityCnt = r.activityCnt;
   CSVRcdB::copy(r);
   }
 

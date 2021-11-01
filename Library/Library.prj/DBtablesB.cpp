@@ -20,9 +20,7 @@ void DBtablesB::clear() {
 DBTiter   iter(*this);
 DBtableP* dsc;
 
-  for (dsc = iter(); dsc; dsc = iter++) {
-    DBtable* dbTable = *dsc;   dbTable->clear();
-    }
+  for (dsc = iter(); dsc; dsc = iter++) {DBtable* dbTable = *dsc;   dbTable->clear();}
   }
 
 

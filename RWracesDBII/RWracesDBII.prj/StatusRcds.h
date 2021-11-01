@@ -9,19 +9,15 @@
 class CSVstsRcd : public CSVRcdB {
 public:
 String callSign;
-String activeFlag;
-String activeStatus;
-String dispatchable;
-String workEOC;
-String eligibleForBadge;
+String lastName;
+String firstName;
+String activityCnt;
 
   CSVstsRcd() { }
   CSVstsRcd(CSVstsRcd& r) {copy(r);}
  ~CSVstsRcd() { }
 
-  virtual void clear() {callSign.clear();      activeFlag.clear();   activeStatus.clear();
-                        dispatchable.clear();  workEOC.clear();      eligibleForBadge.clear();
-                        }
+  virtual void clear() {callSign.clear(); lastName.clear(); firstName.clear(); activityCnt.clear();}
 
   virtual CSVstsRcd& operator= (CSVstsRcd& r) {copy(r); return *this;}
 

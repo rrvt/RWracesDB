@@ -68,6 +68,8 @@ public:
   void backup();
   void comparison();
 
+  void covidList();
+
 private:
 
   void   dspBadges(BadgeSort badgeSort);

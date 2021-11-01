@@ -55,6 +55,18 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 10/31/21
+
+Changed Resources (i.e. xxx.rc data) access so that it will work with a dll.  Changed the logic in the
+About Box code.  Some other library changes.  Some corresponding changes in the application.
+
+The member status is being kept in a different way now and changes were made to upload the new version.
+
+Due to the Covid-19 rules at the San Jose EOC a list of qualified people needed to be generated to supply
+people to the EOC during an emergency.  This list was sent to the city so that they could verify the
+vaccination status of those individuals.  For the forseeable future no one will be allowed on city
+property without being fully vaccinated.
+
 ### Update 5/20/21
 
 Fixed a bug in delete dead records.  Also clear the internal database before loading a new one.  Ugh!

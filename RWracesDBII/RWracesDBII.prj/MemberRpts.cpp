@@ -288,6 +288,33 @@ MemberRcd* rcd;
   }
 
 
+void MemberRpts::covidList() {
+MbrIter    iter(memberTbl);
+MemberRcd* rcd;
+bool       isResponder;
+bool       isPrimary;
+bool       isSecondary;
+bool       isOfficer;
+
+  header();
+
+  for (rcd = iter(); rcd; rcd = iter++) {
+    int           statusID     = rcd->statusID;
+    StatusRcd*    statusRcd    = statusTbl.find(statusID);
+    AssgnPrefRcd* assgnPrefRcd = assgnPrefTbl.find(rcd->assgnPrefID);
+
+    if (!statusRcd || statusRcd->abbreviation == _T("Fmr")) continue;
+
+    isResponder = !rcd->responder.isEmpty();
+    isPrimary   = assgnPrefRcd->apkey == _T('P');
+    isSecondary = assgnPrefRcd->apkey == _T('E');
+    isOfficer   = rcd->isOfficer;
+
+    if ((isResponder && isPrimary) || (isResponder && isSecondary) || isOfficer) display(*rcd);
+    }
+  }
+
+
 void MemberRpts::backup() {
 MbrIter      iter(memberTbl);
 MemberRcd* rcd;
