@@ -39,7 +39,7 @@ class StatusTbl;
 typedef IterT<StatusTbl, StatusRcd> StsIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<StatusRcd> StatusRcdP;
+typedef DatumPtrT<StatusRcd> StatusRcdP;
 
 
 class StatusTbl : public DBtable {

@@ -40,7 +40,7 @@ class CityStateTbl;
 typedef IterT<CityStateTbl, CityStateRcd> CtyIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<CityStateRcd> CityStateRcdP;
+typedef DatumPtrT<CityStateRcd> CityStateRcdP;
 
 
 class CityStateTbl : public DBtable {

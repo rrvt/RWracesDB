@@ -100,7 +100,7 @@ protected:
 
 
 
-typedef RcdPtrT<BackupRcd> BackupRcdP;
+typedef DatumPtrT<BackupRcd> BackupRcdP;
 
 typedef CSVRcdsT<BackupRcd, BackupRcdP> BackupRcds;
 typedef CSVIterT<BackupRcd, BackupRcdP> BkpIter;

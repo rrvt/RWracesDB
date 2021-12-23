@@ -40,7 +40,7 @@ class AddressTbl;
 typedef IterT<AddressTbl, AddressRcd> AdrIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<AddressRcd> AddressRcdP;
+typedef DatumPtrT<AddressRcd> AddressRcdP;
 
 
 class AddressTbl : public DBtable {

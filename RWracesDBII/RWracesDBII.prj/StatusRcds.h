@@ -32,7 +32,7 @@ private:
   };
 
 
-typedef RcdPtrT< CSVstsRcd> CSVstsRcdP;
+typedef DatumPtrT< CSVstsRcd> CSVstsRcdP;
 typedef CSVRcdsT<CSVstsRcd, CSVstsRcdP> StatusRcds;
 typedef CSVIterT<CSVstsRcd, CSVstsRcdP> SRcdIter;
 

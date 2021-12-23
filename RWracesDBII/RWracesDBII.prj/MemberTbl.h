@@ -69,7 +69,7 @@ class MemberTbl;
 typedef IterT<MemberTbl, MemberRcd> MbrIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<MemberRcd> MemberRcdP;
+typedef DatumPtrT<MemberRcd> MemberRcdP;
 
 
 class MemberTbl : public DBtable {

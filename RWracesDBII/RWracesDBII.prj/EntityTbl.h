@@ -49,7 +49,7 @@ class EntityTbl;
 typedef IterT<EntityTbl, EntityRcd> EntIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<EntityRcd> EntityRcdP;
+typedef DatumPtrT<EntityRcd> EntityRcdP;
 
 
 class EntityTbl : public DBtable {

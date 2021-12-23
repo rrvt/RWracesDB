@@ -39,7 +39,7 @@ class LocationPrefTbl;
 typedef IterT<LocationPrefTbl, LocationPrefRcd> LocIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<LocationPrefRcd> LocationPrefRcdP;
+typedef DatumPtrT<LocationPrefRcd> LocationPrefRcdP;
 
 
 class LocationPrefTbl : public DBtable {

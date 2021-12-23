@@ -39,7 +39,7 @@ class AssgnPrefTbl;
 typedef IterT<AssgnPrefTbl, AssgnPrefRcd> PrfIter;
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef RcdPtrT<AssgnPrefRcd> AssgnPrefRcdP;
+typedef DatumPtrT<AssgnPrefRcd> AssgnPrefRcdP;
 
 
 class AssgnPrefTbl : public DBtable {

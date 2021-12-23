@@ -52,8 +52,15 @@ Here is an explanation of DAO:
 
 All the code is contained in the two directories.
 
-
 ## Updates
+
+### Update 12/22/21
+
+While creating a template for a dialog box only application with a toolbar the Library was added to and
+changed to hopefully simplify toolbar creation.  This version of the toolbar includes buttons, edit boxes,
+combo boxes and drop down menus as well as the traditional 16x15 icons.
+
+There are two drop down menus on the toolbar.
 
 ### Update 11/13/21
 

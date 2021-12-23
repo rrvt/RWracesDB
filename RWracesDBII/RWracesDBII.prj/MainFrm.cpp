@@ -7,9 +7,6 @@
 #include "WindowData.h"
 
 
-
-// MainFrame
-
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWndEx)
 
 BEGIN_MESSAGE_MAP(MainFrame, CFrameWndEx)
@@ -30,10 +27,7 @@ static UINT indicators[] = {
 
 // MainFrame construction/destruction
 
-MainFrame::MainFrame() {
-  //  if (FAILED(CoInitialize(0))) {notePad.append("CoInitialize() failed"); return FALSE;}
-  // TODO: add member initialization code here
-  }
+MainFrame::MainFrame() { }
 
 
 MainFrame::~MainFrame() {}
@@ -77,41 +71,21 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
   DockPane(&toolBar);
 
   CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
-                                                                       // Affects look of toolbar, etc.
-//  if (!CMFCToolBar::AddToolBarForImageCollection(IDR_MAINFRAME))
-//                                              {TRACE0("Failed to add to image collection\n"); return -1;}
-//  setupToolBar();
-
+                                                                      // Affects look of toolbar, etc.
   return 0;
-  }
-
-
-
-void MainFrame::setupToolBar() {
-
-  if (!bdgMenu.m_hMenu) bdgMenu.LoadMenu(IDR_BadgeOpts);
-  if (!fmrMenu.m_hMenu) fmrMenu.LoadMenu(IDR_FormerOpts);
-  if (!stsMenu.m_hMenu) stsMenu.LoadMenu(IDR_MemberStatus);
-
-  toolBar.setMnuCtrl(ID_Badges, bdgMenu.GetSafeHmenu(), _T("Badged"));
-  toolBar.setMnuCtrl(ID_Former, fmrMenu.GetSafeHmenu(), _T("Former"));
-  toolBar.setMnuCtrl(ID_Status, stsMenu.GetSafeHmenu(), _T("Mbr Status"));
-  toolBar.install();
   }
 
 
 afx_msg LRESULT MainFrame::OnResetToolBar(WPARAM wParam, LPARAM lParam) {setupToolBar(); return 0;}
 
 
-#if 0
-void MainFrame::setTitle(TCchar* rightPart) {
-String s = m_strTitle;
+void MainFrame::setupToolBar() {
+CRect winRect;   GetWindowRect(&winRect);   toolBar.initialize(winRect);
 
-  if (rightPart && *rightPart) {s += _T(" -- "); s += rightPart;}
-
-  SetWindowText(s);
+  toolBar.installMenu(ID_Badges, IDR_BadgeOpts,    _T("Badged"));
+  toolBar.installMenu(ID_Former, IDR_FormerOpts,   _T("Former"));
+  toolBar.installMenu(ID_Status, IDR_MemberStatus, _T("Mbr Status"));
   }
-#endif
 
 
 void MainFrame::OnMove(int x, int y) {
@@ -146,9 +120,5 @@ void MainFrame::AssertValid() const {CFrameWndEx::AssertValid();}
 void MainFrame::Dump(CDumpContext& dc) const {CFrameWndEx::Dump(dc);}
 
 #endif //_DEBUG
-
-
-// MainFrame message handlers
-
 
 
