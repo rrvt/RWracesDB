@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>4e327a7c-4164-4311-819a-06bd32e6fbf5</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>RWracesDBinstaller</OutputName>
+    <OutputName>RWracesDB</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

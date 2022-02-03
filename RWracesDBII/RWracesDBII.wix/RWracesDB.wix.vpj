@@ -4,7 +4,7 @@
   VendorName="SlickEdit"
   TemplateName="Microsoft Visual Studio  &gt;= 7.0 VC++"
   WorkingDir="."
-  AssociatedFile="RWracesDBinstaller.wixproj"
+  AssociatedFile="RWracesDB.wix.wixproj"
   AssociatedFileType="microsoft visual studio">
   <Config
     Name="Debug|x86"
