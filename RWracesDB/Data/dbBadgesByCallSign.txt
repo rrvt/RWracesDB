@@ -1,0 +1,59 @@
+AB6Q    Tony            Loeb        433 12/31/21
+AD6PR   Lawrence        McNary      490 12/31/20
+AF6BI   Lowell          Gordy       143 12/31/21
+AF6ZF   Nigel           Gore        406 12/31/19
+AG6GX   Brian           Tanner      415 07/31/21
+AI6EH   John            Nourse      436 12/31/21
+AI6LS   William         Cusick      485 12/31/20
+AJ6DU   Ted             Hong        487 12/31/20
+K6CES   Charles         Smith       478 12/31/21
+K6DDL   David           Lambing     457 12/31/19
+K6MFW   Michael         Wright      166 12/31/20
+K6RNP   Jeffrey         Hare        499 12/31/21
+K6RWY   Robert          Van Tuyl    417 12/31/20
+K6SLB   Scott           Bordelon    448 12/31/21
+K6SW    Patrick         Buder       136 12/31/21
+K6ZD    David           Winarsky    480 06/30/20
+KB6FB   William         Pomeranz    489 12/31/19
+KC6DOG  Kris            Crawford    493 12/31/21
+KC6THM  Frances         Edwards     482 12/31/18
+KD6ALN  Cinthia         Swartout    412 12/31/21
+KE6PQV  Daniel          Tucker      447 12/31/17
+KF4MDV  David           Tomaschik   450 12/31/17
+KF6VWH  James           Fowler      145 12/31/20
+KG6JCH  Daniel          Watt        494 12/31/21
+KG6UCZ  Douglas         Bodily      189 12/31/18
+KI6CLA  David           Vieira      469 12/31/21
+KI6DDX  Peter           Walde       185 12/31/20
+KI6FWB  Frank           Brauch      466 12/31/20
+KI6GCX  Mary            Tanner      414 12/31/20
+KJ6SFD  Derek           Coker       411 12/31/17
+KJ6UXT  Andrew          Macica      405 12/31/21
+KK6CCR  Richard         Saito       427 12/31/20
+KK6RDB  Kerem           Kapkin      451 12/31/21
+KK6TZW  Barbara         Osterman    488 
+KK6WVI  James           Biesemeyer  464 12/31/21
+KK6ZGL  Anne            Akbay       475 12/31/19
+KM6AMX  Cole            Cameron     496 
+KM6DOV  David           McIntyre    473 12/31/17
+KM6LHD  Michael         Wheatley    486 12/31/20
+KM6NEE  Lawrence        Scherr      501 12/31/21
+KM6WCA  James           Bird        498 12/31/20
+N1KUH   Robert          Mark        470 12/31/19
+N6CPR   Trent           Engler      044 
+N6DVS   Victor          Denisov     504 
+N6FYR   Matthew         Yost        467 12/31/18
+N6VC    Jim             Shank       481 12/31/20
+N6WCP   Chris           Swartout    056 12/31/21
+N6WLF   Thomas          Graham      058 12/31/17
+NV6W    James           Armstrong   507 
+W5RJD   Richard (Rick)  Dexter      462 12/31/21
+W6ESL   Thomas          Dunbar      404 12/31/21
+W6GYQ   Yuqing          Gong        505 12/31/22
+W6NCF   Norman          Franklin    192 
+W6RAR   Raymond         Rogoway     300 12/31/20
+W6WWH   Will            Heid        491 12/31/21
+W9FFL   Barry           Redding     460 12/31/17
+WA6NRG  John            Mulhern     438 12/31/20
+WB6FRM  Ben             Vickers     048 12/31/20
+WW6G    Sheryl          Harkleroad  403 12/31/19
