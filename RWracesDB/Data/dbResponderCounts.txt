@@ -1,8 +1,0 @@
-RACES is first call, ready to be dispatched immediately               20
-RACES is second call, ready to be dispatched immediately              12
-Will probably respond, may take some time to assemble equipment       20
-ARES only                                                             50
-Last resort resource                                                   4
-Other                                                                  1
-                                                                  ------
-   Total                                                             107

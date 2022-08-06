@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Updates 8/4/22
+
+Minor Library Updates.
+
 ### Update 4/15/22
 
 Big adventure in February when I started moving to a new Win11 and Visual Studio 2022.  I now
