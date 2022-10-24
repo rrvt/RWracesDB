@@ -158,7 +158,7 @@
     <ClInclude Include="..\..\Library\Extras\ExtraResource.h" />
     <ClInclude Include="FCClist.h" />
     <ClInclude Include="GoogleRpt.h" />
-    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MainFrame.h" />
     <ClInclude Include="MbrInfo.h" />
     <ClInclude Include="MbrSortList.h" />
     <ClInclude Include="MemberList.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="Everbridge.cpp" />
     <ClCompile Include="FCClist.cpp" />
     <ClCompile Include="GoogleRpt.cpp" />
-    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="MbrInfo.cpp" />
     <ClCompile Include="MbrSortList.cpp" />
     <ClCompile Include="MemberList.cpp" />

@@ -227,7 +227,7 @@ String        s;
     if (cityRcd) {
       s += cityRcd->city.isEmpty()  ? String(_T(", San Jose")) : _T(", ") + cityRcd->city;
       s += cityRcd->state.isEmpty() ? String(_T(" CA"))        : _T(" ")  + cityRcd->state;
-      if (cityRcd->zip)                             s += _T(" ")  + formatZip(cityRcd->zip);
+      if (cityRcd->zip.isEmpty())                           s += _T(" ")  + formatZip(cityRcd->zip);
       }
     quoted.stg(s);
     }

@@ -7,7 +7,7 @@
 #include "Database.h"
 #include "filename.h"
 #include "GetPathDlg.h"
-#include "MainFrm.h"
+#include "MainFrame.h"
 #include "MessageBox.h"
 #include "NotePad.h"
 #include "Options.h"

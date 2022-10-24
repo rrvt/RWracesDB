@@ -54,7 +54,12 @@ All the code is contained in the two directories.
 
 ## Updates
 
-### Updates 8/4/22
+### Update 10/24/22
+
+Update toolbar background.  Adjust code that records position and size of window to fit the new library
+module.
+
+### Update 8/4/22
 
 Minor Library Updates.
 

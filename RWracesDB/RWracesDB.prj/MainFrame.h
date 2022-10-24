@@ -1,9 +1,10 @@
-// MainFrm.h : interface of the MainFrame class
+// MainFrame.h : interface of the MainFrame class
 
 
 #pragma once
 #include "CMainFrm.h"
 #include "ToolBar.h"
+#include "WinPos.h"
 
 
 class MainFrame : public CMainFrm {
@@ -14,6 +15,9 @@ CMFCStatusBar m_wndStatusBar;
 CMenu         bdgMenu;
 CMenu         fmrMenu;
 CMenu         stsMenu;
+
+bool          isInitialized;
+WinPos        winPos;                               // Position of Window
 
 protected: // create from serialization only
 

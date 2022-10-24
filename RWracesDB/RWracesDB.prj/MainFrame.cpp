@@ -2,9 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "MainFrm.h"
+#include "MainFrame.h"
 #include "resource.h"
-#include "WindowData.h"
 
 
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWndEx)
@@ -27,36 +26,27 @@ static UINT indicators[] = {
 
 // MainFrame construction/destruction
 
-MainFrame::MainFrame() { }
+MainFrame::MainFrame() : isInitialized(false) { }
 
 
 MainFrame::~MainFrame() {}
 
 
 BOOL MainFrame::PreCreateWindow(CREATESTRUCT& cs) {
-int        xSize = ::GetSystemMetrics(SM_CXSCREEN);
-int        ySize = ::GetSystemMetrics(SM_CYSCREEN);
-WindowData winData(iniFile);
-RECT       rect;
 
-  cs.cx = xSize * 45 / 100;  cs.cy = ySize * 7 / 10;
-
-  winData.getSize(rect);
-
-  cs.x = rect.left; cs.y = rect.top;
-
-  if (rect.right  > cs.cx) cs.cx = rect.right;
-  if (rect.bottom > cs.cy) cs.cy = rect.bottom;
+  cs.style &= ~FWS_ADDTOTITLE;  cs.lpszName = _T("AddProj");         // Sets the default title left part
 
   return CFrameWndEx::PreCreateWindow(cs) ? TRUE : FALSE;
   }
 
 
 int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
+CRect winRect;
 
   if (CFrameWndEx::OnCreate(lpCreateStruct) == -1) return -1;
 
   if (!m_wndMenuBar.Create(this)) {TRACE0("Failed to create menubar\n"); return -1;}
+
   CMFCPopupMenu::SetForceMenuFocus(FALSE);
 
   if (!toolBar.CreateEx(this, TBSTYLE_FLAT,
@@ -67,12 +57,28 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
   m_wndStatusBar.SetIndicators(indicators, noElements(indicators));  //sizeof(indicators)/sizeof(UINT)
 
-  DockPane(&m_wndMenuBar);
-  DockPane(&toolBar);
+  GetWindowRect(&winRect);   winPos.initialPos(this, winRect);
+
+  DockPane(&m_wndMenuBar);   DockPane(&toolBar);
 
   CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
                                                                       // Affects look of toolbar, etc.
-  return 0;
+  isInitialized = true;   return 0;
+  }
+
+
+void MainFrame::OnMove(int x, int y)
+           {CRect winRect;   GetWindowRect(&winRect);   winPos.set(winRect);   CFrameWndEx::OnMove(x, y);}
+
+
+void MainFrame::OnSize(UINT nType, int cx, int cy) {
+CRect winRect;
+
+  CFrameWndEx::OnSize(nType, cx, cy);
+
+  if (!isInitialized) return;
+
+  GetWindowRect(&winRect);   winPos.set(winRect);
   }
 
 
@@ -88,28 +94,6 @@ CRect winRect;   GetWindowRect(&winRect);   toolBar.initialize(winRect);
   }
 
 
-void MainFrame::OnMove(int x, int y) {
-WindowData winData(iniFile);
-RECT       rect;
-
-  GetWindowRect(&rect); winData.savePos(rect.left, rect.top);
-
-  CFrameWndEx::OnMove(x, y);
-  }
-
-
-
-void MainFrame::OnSize(UINT nType, int cx, int cy) {
-WindowData winData(iniFile);
-RECT       rect;
-
-  GetWindowRect(&rect);
-
-  if (nType == SIZE_RESTORED || nType == SIZE_MAXIMIZED)
-                                      winData.saveSize(rect.right - rect.left, rect.bottom - rect.top);
-  CFrameWndEx::OnSize(nType, cx, cy);
-  }
-
 
 // MainFrame diagnostics
 
@@ -120,5 +104,4 @@ void MainFrame::AssertValid() const {CFrameWndEx::AssertValid();}
 void MainFrame::Dump(CDumpContext& dc) const {CFrameWndEx::Dump(dc);}
 
 #endif //_DEBUG
-
 
