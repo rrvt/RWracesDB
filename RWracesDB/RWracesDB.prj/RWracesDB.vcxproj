@@ -67,11 +67,11 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <BasicRuntimeChecks />
+      <BasicRuntimeChecks/>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <SupportJustMyCode>false</SupportJustMyCode>
-      <PrecompiledHeaderFile />
-      <PrecompiledHeaderOutputFile />
+      <PrecompiledHeaderFile/>
+      <PrecompiledHeaderOutputFile/>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -110,9 +110,9 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>None</DebugInformationFormat>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <BasicRuntimeChecks />
-      <PrecompiledHeaderFile />
-      <PrecompiledHeaderOutputFile />
+      <BasicRuntimeChecks/>
+      <PrecompiledHeaderFile/>
+      <PrecompiledHeaderOutputFile/>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -123,7 +123,7 @@
       <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ProgramDatabaseFile />
+      <ProgramDatabaseFile/>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -157,6 +157,7 @@
     <ClInclude Include="Everbridge.h" />
     <ClInclude Include="..\..\Library\Extras\ExtraResource.h" />
     <ClInclude Include="FCClist.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="GoogleRpt.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="MbrInfo.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="MemberList.h" />
     <ClInclude Include="MemberRpts.h" />
     <ClInclude Include="..\..\Library\Extras\OptionsDlg.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="Quoted.h" />
     <ClInclude Include="Records.h" />
     <ClInclude Include="resource.h" />
@@ -174,7 +176,6 @@
     <ClInclude Include="StatusRcds.h" />
     <ClInclude Include="StatusRpt.h" />
     <ClInclude Include="StatusUpdate.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@
     <ClCompile Include="MemberList.cpp" />
     <ClCompile Include="MemberRpts.cpp" />
     <ClCompile Include="..\..\Library\Extras\OptionsDlg.cpp" />
+    <ClCompile Include="pch.cpp" />
     <ClCompile Include="Quoted.cpp" />
     <ClCompile Include="RWracesDB.cpp" />
     <ClCompile Include="RWracesDBDoc.cpp" />
@@ -200,7 +202,6 @@
     <ClCompile Include="StatusRcds.cpp" />
     <ClCompile Include="StatusRpt.cpp" />
     <ClCompile Include="StatusUpdate.cpp" />
-    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Library\Extras\AboutDlg.rc2" />

@@ -1,7 +1,7 @@
 // Status Report
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "StatusRpt.h"
 #include "Date.h"
 #include "NotePad.h"

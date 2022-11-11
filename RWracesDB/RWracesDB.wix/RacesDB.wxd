@@ -1,7 +1,8 @@
 [SolutionInfo]
+RootPath=D:\Sources\RWracesDB
 Path=D:\Sources\RWracesDB\RWracesDB\RWracesDB.sln
 Name=RWracesDB
-Version=2.0
+Version=2.100000
 [DefaultPath]
 NPaths=2
 DefKey0=RacesDB.ftr
@@ -22,8 +23,8 @@ IconPath=D:\Sources\RWracesDB\RWracesDB.prj\res\RWracesDB.ico
 ProductName=RacesDB
 Company=Bob -- K6RWY
 WixName=RacesDB
-WixVersion=1.10.11.0
-UpgradeGUID=41421C9F-E233-480D-893E-63A792A63FFE
+WixVersion=1.10.17.0
+UpgradeCode=41421C9F-E233-480D-893E-63A792A63FFE
 SaveVerAllowed=0
 LicenseRequired=0
 LicensePath=D:\Sources\RWracesDB\RWracesDB\
@@ -52,7 +53,7 @@ FeatureID=RacesDB
 ProgramID=RWracesDB
 StartMenuID=RWracesDB
 CurSel=RacesDB
-NoComponents=1
+NoComponents=2
 [Ftr00Cmp00]
 ID=RacesDB
 Path=D:\Sources\RWracesDB\Release\RWracesDB.exe
@@ -62,3 +63,7 @@ IconID=RWracesDB
 IsStartMenu=1
 IsDeskTop=1
 IsVersionAvail=1
+[Ftr00Cmp01]
+ID=Help
+Path=D:\Sources\RWracesDB\Release\RWracesDB.chm
+Guid=0D21FFAA-5717-4755-A88D-522CB588D9BC

@@ -1,7 +1,7 @@
 // display Member Record
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "MemberRpts.h"
 #include "Database.h"
 #include "MbrSortList.h"

@@ -1,7 +1,7 @@
 // Status Update -- Update Database from MemberStatus downloaded from Google Files
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "StatusUpdate.h"
 #include "Database.h"
 #include "GetPathDlg.h"

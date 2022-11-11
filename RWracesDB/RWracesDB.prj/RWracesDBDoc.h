@@ -16,10 +16,8 @@ DataSource  dataSource;
 String      title;
 
 bool        dbLoaded;
-
-String      defaultExtension;
-String      filePath;
-String      sffx;             // Suffix of db<sffx>.<fileType>
+String      dbPath;
+String      sffx;             // Suffix of <dbName><sffx>.<fileType>
 String      fileType;
 
 protected: // create from serialization only

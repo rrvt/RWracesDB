@@ -1,7 +1,7 @@
 // FCC List Report
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "FCClist.h"
 #include "MbrSortList.h"
 #include "MbrTbl.h"

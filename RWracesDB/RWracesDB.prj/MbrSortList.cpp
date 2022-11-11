@@ -1,7 +1,7 @@
 // List comprised of Member Table sorted
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "MbrSortList.h"
 #include "MbrTbl.h"
 #include "EntTbl.h"

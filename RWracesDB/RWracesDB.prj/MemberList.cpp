@@ -1,7 +1,7 @@
 // List of Members suitable for sorting
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "MemberList.h"
 #if 1
 #include "Database.h"

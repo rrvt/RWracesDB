@@ -1,7 +1,7 @@
 // Member Info -- Used in reports
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "MbrInfo.h"
 #include "Database.h"
 #include "mbrSortList.h"

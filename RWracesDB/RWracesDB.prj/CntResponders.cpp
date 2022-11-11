@@ -1,7 +1,7 @@
 // Count Responders
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "CntResponders.h"
 #include "Database.h"
 #include "MbrSortList.h"

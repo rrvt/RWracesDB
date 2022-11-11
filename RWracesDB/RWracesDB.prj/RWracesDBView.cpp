@@ -1,7 +1,7 @@
 // RWracesDBView.cpp : implementation of the RWracesDBView class
 //
 
-#include "stdafx.h"
+#include "pch.h"
 #include "RWracesDBView.h"
 #include "Options.h"
 #include "RWracesDB.h"

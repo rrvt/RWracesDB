@@ -1,13 +1,14 @@
 // RWracesDBDoc.cpp : implementation of the RWracesDBDoc class
 //
 
-#include "stdafx.h"
+#include "pch.h"
 #include "RWracesDBDOC.h"
 #include "CntResponders.h"
 #include "Copyfile.h"
 #include "Database.h"
 #include "DeadRcds.h"
 #include "Everbridge.h"
+#include "FileName.h"
 #include "FCClist.h"
 #include "GetPathDlg.h"
 #include "GoogleRpt.h"
@@ -25,8 +26,8 @@
 enum {col2 = 10, col3 = 35, col4 = 58, col5 = 81};
 enum ShowFeeType {NilShowFee, StableStable, StableTack, StableBedding, StableOther, OtherFees};
 
-TCchar* FileSection = _T("FileSection");
-TCchar* DBFileKey   = _T("DBfile");
+static TCchar* FileSection = _T("FileSection");
+static TCchar* DBFileKey   = _T("DBfile");
 
 
 IMPLEMENT_DYNCREATE(RWracesDBDoc, CDocument)
@@ -69,8 +70,7 @@ BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-RWracesDBDoc::RWracesDBDoc() : dataSource(NotePadSrc), dbLoaded(false)
-                              {defaultExtension = _T("Save Files|*.csv|All Files|*.*||");   getTitle();}
+RWracesDBDoc::RWracesDBDoc() : dataSource(NotePadSrc), dbLoaded(false) {getTitle();}
 
 
 void RWracesDBDoc::getTitle() {CString  ttl;   ttl.LoadString(AFX_IDS_APP_TITLE); title = ttl;}
@@ -85,14 +85,13 @@ void RWracesDBDoc::initDatabase() {
 
 
 void RWracesDBDoc::openDatabase() {
-String title;
-String ext;
+PathDlgDsc dsc(_T("Database"), 0, _T("accdb"), _T("*.accdb"));
 
   notePad.clear();
 
-  if (getPathDlg(_T("Database"), 0, _T("accdb"), _T("*.accdb"), path))
-                                                      iniFile.writeString(FileSection, DBFileKey, path);
-  loadDatabase();
+  if (!setOpenPath(dsc)) return;
+
+  iniFile.writeString(FileSection, DBFileKey, path);   loadDatabase();
   }
 
 
@@ -103,7 +102,7 @@ void RWracesDBDoc::loadDatabase() {
   notePad << _T("Database at ") << path << (dbLoaded ? _T(" Loaded") : _T(" Not Loaded"));
   notePad << nCrlf;
 
-  if (dbLoaded) mbrSortList.create();
+  if (dbLoaded) {dbPath = path; mbrSortList.create();}
 
   display(NotePadSrc);
   }
@@ -137,12 +136,13 @@ MemberRpts memberRpts(CmpDspType);
 
 
 void RWracesDBDoc::OnMakeFileCopy() {
+PathDlgDsc dsc(_T("Copy Database"), path, _T("accdb"), _T("*.accdb"));
 String newPath;
 String destinationFile;
 String ext;
 int    pos;
 
-  if (!getPathDlg(_T("Copy Database"), path, _T("accdb"), _T("*.accdb"), newPath)) return;
+  if (!getOpenDlg(dsc, newPath)) return;
 
   pos = newPath.find_last_of(_T('.'));   if (pos < 0) pos = newPath.size();
   ext = newPath.substr(pos);
@@ -264,12 +264,13 @@ InfoRpts rpt;
 
 
 void RWracesDBDoc::OnLoadCSVfile() {
+PathDlgDsc   dsc(_T("Status Update csv File"), 0, _T("csv"), _T("*.csv"));
 String       path;
 StatusUpdate stsUpdt;
 
   dataSource = StsUpdtSrc;
 
-  if (!getPathDlg(_T("Status Update csv File"), 0, _T("csv"), _T("*.csv"), path)) return;
+  if (!setOpenPath(dsc)) return;
 
   OnOpenDocument(path);
 
@@ -305,14 +306,11 @@ void RWracesDBDoc::OnOptions() {
 
 
 void RWracesDBDoc::OnFileSave() {
-String fileName = path;
-int    pos      = fileName.find_last_of('\\');
-String ext      = _T("*.") + fileType;
+String     name    = getMainName(dbPath) + sffx;
+String     pattern = _T("*.") + fileType;
+PathDlgDsc dsc(_T("Output File"), name, fileType, pattern);
 
-  fileName = fileName.substr(pos+1);   pos = fileName.find_first_of(_T('.'));
-  fileName = fileName.substr(0, pos);   fileName += sffx;
-
-  if (getSaveAsPathDlg(_T("Output File"), fileName, fileType, ext, filePath)) OnSaveDocument(filePath);
+  if (setSaveAsPath(dsc)) OnSaveDocument(path);
   }
 
 
@@ -381,4 +379,17 @@ String path;
 
 //#include "DB.h"
 //#include "DBtables.h"
+
+
+
+
+#if 1
+#else
+String     fileName = path;
+int        pos      = fileName.find_last_of('\\');
+  fileName = fileName.substr(pos+1);   pos = fileName.find_first_of(_T('.'));
+  fileName = fileName.substr(0, pos);
+#endif
+//String     title;
+//String     ext;
 

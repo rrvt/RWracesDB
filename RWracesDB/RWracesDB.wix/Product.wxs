@@ -2,18 +2,18 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
 <Product Id="*" UpgradeCode="41421C9F-E233-480D-893E-63A792A63FFE" Language="1033"
-         Manufacturer="Bob -- K6RWY" Name="RacesDB"
-         Version="!(bind.fileVersion.RacesDB.cmp)"
-         >
+                  Manufacturer="Bob -- K6RWY" Name="RacesDB"
+                  Version="!(bind.fileVersion.RacesDB.cmp)"
+                  >
 
   <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
-           Manufacturer="Bob -- K6RWY" Description="Installs RacesDB"
-           Comments="Copyright (c) Bob -- K6RWY"
-           />
+                      Manufacturer="Bob -- K6RWY" Description="Installs RacesDB"
+                      Comments="Copyright (c) Bob -- K6RWY"
+                      />
 
   <MajorUpgrade Schedule="afterInstallInitialize"
-                AllowDowngrades="no"   IgnoreRemoveFailure="no"   AllowSameVersionUpgrades="no"
-                DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+                                AllowDowngrades="no"   IgnoreRemoveFailure="no"   AllowSameVersionUpgrades="no"
+                                DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
   <MediaTemplate EmbedCab="yes" />
 
@@ -37,16 +37,17 @@
 
   <Feature Id="ProductFeatures" Title="Main Product" Level="1" >
     <ComponentGroupRef Id="RacesDB.ftr"/>
-    <ComponentGroupRef Id="UninstallRacesDB.ftr"/>
+    <ComponentGroupRef Id="Uninstall_RacesDB.ftr"/>
   </Feature>
 </Product>
 
 <Fragment>
 <ComponentGroup Id="RacesDB.ftr">
   <ComponentRef Id="RacesDB.cmp"/>
+  <ComponentRef Id="Help.cmp"/>
 </ComponentGroup>
-<ComponentGroup Id="UninstallRacesDB.ftr">
-  <ComponentRef Id="UninstallRacesDB.cmp"/>
+<ComponentGroup Id="Uninstall_RacesDB.ftr">
+  <ComponentRef Id="Uninstall_RacesDB.cmp"/>
 </ComponentGroup>
 </Fragment>
 
@@ -57,11 +58,12 @@
       <Directory Id="RWracesDB.pff" Name="RWracesDB" />
     </Directory>
 
-    <Directory Id="ProgramMenuFolder" Name="StartMenu">
+    <Directory Id="ProgramMenuFolder">
       <Directory Id="RWracesDB.pmf" Name="RWracesDB" />
     </Directory>
 
-    <Directory Id="DesktopFolder" Name="Desktop" />
+    <Directory Id="DesktopFolder" />
+
   </Directory>
 
   <Property Id="ApplicationFolderName" Value="RWracesDB" />
@@ -93,12 +95,16 @@
               />
   </Component>
 
+  <Component Id="Help.cmp"  Guid="0D21FFAA-5717-4755-A88D-522CB588D9BC" Directory="RWracesDB.pff">
+    <File Id="Help.cmp" Source="$(var.SolutionDir)..\Release\RWracesDB.chm" KeyPath="yes"/>
+  </Component>
+
 </Fragment>
 
 <Fragment>
 
-  <Component Id="UninstallRacesDB.cmp" 
-                                Guid="74DB4FFB-720F-4D6A-BDEC-0E471CD76015" Directory="RWracesDB.pmf">
+  <Component Id="Uninstall_RacesDB.cmp" 
+                                Guid="7E56020D-6153-4CB1-822B-1FE56C795274" Directory="RWracesDB.pmf">
 
     <Shortcut Id               = "UninstallRacesDB.shc"
               Name             = "Uninstall RacesDB"
@@ -108,7 +114,7 @@
               Icon             = "RWracesDBUIIcon.ico"
               />
     <RemoveFolder Id="RWracesDB.uni" Directory="RWracesDB.pmf" On="uninstall"/>
-    <RegistryValue Root="HKCU" Key="Software\UninstallRacesDB.cmp" Name="installed"
+    <RegistryValue Root="HKCU" Key="Software\Uninstall_RacesDB.cmp" Name="installed"
                    Type="integer" Value="1" KeyPath="yes"/>
   </Component>
 

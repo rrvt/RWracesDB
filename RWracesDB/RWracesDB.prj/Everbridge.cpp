@@ -1,7 +1,7 @@
 // Everbridge Report
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "Everbridge.h"
 #include "Database.h"
 //#include "MemberList.h"

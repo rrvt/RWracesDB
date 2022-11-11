@@ -1,7 +1,7 @@
 // Google Earch Report
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "GoogleRpt.h"
 #include "Database.h"
 #include "MemberList.h"

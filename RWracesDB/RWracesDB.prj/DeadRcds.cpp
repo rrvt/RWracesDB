@@ -1,7 +1,7 @@
 // Dead Record Removal
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DeadRcds.h"
 #include "Database.h"
 #include "NotePad.h"

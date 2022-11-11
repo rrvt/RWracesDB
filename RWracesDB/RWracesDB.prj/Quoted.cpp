@@ -1,7 +1,7 @@
 // Quoated entities
 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "Quoted.h"
 #include "NotePad.h"
 
