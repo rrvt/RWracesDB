@@ -67,11 +67,11 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <BasicRuntimeChecks/>
+      <BasicRuntimeChecks />
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <SupportJustMyCode>false</SupportJustMyCode>
-      <PrecompiledHeaderFile/>
-      <PrecompiledHeaderOutputFile/>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -110,9 +110,9 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>None</DebugInformationFormat>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <BasicRuntimeChecks/>
-      <PrecompiledHeaderFile/>
-      <PrecompiledHeaderOutputFile/>
+      <BasicRuntimeChecks />
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -123,7 +123,7 @@
       <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ProgramDatabaseFile/>
+      <ProgramDatabaseFile />
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -155,7 +155,6 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="DeadRcds.h" />
     <ClInclude Include="Everbridge.h" />
-    <ClInclude Include="..\..\Library\Extras\ExtraResource.h" />
     <ClInclude Include="FCClist.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GoogleRpt.h" />
@@ -168,7 +167,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Quoted.h" />
     <ClInclude Include="Records.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="RWracesDB.h" />
     <ClInclude Include="RWracesDBDoc.h" />
     <ClInclude Include="RWracesDBView.h" />
@@ -177,6 +176,8 @@
     <ClInclude Include="StatusRpt.h" />
     <ClInclude Include="StatusUpdate.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\..\Library\Extras\ResourceExtra.h" />
+    <ClInclude Include="..\..\Library\Extras\RptOrientDlgTwo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Library\Extras\AboutDlg.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="StatusRcds.cpp" />
     <ClCompile Include="StatusRpt.cpp" />
     <ClCompile Include="StatusUpdate.cpp" />
+    <ClCompile Include="..\..\Library\Extras\RptOrientDlgTwo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Library\Extras\AboutDlg.rc2" />
@@ -210,6 +212,7 @@
     <None Include="..\..\RacesTraining\Data\Former.txt" />
     <None Include="res\RWracesDB.rc2" />
     <None Include="res\Toolbar70.bmp" />
+    <None Include="..\..\Library\Extras\RptOrientTwo.rc2" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\RWracesDB.ico" />

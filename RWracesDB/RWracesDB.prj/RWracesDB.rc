@@ -1,6 +1,7 @@
 // Microsoft Visual C++ generated resource script.
-//
-#include "resource.h"
+
+#include "Resource.h"
+#include "ResourceExtra.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -31,7 +32,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 1 TEXTINCLUDE
 BEGIN
-    "resource.h\0"
+    "Resource.h\0"
 END
 
 2 TEXTINCLUDE
@@ -138,55 +139,52 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-      MENUITEM "Refresh",             ID_Refresh
+      MENUITEM "Refresh",               ID_Refresh
       MENUITEM SEPARATOR
-      MENUITEM "&Save...\tCtrl+S",    ID_FILE_SAVE
-      MENUITEM "&Print...\tCtrl+P",   ID_FILE_PRINT
-      MENUITEM "Print Pre&view",      ID_FILE_PRINT_PREVIEW
-      MENUITEM "P&rint Setup...",     ID_FILE_PRINT_SETUP
+      MENUITEM "&Save...\tCtrl+S",      ID_FILE_SAVE
+      MENUITEM "&Print...\tCtrl+P",     ID_FILE_PRINT
+      MENUITEM "Print Pre&view",        ID_FILE_PRINT_PREVIEW
+      MENUITEM "P&rint Setup...",       ID_FILE_PRINT_SETUP
       MENUITEM SEPARATOR
-      MENUITEM "Make File Copy",      ID_MakeFileCopy
+      MENUITEM "Make File Copy",        ID_MakeFileCopy
       MENUITEM SEPARATOR
-      MENUITEM "E&xit",               ID_APP_EXIT
+      MENUITEM "E&xit",                 ID_APP_EXIT
     END
     POPUP "Status Update"
     BEGIN
-      MENUITEM "Load CSV File",       ID_LoadCSVfile
-      MENUITEM "Upload to DB",        ID_UploadToDB
+      MENUITEM "Load CSV File",         ID_LoadCSVfile
+      MENUITEM "Upload to DB",          ID_UploadToDB
     END
     POPUP "Reports"
     BEGIN
-      MENUITEM "Excel CSV File",           ID_ExcelReport
-      MENUITEM "Google Earth CSV File",     ID_GoogleEarth
-      MENUITEM "Everbridge CSV File",      ID_Everbridge
-      MENUITEM "Responder Counts",    ID_CntResponders
-      MENUITEM "FCC Call Signs",      ID_FCC
-//      MENUITEM "ID List",             ID_IDlist
-      MENUITEM "Member IDs",          ID_MemberIDs
+      MENUITEM "Excel CSV File",        ID_ExcelReport
+      MENUITEM "Google Earth CSV File", ID_GoogleEarth
+      MENUITEM "Everbridge CSV File",   ID_Everbridge
+      MENUITEM "Responder Counts",      ID_CntResponders
+      MENUITEM "FCC Call Signs",        ID_FCC
+      MENUITEM "Member IDs",            ID_MemberIDs
     END
     POPUP "Backup/Restore"
     BEGIN
-      MENUITEM "Backup",              ID_Backup
-      MENUITEM "Restore",             ID_Restore
-      MENUITEM "Comparison File",     ID_Comparison
+      MENUITEM "Backup",                ID_Backup
+      MENUITEM "Restore",               ID_Restore
+      MENUITEM "Comparison File",       ID_Comparison
     END
     POPUP "Fix"
     BEGIN
-      MENUITEM "Dead Rcds",           ID_FixDeadRcds
+      MENUITEM "Dead Rcds",             ID_FixDeadRcds
     END
-    POPUP "Tools"
+    POPUP "Options"
     BEGIN
-      MENUITEM "Options",             ID_Options
+        MENUITEM "Printer",             ID_Options
+        MENUITEM "Report Orientation",  ID_Orientation
     END
     POPUP "Help"
     BEGIN
-      MENUITEM "Introduction",            ID_Help
-      MENUITEM "About",                   ID_APP_ABOUT
+      MENUITEM "Introduction",          ID_Help
+      MENUITEM "About",                 ID_APP_ABOUT
     END
 END
-
-//    MENUITEM "Update Requests",     ID_UpdateReq
-//    MENUITEM "Survey Requests",     ID_SurveyReq
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -207,8 +205,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,10,19
- PRODUCTVERSION 1,10,19
+ FILEVERSION 1,10,20
+ PRODUCTVERSION 1,10,20
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -225,12 +223,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Bob -- K6RWY"
             VALUE "FileDescription", "Manipulate RACES DB"
-            VALUE "FileVersion", "1.10.19"
+            VALUE "FileVersion", "1.10.20"
             VALUE "InternalName", "RWracesDB.exe"
             VALUE "LegalCopyright", "(c), All rights reserved."
             VALUE "OriginalFilename", "RWracesDB.exe"
             VALUE "ProductName", "Read/Write RACES DB"
-            VALUE "ProductVersion", "1.10.19"
+            VALUE "ProductVersion", "1.10.20"
         END
     END
     BLOCK "VarFileInfo"

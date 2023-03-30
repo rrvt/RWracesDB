@@ -10,7 +10,6 @@
 #include "MainFrame.h"
 #include "MessageBox.h"
 #include "NotePad.h"
-#include "Options.h"
 #include "Resources.h"
 #include "RWracesDBDOC.h"
 #include "RWracesDBView.h"
@@ -24,7 +23,6 @@ BEGIN_MESSAGE_MAP(RWracesDB, CWinAppEx)
   ON_COMMAND(ID_Refresh,          &refresh)
   ON_COMMAND(ID_Help,             &OnHelp)
   ON_COMMAND(ID_APP_ABOUT,        &OnAppAbout)
-  ON_COMMAND(ID_FILE_PRINT_SETUP, &OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
@@ -68,25 +66,9 @@ BOOL RWracesDB::InitInstance() {
 
   notePad.clear();   view()->setFont(_T("Arial"), 12.0);
 
-  options.load();    view()->setOrientation(options.orient);
-
   doc()->initDatabase();
 
   m_pMainWnd->ShowWindow(SW_SHOW);   m_pMainWnd->UpdateWindow();   return TRUE;
-  }
-
-
-
-void RWracesDB::OnFilePrintSetup() {
-PrtrOrient orient;
-
-  view()->setPrntrOrient(getDevMode());
-
-    CWinApp::OnFilePrintSetup();
-
-  orient = view()->getPrntrOrient(getDevMode());
-
-  options.setOrient(orient);   view()->setOrientation(options.orient);
   }
 
 

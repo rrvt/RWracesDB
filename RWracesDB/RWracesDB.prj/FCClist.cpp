@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "FCClist.h"
+#include "Expandable.h"
 #include "MbrSortList.h"
 #include "MbrTbl.h"
 #include "NotePad.h"

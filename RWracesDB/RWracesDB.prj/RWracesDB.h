@@ -35,7 +35,6 @@ public:
   afx_msg void refresh();
   afx_msg void OnAppAbout();
 
-  afx_msg void OnFilePrintSetup();
   afx_msg void OnHelp();
 
   friend  RWracesDBDoc* doc();

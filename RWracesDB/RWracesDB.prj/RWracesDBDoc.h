@@ -74,7 +74,6 @@ public:
   afx_msg void OnFormerNm();
   afx_msg void OnComparison();
   afx_msg void OnFixDeadRcds();
-  afx_msg void OnOptions();
   afx_msg void OnFileSave();
   afx_msg void OnCovidList();
   afx_msg void OnMakeFileCopy();

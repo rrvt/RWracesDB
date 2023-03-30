@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 3/30/23
+
+Significant changes to the library and update the application to accomodate them.
+
 ### Update 11/10/22
 
 Update help file icons.  Update Open/Save file function calls.  Replace stdafx.h with pch.h/framework.h.

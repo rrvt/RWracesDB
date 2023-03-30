@@ -15,8 +15,7 @@
 #include "MbrInfo.h"
 #include "MbrSortList.h"
 #include "MemberRpts.h"
-#include "Options.h"
-#include "resource.h"
+#include "Resource.h"
 #include "Resources.h"
 #include "RWracesDB.h"
 #include "RWracesDBView.h"
@@ -63,8 +62,6 @@ BEGIN_MESSAGE_MAP(RWracesDBDoc, CDocument)
   ON_COMMAND(ID_Backup,         &OnBackup)
   ON_COMMAND(ID_Restore,        &OnRestoreNew)
   ON_COMMAND(ID_Comparison,     &OnComparison)
-
-  ON_COMMAND(ID_Options,        &OnOptions)
 
   ON_COMMAND(ID_FixDeadRcds,    &OnFixDeadRcds)
 END_MESSAGE_MAP()
@@ -297,12 +294,6 @@ DeadRcds deadRcds;
 
 
 void RWracesDBDoc::display(DataSource ds) {dataSource = ds; invalidate();}
-
-
-void RWracesDBDoc::OnOptions() {
-  options(view());
-  view()->setOrientation(options.orient);
-  }
 
 
 void RWracesDBDoc::OnFileSave() {

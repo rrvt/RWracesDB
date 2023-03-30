@@ -12,29 +12,30 @@ class RWracesDBDoc;
 
 class RWracesDBView : public CScrView {
 
-NotePadRpt dspNote;
-NotePadRpt prtNote;
 StatusRpt  dspStatus;
 StatusRpt  prtStatus;
 
 protected: // create from serialization only
 
-  RWracesDBView() : dspNote(  dMgr.getNotePad()), prtNote(  pMgr.getNotePad()),
-                    dspStatus(dMgr.getNotePad()), prtStatus(pMgr.getNotePad()) { }
+  RWracesDBView() : CScrView(), dspStatus(dMgr.getNotePad()), prtStatus(pMgr.getNotePad()) { }
+
   DECLARE_DYNCREATE(RWracesDBView)
 
 // Attributes
 
 public:
 
-  virtual ~RWracesDBView() { }
+  virtual      ~RWracesDBView() { }
 
-  virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
-  virtual void onPrepareOutput(bool printing);
+  virtual void  initRptOrietn();
+  virtual void  saveRptOrietn();
 
-  virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-  virtual void printFooter(Device& dev, int pageNo);
-  virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+  virtual void  onPreparePrinting(CPrintInfo* info);
+  virtual void  onBeginPrinting();
+  virtual void  onDisplayOutput();
+
+  virtual void  printFooter(DevBase& dev, int pageNo);
+  virtual void  OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
   RWracesDBDoc* GetDocument() const;
 
@@ -49,6 +50,8 @@ protected:
 
   DECLARE_MESSAGE_MAP()
 
+  afx_msg void onOptions();
+  afx_msg void onRptOrietn();
   afx_msg void OnSetFocus(CWnd* pOldWnd);
   };
 

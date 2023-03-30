@@ -3,7 +3,7 @@
 
 #include "pch.h"
 #include "MainFrame.h"
-#include "resource.h"
+#include "Resource.h"
 
 
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWndEx)
