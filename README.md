@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 7/7/23
+
+Library Update
+
 ### Update 3/30/23
 
 Significant changes to the library and update the application to accomodate them.

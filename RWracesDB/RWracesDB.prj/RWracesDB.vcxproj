@@ -62,7 +62,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -105,7 +105,7 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -219,11 +219,14 @@
     <Image Include="res\RWracesDBUI.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Library\AccessDB.prj\AccessDB.vcxproj">
-      <Project>{12084586-a769-4348-b54d-336fa036a1fb}</Project>
+    <ProjectReference Include="..\..\Library\AccessDB\AccessDB.vcxproj">
+      <Project>{57279f7b-d4b9-47e3-8419-cb9b97c596fa}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Library\Library.prj\Library.vcxproj">
       <Project>{cf57f3ec-d3db-4469-8519-3f9d73785d9b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\RACESdb\RACESdb.vcxproj">
+      <Project>{12084586-a769-4348-b54d-336fa036a1fb}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>
