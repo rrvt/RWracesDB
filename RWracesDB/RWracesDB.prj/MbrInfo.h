@@ -45,14 +45,14 @@ private:
   };
 
 
-typedef DatumPtrT<MbrInfo> MbrInfoP;                      // Usually defined just before iterator
+typedef DatumPtrT<MbrInfo, String> MbrInfoP;                      // Usually defined just before iterator
 class InfoRpts;
 typedef IterT<InfoRpts, MbrInfo> InfoIter;
 
 
 class InfoRpts {
 
-ExpandableP<MbrInfo, MbrInfoP, 2> data;
+ExpandableP<MbrInfo, String, MbrInfoP, 2> data;
 
 public:
 

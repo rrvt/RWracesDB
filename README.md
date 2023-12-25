@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 12/25/23
+
+Modify ExpandableP and subsequent ripple...
+
 ### Update 7/7/23
 
 Library Update

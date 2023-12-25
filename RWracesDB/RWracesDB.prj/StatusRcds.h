@@ -32,9 +32,9 @@ private:
   };
 
 
-typedef DatumPtrT< CSVstsRcd> CSVstsRcdP;
-typedef CSVRcdsT<CSVstsRcd, CSVstsRcdP> StatusRcds;
-typedef CSVIterT<CSVstsRcd, CSVstsRcdP> SRcdIter;
+typedef DatumPtrT<CSVstsRcd, String>             CSVstsRcdP;
+typedef CSVRcdsT< CSVstsRcd, String, CSVstsRcdP> StatusRcds;
+typedef CSVIterT< CSVstsRcd, String, CSVstsRcdP> SRcdIter;
 
 extern StatusRcds statusRcds;
 

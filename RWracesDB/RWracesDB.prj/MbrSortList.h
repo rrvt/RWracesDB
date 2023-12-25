@@ -23,7 +23,7 @@ bool    curMbr;
 
 
 // Record Pointer Declaration, see ExpandableP.h for details
-typedef DatumPtrT<MbrItem> MbrItemP;
+typedef DatumPtrT<MbrItem, String>  MbrItemP;
 
 class MbrSortList;
 typedef IterT<MbrSortList, MbrItem> MbrLstIter;
@@ -32,7 +32,7 @@ typedef IterT<MbrSortList, MbrItem> MbrLstIter;
 
 class MbrSortList {
 
-ExpandableP<MbrItem, MbrItemP, 2> data;
+ExpandableP<MbrItem, String, MbrItemP, 2> data;
 
 public:
 

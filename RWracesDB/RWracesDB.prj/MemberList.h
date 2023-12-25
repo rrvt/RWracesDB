@@ -23,7 +23,7 @@ MbrRcd* rcd;
   };
 
 
-typedef DatumPtrT<MbrDsc> MbrDscP;
+typedef DatumPtrT<MbrDsc, String> MbrDscP;
 
 
 class MemberList;
@@ -32,7 +32,7 @@ typedef IterT<MemberList, MbrDsc> MLstIter;
 
 class MemberList {
 
-ExpandableP<MbrDsc, MbrDscP, 2> data;
+ExpandableP<MbrDsc, String, MbrDscP, 2> data;
 
 public:
 
