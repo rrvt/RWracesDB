@@ -62,7 +62,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -77,11 +77,12 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>Version.lib;Htmlhelp.lib;Library.lib;RACESdb.lib;AccessDB.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalLibraryDirectories>$(Solutiondir)..\..\Library\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -105,7 +106,7 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library.prj\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\..\Library\Library\;$(SolutionDir)..\..\Library\AccessDB.prj\;$(SolutionDir)..\..\Library\Extras\;$(SolutionDir)..\..\Library\AccessDB\;$(SolutionDir)..\..\Library\RACESdb\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -120,10 +121,11 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Version.lib; Htmlhelp.lib</AdditionalDependencies>
+      <AdditionalDependencies>Version.lib;Htmlhelp.lib;Library.lib;RACESdb.lib;AccessDB.lib</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ProgramDatabaseFile />
+      <AdditionalLibraryDirectories>$(Solutiondir)..\..\Library\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -152,7 +154,6 @@
     <ClInclude Include="..\..\Library\Extras\AboutDlg.h" />
     <ClInclude Include="BackupRcds.h" />
     <ClInclude Include="CntResponders.h" />
-    <ClInclude Include="Database.h" />
     <ClInclude Include="DeadRcds.h" />
     <ClInclude Include="Everbridge.h" />
     <ClInclude Include="FCClist.h" />
@@ -183,7 +184,6 @@
     <ClCompile Include="..\..\Library\Extras\AboutDlg.cpp" />
     <ClCompile Include="BackupRcds.cpp" />
     <ClCompile Include="CntResponders.cpp" />
-    <ClCompile Include="Database.cpp" />
     <ClCompile Include="DeadRcds.cpp" />
     <ClCompile Include="Everbridge.cpp" />
     <ClCompile Include="FCClist.cpp" />
@@ -217,16 +217,5 @@
   <ItemGroup>
     <Image Include="res\RWracesDB.ico" />
     <Image Include="res\RWracesDBUI.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Library\AccessDB\AccessDB.vcxproj">
-      <Project>{57279f7b-d4b9-47e3-8419-cb9b97c596fa}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\Library.prj\Library.vcxproj">
-      <Project>{cf57f3ec-d3db-4469-8519-3f9d73785d9b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\RACESdb\RACESdb.vcxproj">
-      <Project>{12084586-a769-4348-b54d-336fa036a1fb}</Project>
-    </ProjectReference>
   </ItemGroup>
 </Project>
