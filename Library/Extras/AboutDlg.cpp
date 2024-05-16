@@ -61,8 +61,4 @@ BEGIN_MESSAGE_MAP(AboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-void AboutDlg::onOk()
-{
-    // TODO: Add your control notification handler code here
-    CDialogEx::OnOK();
-}
+void AboutDlg::onOk() {CDialogEx::OnOK();}

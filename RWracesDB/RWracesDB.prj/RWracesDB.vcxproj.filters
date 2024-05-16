@@ -103,6 +103,9 @@
     <ClCompile Include="..\..\Library\Extras\RptOrientDlgTwo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackupRcds.h">
@@ -187,6 +190,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Library\Extras\RptOrientDlgTwo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyToolBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

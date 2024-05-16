@@ -86,11 +86,11 @@ afx_msg LRESULT MainFrame::OnResetToolBar(WPARAM wParam, LPARAM lParam) {setupTo
 
 
 void MainFrame::setupToolBar() {
-CRect winRect;   GetWindowRect(&winRect);   toolBar.initialize(winRect);
+CRect winRect;   GetWindowRect(&winRect);   toolBar.set(winRect);
 
-  toolBar.installMenu(ID_Badges, IDR_BadgeOpts,    _T("Badged"));
-  toolBar.installMenu(ID_Former, IDR_FormerOpts,   _T("Former"));
-  toolBar.installMenu(ID_Status, IDR_MemberStatus, _T("Mbr Status"));
+  toolBar.addMenu(ID_Badges, IDR_BadgeOpts,    _T("Badged"));
+  toolBar.addMenu(ID_Former, IDR_FormerOpts,   _T("Former"));
+  toolBar.addMenu(ID_Status, IDR_MemberStatus, _T("Mbr Status"));
   }
 
 

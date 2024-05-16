@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 4/15/24
+
+Add MyToolBar class to deal with the differences between Doc/View and Dialog Box Toolbars.
+
 ### Update 2/18/24
 
 Reorganized the Library so that it compiles once into Debug and Release directories under the Library
