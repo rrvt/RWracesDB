@@ -29,7 +29,7 @@ static UINT indicators[] = {
 MainFrame::MainFrame() : isInitialized(false) { }
 
 
-MainFrame::~MainFrame() {}
+MainFrame::~MainFrame() {winPos.~WinPos();}
 
 
 BOOL MainFrame::PreCreateWindow(CREATESTRUCT& cs) {

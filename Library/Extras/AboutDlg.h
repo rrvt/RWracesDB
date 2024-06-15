@@ -28,5 +28,6 @@ public:
   DECLARE_MESSAGE_MAP()
 
   afx_msg void onOk();
-  };
+  afx_msg void onChangePdfapps();
+};
 
