@@ -4,13 +4,17 @@ Path=D:\Sources\RWracesDB\RWracesDB\RWracesDB.sln
 Name=RWracesDB
 Version=2.100000
 [DefaultPath]
-NPaths=2
+NPaths=4
 DefKey0=RacesDB.ftr
 RacesDB.ftr.Path=D:\Sources\RWracesDB\Release\
 DefKey1=Icon
-Icon.Path=D:\Sources\RWracesDB\RWracesDB.prj\res\
+Icon.Path=D:\Sources\Library\License\
+DefKey2=License.ftr
+License.ftr.Path=D:\Sources\Library\License\
+DefKey3=License
+License.Path=D:\Sources\Library\License\
 [Icons]
-NoIcons=2
+NoIcons=3
 [Icon00]
 IconID=RWracesDBUI
 WixID=RWracesDBUIIcon.ico
@@ -19,21 +23,25 @@ IconPath=D:\Sources\RWracesDB\RWracesDB.prj\res\RWracesDBUI.ico
 IconID=RWracesDB
 WixID=RWracesDBIcon.ico
 IconPath=D:\Sources\RWracesDB\RWracesDB.prj\res\RWracesDB.ico
+[Icon02]
+IconID=MITLicense
+WixID=MITLicense_Icon.exe
+IconPath=D:\Sources\Library\License\MITLicense.ico
 [Product]
 ProductName=RacesDB
 Company=Bob -- K6RWY
 WixName=RacesDB
-WixVersion=1.10.17.0
+WixVersion=1.11.1.0
 UpgradeCode=41421C9F-E233-480D-893E-63A792A63FFE
 SaveVerAllowed=0
-LicenseRequired=0
-LicensePath=D:\Sources\RWracesDB\RWracesDB\
+LicenseRequired=1
+LicensePath=D:\Sources\Library\License\MITLicenseFile.rtf
 IconID=RWracesDBUI
 [PFFDirectories]
 NoDirectories=1
 [PFFDirDesc00]
 ID=RWracesDB
-WixID=RWracesDB.pff
+WixID=RWRACESDB.PFF
 Parent=
 Name=RWracesDB
 HasChildren=0
@@ -46,8 +54,8 @@ Parent=
 Name=RWracesDB
 HasChildren=0
 [Features]
-Count=1
-CurSel=RacesDB
+Count=2
+CurSel=License
 [Ftr00]
 FeatureID=RacesDB
 ProgramID=RWracesDB
@@ -67,3 +75,15 @@ IsVersionAvail=1
 ID=Help
 Path=D:\Sources\RWracesDB\Release\RWracesDB.chm
 Guid=0D21FFAA-5717-4755-A88D-522CB588D9BC
+[Ftr01]
+FeatureID=License
+ProgramID=RWracesDB
+StartMenuID=RWracesDB
+CurSel=MIT License
+NoComponents=1
+[Ftr01Cmp00]
+ID=MIT License
+Path=D:\Sources\Library\License\MITLicenseFile.rtf
+Guid=F9DF0631-7B70-4FBB-A252-8CAFD8368581
+IconID=MITLicense
+IsStartMenu=1

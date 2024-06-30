@@ -13,7 +13,7 @@ static int NoOfButtons        = 16;
 #ifdef MyButtonDefs
 
 MyToolBar::MyToolBar() : menu(ID_Badges), menu1(ID_Former),   menu2(ID_Status)
-                                                {toolBarDim.initialize(NoOfButtonControls, NoOfButtons);}
+                                          {toolBarDim.initialize(NoOfButtonControls, NoOfButtons);}
 #else
 
 MyToolBar::MyToolBar() {toolBarDim.initialize(NoOfButtonControls, NoOfButtons);}

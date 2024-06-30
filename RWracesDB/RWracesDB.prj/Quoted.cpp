@@ -78,8 +78,8 @@ String t;
 
     if (ch == _T('"') && ch1 == _T('"')) {t += _T('"'); i++; continue;}
 
-    if (dspType == BkupDspType && ch == _T('\\') && ch1 == _T('M')) {t += _T("\r\n"); i++; continue;}
-
+    if (dspType == BkupDspType && ch == _T('\\') && ch1 == _T('M'))
+                                                                  {t += _T("\r\n"); i++; continue;}
     t += ch;
     }
 

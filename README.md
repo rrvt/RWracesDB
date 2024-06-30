@@ -54,6 +54,10 @@ All the code is contained in the two directories.
 
 ## Updates
 
+### Update 6/29/24
+
+Add MIT License to installation.
+
 ### Update 6/14/24
 
 Fix WinPos.

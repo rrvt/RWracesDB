@@ -50,14 +50,7 @@ int        pos;
 
   noUpdates = 0;
 
-//  notePad << _T("Records") << nCrlf << nCrlf;
-
-//  notePad << nClrTabs << nSetTab(10) << nSetTab(24) << nSetRTab(36) << nSetTab(38);
-
   for (rcd = iter(); rcd; rcd = iter++) {
-//    notePad << rcd->callSign << nTab << rcd->lastName << nTab << rcd->firstName;
-//    notePad << nTab << rcd->activityCnt;
-//    notePad << nCrlf;
 
     String& callSign = rcd->callSign;
 
@@ -92,7 +85,7 @@ long    fmrID = stsTbl.find(fmr)->getId();
   if (!rcd)
     {notePad << _T("Call Sign: ") << csv.callSign << _T(" not found in database") << nCrlf; return;}
 
-  if (rcd->statusID != stsID) {                            //  && rcd->statusID <= noStsRcd
+  if (rcd->statusID != stsID) {
 
     long orgStsID = rcd->statusID;
     bool fmrMbr   = orgStsID == fmrID;
@@ -100,7 +93,7 @@ long    fmrID = stsTbl.find(fmr)->getId();
     if (!fmrMbr) {rcd->statusID = stsID;   rcd->setDirty();   noUpdates++;}
 
     dspMemberName(rcd);   notePad << nTab << _T("Status");
-                                                                      // stsTbl.findAbbr(orgStsID)
+
     StsRcd* stsRcd = stsTbl.find(orgStsID);
 
     notePad << nTab << stsRcd->abbreviation << nTab << _T("->") << nTab << abbr;
@@ -109,20 +102,6 @@ long    fmrID = stsTbl.find(fmr)->getId();
 
     notePad << nCrlf;
     }
-
-#if 0
-  if (rcd->badgeOK != csvBadgeOK) {
-
-    bool orig = rcd->badgeOK;
-
-    rcd->badgeOK = csvBadgeOK; rcd->mark(); noUpdates++;
-
-    dspMemberName(rcd);
-
-    notePad << nTab << _T("Badge OK") << nTab << orig << nTab << _T("->") << nTab << rcd->badgeOK;
-    notePad << nCrlf;
-    }
-#endif
 
   if (rcd->textMsgPh1.empty()) {
 
@@ -145,7 +124,7 @@ EntRcd* entity = entTbl.find(rcd->mbrEntityID);
 
 
 void StatusUpdate::setDspTabs(NotePad& np)
-        {np << nClrTabs << nSetTab(35) << nSetTab(50) << nSetTab(58) << nSetTab(63) << nSetTab(70);}
+      {np << nClrTabs << nSetTab(35) << nSetTab(50) << nSetTab(58) << nSetTab(63) << nSetTab(70);}
 
 
 void StatusUpdate::dspRcdName(EntRcd* entity) {
@@ -158,10 +137,4 @@ void StatusUpdate::dspRcdName(EntRcd* entity) {
   }
 
 
-
-
-
-//#include "EntityTbl.h"
-//#include "MemberTbl.h"
-//#include "StatusTbl.h"
 

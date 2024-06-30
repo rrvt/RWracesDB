@@ -7,10 +7,6 @@
 #include "NotePad.h"
 
 
-
-
-
-
 int StatusRpt::header(NotePad& np, bool printing) {
 Date   dt;
 String s;

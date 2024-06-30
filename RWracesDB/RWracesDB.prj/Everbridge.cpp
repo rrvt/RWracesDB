@@ -4,45 +4,44 @@
 #include "pch.h"
 #include "Everbridge.h"
 #include "Database.h"
-//#include "MemberList.h"
 #include "MbrSortList.h"
 #include "NotePad.h"
 #include "RWutilities.h"
 
 
 /*
-//First Name,Middle Initial,Last Name,Suffix,External ID,                                         // 5
-//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                              // 6
-//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,             // 6
-//Country 1,Latitude 1,Longitude 1,Location Id 1,                                                 // 4
-//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,             // 6
-//Country 2,Latitude 2,Longitude 2,Location Id 2,                                                 // 4
-//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,             // 6
-//Country 3,Latitude 3,Longitude 3,Location Id 3,                                                 // 4
-//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,             // 6
-//Country 4,Latitude 4,Longitude 4,Location Id 4,                                                 // 4
-//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,             // 6
-//Country 5,Latitude 5,Longitude 5,Location Id 5,                                                 // 4
-//Extension Phone 1,Extension 1,Extension Phone Country 1,                                        // 3
-//Extension Phone 2,Extension 2,Extension Phone Country 2,                                        // 3
-//Extension Phone 3,Extension 3,Extension Phone Country 3,                                        // 3
-//Extension Phone 4,Extension 4,Extension Phone Country 4,                                        // 3
-//Extension Phone 5,Extension 5,Extension Phone Country 5,                                        // 3
-//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                        // 6
-//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                        // 6
-//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,                // 5
-//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                      // 2
-//Plain Text Email - 2 way,                                                                       // 1
-//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                                    // 6
-//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                        // 4
-//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                                    // 6
-//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                                    // 6
-//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                    // 4
-//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                      // 3
-//One Way SMS,One Way SMS Country,                                                                // 2
-//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3,      // 6
-//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6,      // 6
-//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9,END   // 6
+//First Name,Middle Initial,Last Name,Suffix,External ID,                                     // 5
+//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                          // 6
+//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,         // 6
+//Country 1,Latitude 1,Longitude 1,Location Id 1,                                             // 4
+//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,         // 6
+//Country 2,Latitude 2,Longitude 2,Location Id 2,                                             // 4
+//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,         // 6
+//Country 3,Latitude 3,Longitude 3,Location Id 3,                                             // 4
+//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,         // 6
+//Country 4,Latitude 4,Longitude 4,Location Id 4,                                             // 4
+//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,         // 6
+//Country 5,Latitude 5,Longitude 5,Location Id 5,                                             // 4
+//Extension Phone 1,Extension 1,Extension Phone Country 1,                                    // 3
+//Extension Phone 2,Extension 2,Extension Phone Country 2,                                    // 3
+//Extension Phone 3,Extension 3,Extension Phone Country 3,                                    // 3
+//Extension Phone 4,Extension 4,Extension Phone Country 4,                                    // 3
+//Extension Phone 5,Extension 5,Extension Phone Country 5,                                    // 3
+//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                    // 6
+//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                    // 6
+//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,            // 5
+//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                  // 2
+//Plain Text Email - 2 way,                                                                   // 1
+//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                                // 6
+//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                    // 4
+//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                                // 6
+//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                                // 6
+//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                // 4
+//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                  // 3
+//One Way SMS,One Way SMS Country,                                                            // 2
+//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3,  // 6
+//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6,  // 6
+//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9,END//6
 */
 
 
@@ -222,77 +221,77 @@ void Everbridge::header() {
   }
 
 /*
-//First Name,Middle Initial,Last Name,Suffix,External ID,                                         // 5
+//First Name,Middle Initial,Last Name,Suffix,External ID,                                     // 5
 Craig,,Anderson,,RACES-N6YXK,
 
-//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                              // 6
+//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                          // 6
 US,,RACES,SJS RACES|SJS RACES 5 No Dispatch,,,
 
-//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,             // 6
+//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,         // 6
 Home,14656 Bronson Avenue,,San Jose,CA,95124,
 
-//Country 1,Latitude 1,Longitude 1,Location Id 1,                                                 // 4
+//Country 1,Latitude 1,Longitude 1,Location Id 1,                                             // 4
 US,37.25438,-121.92522,,
 
-//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,             // 6
+//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,         // 6
 ,,,,,,
-//Country 2,Latitude 2,Longitude 2,Location Id 2,                                                 // 4
+//Country 2,Latitude 2,Longitude 2,Location Id 2,                                             // 4
 ,,,,
-//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,             // 6
+//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,         // 6
 ,,,,,,
-//Country 3,Latitude 3,Longitude 3,Location Id 3,                                                 // 4
+//Country 3,Latitude 3,Longitude 3,Location Id 3,                                             // 4
 ,,,,
-//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,             // 6
+//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,         // 6
 ,,,,,,
-//Country 4,Latitude 4,Longitude 4,Location Id 4,                                                 // 4
+//Country 4,Latitude 4,Longitude 4,Location Id 4,                                             // 4
 ,,,,
-//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,             // 6
+//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,         // 6
 ,,,,,,
-//Country 5,Latitude 5,Longitude 5,Location Id 5,                                                 // 4
+//Country 5,Latitude 5,Longitude 5,Location Id 5,                                             // 4
 ,,,,
 
-//Extension Phone 1,Extension 1,Extension Phone Country 1,                                        // 3
+//Extension Phone 1,Extension 1,Extension Phone Country 1,                                    // 3
 ,,,
-//Extension Phone 2,Extension 2,Extension Phone Country 2,                                        // 3
+//Extension Phone 2,Extension 2,Extension Phone Country 2,                                    // 3
 ,,,
-//Extension Phone 3,Extension 3,Extension Phone Country 3,                                        // 3
+//Extension Phone 3,Extension 3,Extension Phone Country 3,                                    // 3
 ,,,
-//Extension Phone 4,Extension 4,Extension Phone Country 4,                                        // 3
+//Extension Phone 4,Extension 4,Extension Phone Country 4,                                    // 3
 ,,,
-//Extension Phone 5,Extension 5,Extension Phone Country 5,                                        // 3
+//Extension Phone 5,Extension 5,Extension Phone Country 5,                                    // 3
 ,,,
       Cell                       Work?                       Home
-//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                        // 6
+//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                    // 6
 4087686025,US,,,4083718904,US,
 
-//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                        // 6
+//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                    // 6
 ,,,,,,
-//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,                // 5
+//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,            // 5
 ,acraiga@pacbell.net,,,,
 
-//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                      // 2
+//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                  // 2
 ,,
-//Plain Text Email - 2 way,                                                                       // 1
+//Plain Text Email - 2 way,                                                                   // 1
 ,
-//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                                    // 6
+//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                                // 6
 4087686025,US,,,,,
-//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                        // 4
+//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                    // 4
 ,,,,
-//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                                    // 6
+//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                                // 6
 ,,,,,,
-//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                                    // 6
+//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                                // 6
 ,,,,,,
-//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                    // 4
+//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                // 4
 ,,,,
-//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                      // 3
+//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                  // 3
 ,,,
-//One Way SMS,One Way SMS Country,                                                                // 2
+//One Way SMS,One Way SMS Country,                                                            // 2
 ,,
-//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3,      // 6
+//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3,  // 6
 ,Certifications,RACES,,,,
-//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6,      // 6
+//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6,  // 6
 ,,,,,,
-//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9,END   // 6
+//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9,END//6
 ,,,,,,
 ,,,,,,,,,,END
 */
@@ -306,75 +305,75 @@ Work,150 Rose Orchard Way,,San Jose,CA,95134,US,37.41737,-121.94735,,
 ,,,,,,,,,,END
 
 
-//First Name,Middle Initial,Last Name,Suffix,External ID,                                         // 5
+//First Name,Middle Initial,Last Name,Suffix,External ID,                                    // 5
 //Scott,L,Bordelon,,RACES-K6SLB
 
-//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                              // 6
+//Country,Business Name,Record Type,Groups,SSO User ID,Group Remove,                         // 6
 //US,,RACES,SJS RACES|SJS RACES 1 Priority|SJS RACES 0 Officers,,,
 
-//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,             // 6
+//Location 1,Street Address 1,Apt/Suite/Unit 1,City 1,State/Province 1,Postal Code 1,        // 6
 Home,5659 Algonquin Way,,San Jose,CA,951382245,
 
-//Country 1,Latitude 1,Longitude 1,Location Id 1,                                                 // 4
+//Country 1,Latitude 1,Longitude 1,Location Id 1,                                            // 4
 US,37.27084,-121.7694,,
 
-//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,             // 6
+//Location 2,Street Address 2,Apt/Suite/Unit 2,City 2,State/Province 2,Postal Code 2,        // 6
 Work,150 Rose Orchard Way,,San Jose,CA,95134
 
-//Country 2,Latitude 2,Longitude 2,Location Id 2,                                                 // 4
+//Country 2,Latitude 2,Longitude 2,Location Id 2,                                            // 4
 US,37.41737,-121.94735,,
 
-//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,             // 6
+//Location 3,Street Address 3,Apt/Suite/Unit 3,City 3,State/Province 3,Postal Code 3,        // 6
 ,,,,,,
-//Country 3,Latitude 3,Longitude 3,Location Id 3,                                                 // 4
+//Country 3,Latitude 3,Longitude 3,Location Id 3,                                            // 4
 ,,,,
-//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,             // 6
+//Location 4,Street Address 4,Apt/Suite/Unit 4,City 4,State/Province 4,Postal Code 4,        // 6
 ,,,,,,
-//Country 4,Latitude 4,Longitude 4,Location Id 4,                                                 // 4
+//Country 4,Latitude 4,Longitude 4,Location Id 4,                                            // 4
 ,,,,
-//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,             // 6
+//Location 5,Street Address 5,Apt/Suite/Unit 5,City 5,State/Province 5,Postal Code 5,        // 6
 ,,,,,,
-//Country 5,Latitude 5,Longitude 5,Location Id 5,                                                 // 4
+//Country 5,Latitude 5,Longitude 5,Location Id 5,                                            // 4
 ,,,,
-//Extension Phone 1,Extension 1,Extension Phone Country 1,                                        // 3
+//Extension Phone 1,Extension 1,Extension Phone Country 1,                                   // 3
 ,,,
-//Extension Phone 2,Extension 2,Extension Phone Country 2,                                        // 3
+//Extension Phone 2,Extension 2,Extension Phone Country 2,                                   // 3
 ,,,
-//Extension Phone 3,Extension 3,Extension Phone Country 3,                                        // 3
+//Extension Phone 3,Extension 3,Extension Phone Country 3,                                   // 3
 ,,,
-//Extension Phone 4,Extension 4,Extension Phone Country 4,                                        // 3
+//Extension Phone 4,Extension 4,Extension Phone Country 4,                                   // 3
 ,,,
-//Extension Phone 5,Extension 5,Extension Phone Country 5,                                        // 3
+//Extension Phone 5,Extension 5,Extension Phone Country 5,                                   // 3
 ,,,
-//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                        // 6
+//Phone 1,Phone Country 1,Phone 2,Phone Country 2,Phone 3,Phone Country 3,                   // 6
 4084311862,US,4085761341,US,4082700422,US,
-//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                        // 6
+//Phone 4,Phone Country 4,Phone 5,Phone Country 5,Phone 6,Phone Country 6,                   // 6
 ,,,,,,
-//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,                // 5
+//Email Address 1,Email Address 2,Email Address 3,Email Address 4,Email Address 5,           // 5
 scott.bordelon@intel.com,scott.bordelon@gmail.com,,,,
-//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                      // 2
+//Plain Text Email - 1 way,Plain Text - 1 way Pager Service,                                 // 2
 ,,
-//Plain Text Email - 2 way,                                                                       // 1
+//Plain Text Email - 2 way,                                                                  // 1
 ,
-//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                                    // 6
+//SMS 1,SMS 1 Country,SMS 2,SMS 2 Country,SMS 3,SMS 3 Country,                               // 6
 4084311862,US,,,,,
-//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                        // 4
+//SMS 4,SMS 4 Country,SMS 5,SMS 5 Country,                                                   // 4
 ,,,,
-//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                                    // 6
+//FAX 1,FAX Country 1,FAX 2,FAX Country 2,FAX 3,FAX Country 3,                               // 6
 ,,,,,,
-//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                                    // 6
+//TTY 1,TTY Country 1,TTY 2,TTY Country 2,TTY 3,TTY Country 3,                               // 6
 ,,,,,,
-//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                    // 4
+//Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,               // 4
 ,,,,
-//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                      // 3
+//TAP Pager,TAP Pager Country,TAP Pager Pin,                                                 // 3
 ,,,
-//One Way SMS,One Way SMS Country,                                                                // 2
+//One Way SMS,One Way SMS Country,                                                           // 2
 ,,
-//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3,      // 6
+//Custom Field 1,Custom Value 1,Custom Field 2,Custom Value 2,Custom Field 3,Custom Value 3, // 6
 Certifications,RACES,,,,,
-//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6,      // 6
+//Custom Field 4,Custom Value 4,Custom Field 5,Custom Value 5,Custom Field 6,Custom Value 6, // 6
 ,,,,,,
-//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9,      // 6
+//Custom Field 7,Custom Value 7,Custom Field 8,Custom Value 8,Custom Field 9,Custom Value 9, // 6
 ,,,,,,
 //END
 */
@@ -423,7 +422,7 @@ String  t;                                                       // The empty st
   if (rcd.isOfficer) s += _T("|SJS RACES 0 Officers");
   out(s);                                                         // Groups
 
-  notePad << _T(",,");                                              // SSO User ID,Group Remove,
+  notePad << _T(",,");                                            // SSO User ID,Group Remove,
 
   s.clear();
 
@@ -471,10 +470,10 @@ String  t;                                                       // The empty st
   phone(0);                                                       // TTY 2
   phone(0);                                                       // TTY 3
 
-  //Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,                    // 4
+  //Numeric Pager,Numeric Pager Country,Numeric Pager Pin,Numeric Pager Service,              // 4
   emptyFields(4);
 
-  //TAP Pager,TAP Pager Country,TAP Pager Pin,                                                      // 3
+  //TAP Pager,TAP Pager Country,TAP Pager Pin,                                                // 3
   emptyFields(3);
 
   phone(0);                                                       // One Way SMS
@@ -507,12 +506,13 @@ String  t;
 
   out(title);                                                                 // Location n
 
-  if (rcd->addrIsPO) {                                                          // Street Address n
+  if (rcd->addrIsPO) {                                                        // Street Address n
     s = !addrRcd->address1.isEmpty() ? addrRcd->address1 : String(_T("PO Box 1234"));  out(s);
     out(t);                                                                   // Apt/Suite/Unit n
 
     if (cityRcd) {
-      s = !cityRcd->city.isEmpty()   ? cityRcd->city     : String(_T("San Jose"));     out(s); // City n
+      s = !cityRcd->city.isEmpty()   ? cityRcd->city     : String(_T("San Jose"));     out(s);
+                                                                              // City n
       s = !cityRcd->state.isEmpty()  ? cityRcd->state    : String(_T("CA"));           out(s);
                                                                               // State/Province
       out(cityRcd->zip);                                                      // Postal Code 1
@@ -530,17 +530,18 @@ String  t;
 
     if (cityRcd) {
       s = !cityRcd->city.isEmpty()  ? cityRcd->city  : String(_T("San Jose"));  out(s); // City n
-      s = !cityRcd->state.isEmpty() ? cityRcd->state : String(_T(" CA"));       out(s); // State/Province
-      out(cityRcd->zip);                                                                // Postal Code n
+      s = !cityRcd->state.isEmpty() ? cityRcd->state : String(_T(" CA"));       out(s);
+                                                                              // State/Province
+      out(cityRcd->zip);                                                      // Postal Code n
       }
     else {
-      s = _T("San Jose"); out(s);                                               // City n
-      s = _T(" CA");      out(s);                                               // State/Province n
-      emptyFields(1);                                                              // Postal Code n
+      s = _T("San Jose"); out(s);                                             // City n
+      s = _T(" CA");      out(s);                                             // State/Province n
+      emptyFields(1);                                                         // Postal Code n
       }
     }
 
-  //Country 1,Latitude 1,Longitude 1,Location Id 1,                                     // 4
+  //Country 1,Latitude 1,Longitude 1,Location Id 1,                           // 4
 
   s = _T("US"); out(s);   emptyFields(3);
   }
@@ -566,8 +567,8 @@ String s;
 
   s = ph;   if (s.length() == 1) {emptyFields(2); return;}
 
-  out(ph);                                                                      // Phone n
-  out(_T("US"));                                                                // Phone Country n
+  out(ph);                                                                    // Phone n
+  out(_T("US"));                                                              // Phone Country n
   }
 
 
@@ -588,32 +589,5 @@ void Everbridge::emptyFields(int n) {String s = Commas.substr(0, n);   notePad <
 
 
 
-
-#if 0
-#include "AddressTbl.h"
-#include "AssgnPrefTbl.h"
-#include "CityStateTbl.h"
-#include "EntityTbl.h"
-#include "LocationPrefTbl.h"
-#include "MemberTbl.h"
-#include "StatusTbl.h"
-#include "RWracesDB.h"
-#include "RWracesDBView.h"
-#endif
-
-
-
-
-#if 1
-#else
-MemberList ml(EverbridgeSrt);
-MLstIter   iter(ml);
-MbrRcd*    rcd;
-#endif
-//    long    statusID  = rcd->statusID;
-//    StsRcd* statusRcd = stsTbl.find(statusID);
-//    String  responder = rcd->responder.trim();
-
-//    if (!statusRcd || statusRcd->abbreviation == _T("Fmr")) continue;
 
 

@@ -201,17 +201,3 @@ EntRcd* mbrEnt;
   }
 
 
-#if 0
-bool MbrInfo::getFormer(MbrRcd& rcd) {
-
-  EntRcd* mbrRcd = entTbl.find(rcd.mbrEntityID);   if (!mbrRcd) return false;
-
-  lastName  = mbrRcd->lastName;   lastName.trim();
-  firstName = mbrRcd->firstName;  firstName.trim();
-  callSign  = rcd.callSign;       callSign.trim();
-
-  return true;
-  }
-#endif
-//MbrRcd*    rcd;
-

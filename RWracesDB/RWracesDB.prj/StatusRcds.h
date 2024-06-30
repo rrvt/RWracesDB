@@ -17,7 +17,8 @@ String activityCnt;
   CSVstsRcd(CSVstsRcd& r) {copy(r);}
  ~CSVstsRcd() { }
 
-  virtual void clear() {callSign.clear(); lastName.clear(); firstName.clear(); activityCnt.clear();}
+  virtual void clear()
+                      {callSign.clear(); lastName.clear(); firstName.clear(); activityCnt.clear();}
 
   virtual CSVstsRcd& operator= (CSVstsRcd& r) {copy(r); return *this;}
 

@@ -30,9 +30,10 @@ MbrDsc*    dsc;
 //Other,Comments,geLabel
 
 //"Anderson, Craig ",N6YXK,Active," Responder, DSW on file",ARES Only,Anywhere in city,,
-//"14656 Bronson Avenue, San Jose CA 95124",408-768-6025,408-371-8904,408-768-6025,acraiga@pacbell.net,,
-//"HT:(1-6m(5w), 3-2m(5w), 2-70cm(5w), 1-23cm(1w)) Prtable:(1-2m(50w), 1-70cm(20w), 1-HF(100w)) Pkt:(mobile) Other:(WiFi, APRS, )",
-//"APRS-capable, WiFi",Packet Manager; Missing certs.,"Anderson, N6YXK"
+//"14656 Bronson Avenue, San Jose CA 95124",408-768-6025,408-371-8904,408-768-6025,
+//acraiga@pacbell.net,,"HT:(1-6m(5w), 3-2m(5w), 2-70cm(5w), 1-23cm(1w)) Prtable:(1-2m(50w),
+//1-70cm(20w), 1-HF(100w)) Pkt:(mobile) Other:(WiFi, APRS, )","APRS-capable, WiFi",
+//Packet Manager; Missing certs.,"Anderson, N6YXK"
 
 
 void GoogleRpt::header() {
@@ -140,10 +141,13 @@ bool    avail = addrAvail(r, addrRcd);
   quoted.stg(rcd.multilingual);
 
   s.clear();
-  if (!rcd.handHeld.isEmpty())   {                                s += _T("HT: ")    + rcd.handHeld;}
-  if (!rcd.portMobile.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Port: ")  + rcd.portMobile;}
-  if (!rcd.portPacket.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Pkt: ")   + rcd.portPacket;}
-  if (!rcd.otherEquip.isEmpty()) {if (!s.isEmpty()) s+= _T("; "); s += _T("Other: ") + rcd.otherEquip;}
+  if (!rcd.handHeld.isEmpty())   {s += _T("HT: ")    + rcd.handHeld;}
+  if (!rcd.portMobile.isEmpty())
+                            {if (!s.isEmpty()) s+= _T("; "); s += _T("Port: ")  + rcd.portMobile;}
+  if (!rcd.portPacket.isEmpty())
+                            {if (!s.isEmpty()) s+= _T("; "); s += _T("Pkt: ")   + rcd.portPacket;}
+  if (!rcd.otherEquip.isEmpty())
+                            {if (!s.isEmpty()) s+= _T("; "); s += _T("Other: ") + rcd.otherEquip;}
   quoted.stg(s);
 
   quoted.stg(rcd.otherEquip);
@@ -215,8 +219,8 @@ String        s;
     s.clear();
     if (!cityRcd->city.isEmpty())                                     s += cityRcd->city;
     if (!cityRcd->state.isEmpty())   {if (!s.isEmpty()) s += _T(" "); s += cityRcd->state;}
-    if (!rcd->locationZip.isEmpty()) {if (!s.isEmpty()) s += _T(" "); s += formatZip(rcd->locationZip);}
-
+    if (!rcd->locationZip.isEmpty())
+                                {if (!s.isEmpty()) s += _T(" "); s += formatZip(rcd->locationZip);}
     quoted.stg(s);
     }
 
@@ -227,7 +231,7 @@ String        s;
     if (cityRcd) {
       s += cityRcd->city.isEmpty()  ? String(_T(", San Jose")) : _T(", ") + cityRcd->city;
       s += cityRcd->state.isEmpty() ? String(_T(" CA"))        : _T(" ")  + cityRcd->state;
-      if (cityRcd->zip.isEmpty())                           s += _T(" ")  + formatZip(cityRcd->zip);
+      if (cityRcd->zip.isEmpty()) s += _T(" ")  + formatZip(cityRcd->zip);
       }
     quoted.stg(s);
     }
@@ -237,18 +241,4 @@ String        s;
   }
 
 
-
-
-
-#if 0
-#include "AddressTbl.h"
-#include "AssgnPrefTbl.h"
-#include "CityStateTbl.h"
-#include "EntityTbl.h"
-#include "LocationPrefTbl.h"
-#include "MemberTbl.h"
-#include "StatusTbl.h"
-#include "RWracesDB.h"
-#include "RWracesDBView.h"
-#endif
 

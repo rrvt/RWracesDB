@@ -71,20 +71,6 @@ int     i;
 
 
 
-#if 1
-//    i = getRspClass(rcd);
-#else
-    //    String responder = rcd->responder.trim();
-    asnRcd = asnTbl.find(rcd->assgnPrefID);   if (!asnRcd) {counts[5]++; continue;}
-
-    key = asnRcd->aPKey;
-
-    for (i = 0; i < noElements(counts); i++)
-                                      if (i >= noElements(keys) || key == keys[i]) {counts[i]++; break;}
-#endif
-//#include "RWracesDB.h"
-//#include "RWracesDBView.h"
-
 
 
 

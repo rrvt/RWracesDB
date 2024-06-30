@@ -45,7 +45,7 @@ private:
   };
 
 
-typedef DatumPtrT<MbrInfo, String> MbrInfoP;                      // Usually defined just before iterator
+typedef DatumPtrT<MbrInfo, String> MbrInfoP;              // Usually defined just before iterator
 class InfoRpts;
 typedef IterT<InfoRpts, MbrInfo> InfoIter;
 
@@ -72,15 +72,11 @@ private:
 
   MbrInfo* datum(int i) {return 0 <= i && i < nData() ? data[i].p : 0;}
 
-  int   nData()      {return data.end();}                       // returns number of data items in array
+  int   nData()      {return data.end();}                  // returns number of data items in array
 
   void  removeDatum(int i) {if (0 <= i && i < nData()) data.del(i);}
 
   friend typename InfoIter;
   };
 
-
-
-
-//  bool getFormer(MbrRcd& rcd);
 

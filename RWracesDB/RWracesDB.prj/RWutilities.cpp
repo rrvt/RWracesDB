@@ -77,8 +77,8 @@ int           i;
 
   t.clear();
 
-  for (i = 0; i < int(zip.size()); i++) {ch = zip[i];  if (_T('0') <= ch && ch <= _T('9')) t += ch;}
-
+  for (i = 0; i < int(zip.size()); i++)
+                                      {ch = zip[i];  if (_T('0') <= ch && ch <= _T('9')) t += ch;}
   return t;
   }
 
@@ -89,8 +89,8 @@ String* p;
 
   if (s->size() != 0) return false;
 
-  for (va_start(args, s);  (p = va_arg(args, String*)) && p != 0;) if (p->size() != 0) return false;
-
+  for (va_start(args, s); (p = va_arg(args, String*)) && p != 0; )
+                                                                  if (p->size() != 0) return false;
   return true;
   }
 

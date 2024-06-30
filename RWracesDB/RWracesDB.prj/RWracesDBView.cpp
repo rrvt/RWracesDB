@@ -48,11 +48,11 @@ RptOrietnDlg dlg;
 
 
 void RWracesDBView::initRptOrietn()
-            {prtStatus.prtrOrietn = (PrtrOrient) iniFile.readInt(RptOrietnSect, StsOrietnKey, PortOrient);}
+    {prtStatus.prtrOrietn = (PrtrOrient) iniFile.readInt(RptOrietnSect, StsOrietnKey, PortOrient);}
 
 
 void RWracesDBView::saveRptOrietn()
-             {saveNoteOrietn();   iniFile.write(RptOrietnSect, StsOrietnKey,  (int) prtStatus.prtrOrietn);}
+     {saveNoteOrietn();   iniFile.write(RptOrietnSect, StsOrietnKey,  (int) prtStatus.prtrOrietn);}
 
 
 void RWracesDBView::onPreparePrinting(CPrintInfo* info) {
@@ -88,8 +88,8 @@ void RWracesDBView::onDisplayOutput() {
 
 
 // The footer is injected into the printed output, so the output goes directly to the device.
-// The output streaming functions are very similar to NotePad's streaming functions so it should not
-// be a great hardship to construct a footer.
+// The output streaming functions are very similar to NotePad's streaming functions so it should
+// not be a great hardship to construct a footer.
 
 void RWracesDBView::printFooter(DevBase& dev, int pageNo) {prtNote.prtFooter(dev, pageNo);}
 
@@ -120,12 +120,9 @@ void RWracesDBView::OnSetFocus(CWnd* pOldWnd) {
 
 
 #ifdef _DEBUG
-
-void RWracesDBView::AssertValid() const {CScrollView::AssertValid();}
-
+void RWracesDBView::AssertValid() const          {CScrollView::AssertValid();}
 void RWracesDBView::Dump(CDumpContext& dc) const {CScrollView::Dump(dc);}
 
 RWracesDBDoc* RWracesDBView::GetDocument() const
-        {ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(RWracesDBDoc)));  return (RWracesDBDoc*)m_pDocument;}
-
+  {ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(RWracesDBDoc)));  return (RWracesDBDoc*)m_pDocument;}
 #endif //_DEBUG

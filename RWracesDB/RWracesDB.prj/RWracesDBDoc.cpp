@@ -149,8 +149,6 @@ int    pos;
 
   if (ext == ".accdb") {
     iniFile.writeString(FileSection, DBFileKey, destinationFile);
-
-//    maps.initializeMaps(DBFileKey, path);
     }
   }
 
@@ -164,17 +162,7 @@ MemberRpts dspMbrRcd(BkupDspType);
   }
 
 
-void RWracesDBDoc::OnRestoreNew() {
-#if 1
-#else
-DB db(BkupDspType);   dataSource = RestoreSrc;
-
-  if (!getPathDlg(_T("Restore Database from csv File"), 0, _T("csv"), _T("*.csv"), path) ||
-                                                                           !OnOpenDocument(path)) return;
-  db.restore();   theApp.announceFinish();   display(NotePadSrc);
-#endif
-  display(NotePadSrc);
-  }
+void RWracesDBDoc::OnRestoreNew() {display(NotePadSrc);}
 
 
 void RWracesDBDoc::OnGoogleEarth() {
@@ -228,7 +216,9 @@ InfoRpts rpt;
 
   view()->setFont(_T("Courier New"), 12.0);
 
-  setFileSaveAttr(_T("BadgesByCallSign"), _T("txt"));   rpt.dspBadges(BdgFCCSort);;  display(NotePadSrc);
+  setFileSaveAttr(_T("BadgesByCallSign"), _T("txt"));   rpt.dspBadges(BdgFCCSort);;
+
+  display(NotePadSrc);
   }
 
 
@@ -237,7 +227,9 @@ InfoRpts rpt;
 
   view()->setFont(_T("Courier New"), 12.0);
 
-  setFileSaveAttr(_T("BadgesByDate"), _T("txt"));   rpt.dspBadges(BdgDateSort);  display(NotePadSrc);
+  setFileSaveAttr(_T("BadgesByDate"), _T("txt"));   rpt.dspBadges(BdgDateSort);
+
+  display(NotePadSrc);
   }
 
 
@@ -255,7 +247,9 @@ InfoRpts rpt;
 
   view()->setFont(_T("Courier New"), 12.0);
 
-  setFileSaveAttr(_T("FormerByCallSign"), _T("txt"));   rpt.former(FmrFCCSort);  display(NotePadSrc);
+  setFileSaveAttr(_T("FormerByCallSign"), _T("txt"));   rpt.former(FmrFCCSort);
+
+  display(NotePadSrc);
   }
 
 
@@ -313,12 +307,8 @@ void RWracesDBDoc::serialize(Archive& ar) {
 
   else
     switch(dataSource) {
-#if 1
-#else
-    case RestoreSrc : {DB db(BkupDspType);  db.load(ar); return;}
-#endif
-    case StsUpdtSrc : {StatusUpdate stsUpdt; stsUpdt.load(ar);  return;}
-    }
+      case StsUpdtSrc : {StatusUpdate stsUpdt; stsUpdt.load(ar);  return;}
+      }
   }
 
 
@@ -327,60 +317,9 @@ void RWracesDBDoc::serialize(Archive& ar) {
 // RWracesDBDoc diagnostics
 
 #ifdef _DEBUG
-
-void RWracesDBDoc::AssertValid() const {CDocument::AssertValid();}
-
-
+void RWracesDBDoc::AssertValid() const          {CDocument::AssertValid();}
 void RWracesDBDoc::Dump(CDumpContext& dc) const {CDocument::Dump(dc);}
-
 #endif //_DEBUG
 
 
-
-#if 0
-void RWracesDBDoc::OnIDlist() {
-MemberRpts rpt(ExcelDspType);
-
-  setFileSaveAttr(_T("IDlist"), _T("txt"));   rpt.idList();  invalidate();
-  }
-#endif
-
-
-
-#if 0
-void RWracesDBDoc::OnUpdateRequest()
-              {UpdateRequest rpt;   setFileSaveAttr(_T("Updates"), _T("txt"));   rpt();   invalidate();}
-
-
-void RWracesDBDoc::OnSurveyRequest() {
-String path;
-
-  surveyCmd = new SurveyCommand;
-
-  setFileSaveAttr(_T("Survey"), _T("txt"));
-
-  if (getPathDlg(_T("Load Filter"), 0, _T("txt"), _T("*.txt"), path))
-                                            {setDataSrc(FilterSrc);   if (!OnOpenDocument(path)) return;}
-
-  (*surveyCmd)();  delete surveyCmd; surveyCmd = 0; invalidate();
-  }
-#endif
-
-
-
-//#include "DB.h"
-//#include "DBtables.h"
-
-
-
-
-#if 1
-#else
-String     fileName = path;
-int        pos      = fileName.find_last_of('\\');
-  fileName = fileName.substr(pos+1);   pos = fileName.find_first_of(_T('.'));
-  fileName = fileName.substr(0, pos);
-#endif
-//String     title;
-//String     ext;
 

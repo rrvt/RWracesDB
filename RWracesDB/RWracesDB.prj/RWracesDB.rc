@@ -56,8 +56,8 @@ BEGIN
     "LANGUAGE 9, 1\r\n"
     "#pragma code_page(1252)\r\n"
     "#include ""res\\RWracesDB.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
-    "#include ""afxres.rc""         // Standard components\r\n"
-    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#include ""afxres.rc""           // Standard components\r\n"
+    "#include ""afxprint.rc""         // printing/print preview resources\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -107,9 +107,6 @@ BEGIN
     BUTTON      ID_APP_ABOUT
     BUTTON      ID_APP_EXIT
 END
-
-//  BUTTON      ID_UpdateReq
-//  BUTTON      ID_SurveyReq
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -205,8 +202,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,11,1
- PRODUCTVERSION 1,11,1
+ FILEVERSION 1,11,2
+ PRODUCTVERSION 1,11,2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -223,12 +220,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Bob -- K6RWY"
             VALUE "FileDescription", "Manipulate RACES DB"
-            VALUE "FileVersion", "1.11.1"
+            VALUE "FileVersion", "1.11.2"
             VALUE "InternalName", "RWracesDB.exe"
             VALUE "LegalCopyright", "(c), All rights reserved."
             VALUE "OriginalFilename", "RWracesDB.exe"
             VALUE "ProductName", "Read/Write RACES DB"
-            VALUE "ProductVersion", "1.11.1"
+            VALUE "ProductVersion", "1.11.2"
         END
     END
     BLOCK "VarFileInfo"
@@ -357,8 +354,8 @@ END
 LANGUAGE 9, 1
 #pragma code_page(1252)
 #include "res\RWracesDB.rc2"  // non-Microsoft Visual C++ edited resources
-#include "afxres.rc"         // Standard components
-#include "afxprint.rc"       // printing/print preview resources
+#include "afxres.rc"          // Standard components
+#include "afxprint.rc"        // printing/print preview resources
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

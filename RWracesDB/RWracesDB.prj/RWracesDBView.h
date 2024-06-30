@@ -57,6 +57,7 @@ protected:
 
 
 #ifndef _DEBUG  // debug version in RWracesDBView.cpp
-inline RWracesDBDoc* RWracesDBView::GetDocument() const {return reinterpret_cast<RWracesDBDoc*>(m_pDocument);}
+inline RWracesDBDoc* RWracesDBView::GetDocument() const
+                                            {return reinterpret_cast<RWracesDBDoc*>(m_pDocument);}
 #endif
 
