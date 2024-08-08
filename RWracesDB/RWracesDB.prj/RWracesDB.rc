@@ -202,8 +202,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,11,2
- PRODUCTVERSION 1,11,2
+ FILEVERSION 1,11,3
+ PRODUCTVERSION 1,11,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -220,12 +220,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Bob -- K6RWY"
             VALUE "FileDescription", "Manipulate RACES DB"
-            VALUE "FileVersion", "1.11.2"
+            VALUE "FileVersion", "1.11.3"
             VALUE "InternalName", "RWracesDB.exe"
             VALUE "LegalCopyright", "(c), All rights reserved."
             VALUE "OriginalFilename", "RWracesDB.exe"
             VALUE "ProductName", "Read/Write RACES DB"
-            VALUE "ProductVersion", "1.11.2"
+            VALUE "ProductVersion", "1.11.3"
         END
     END
     BLOCK "VarFileInfo"
