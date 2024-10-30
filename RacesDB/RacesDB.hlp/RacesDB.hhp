@@ -1,0 +1,25 @@
+[OPTIONS]
+Auto TOC=1
+Binary Index=No
+Compatibility=1.1 or later
+Compiled file=RacesDB.chm
+Contents file=RacesDB.hhc
+Default Font=Arial,12,0
+Default Window=Introduction
+Default topic=Introduction.htm
+Display compile progress=No
+Error log file=RacesDB.log
+Language=0x409 English (United States)
+Title=Test App Help
+
+[WINDOWS]
+Introduction="Introduction","RacesDB.hhc",,"Introduction.htm",,,,,,0x42120,,0x300e,,,,,,,,0
+Operations="Operations","RacesDB.hhc",,"Operations.htm",,,,,,0x20,,0x300e,[271,372,593,566],,,,,,,0
+
+
+[FILES]
+Introduction.htm
+Operations.htm
+
+[INFOTYPES]
+
